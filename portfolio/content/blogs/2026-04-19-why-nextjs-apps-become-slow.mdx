@@ -1,0 +1,46 @@
+---
+title: "Why Next.js Apps Become Slow (And Nobody Talks About It)"
+description: "Most Next.js apps start fast but become slow over time. Here's why it happens and what developers ignore."
+date: "2026-04-19"
+tags: ["nextjs", "performance", "frontend mistakes"]
+type: "negative"
+---
+
+## 🚨 The Hidden Problem
+
+Everyone says Next.js is fast.
+
+But here's the truth: **Most apps become slow after a few months.**
+
+### Why?
+
+- Too many client components
+- No caching strategy
+- Huge bundle sizes
+- Bad API handling
+
+## ⚠️ Real Developer Mistakes
+
+### 1. Overusing `useEffect`
+
+People fetch data everywhere → unnecessary re-renders.
+
+### 2. Ignoring caching
+
+No `revalidate`, no edge caching → everything becomes dynamic.
+
+### 3. Heavy libraries
+
+Importing full UI libraries for 1 component.
+
+## 💡 Fix (Simple but powerful)
+
+- Use **Server Components properly**
+- Add `revalidate`
+- Analyze bundle with `next build`
+
+## 🧠 Final Thought
+
+Next.js isn't slow.
+
+Bad usage is.

@@ -1,0 +1,270 @@
+---
+title: "Stop Making These Rookie React Mistakes (Seriously, They're Costing You!)"
+description: "React is powerful, but easy to misuse. Learn to identify and fix common React mistakes like `useEffect` dependency traps, direct state mutation, and prop drilling to build more robust and performant applications."
+date: "2023-10-27"
+tags: ["react", "javascript", "mistakes", "frontend", "best-practices", "optimization"]
+type: "opinion"
+---
+
+import { CodeHighlight } from './components/CodeHighlight'; // Assuming a CodeHighlight component for MDX
+
+React. It's the darling of frontend development, a beast of a library that lets us build incredible UIs with declarative ease. But let's be real, its perceived simplicity often lulls developers into a false sense of security, leading to some truly head-scratching bugs and performance nightmares.
+
+I've seen these mistakes time and again, and honestly, they're not just "rookie" errors anymore. Experienced devs fall into these traps too. So, let's cut the fluff and dive into some common React mistakes that are probably lurking in your codebase right now, and how to squash them.
+
+---
+
+### 🐛 Mistake #1: The `useEffect` Dependency Array Trap (Or, The Infinite Loop Generator)
+
+Ah, `useEffect`. The source of so much power and so much pain. One of the most common React mistakes is misunderstanding or outright ignoring its dependency array.
+
+**The Problem:**
+Forgetting to include all external values (props, state, functions) that your effect uses in the dependency array, or conversely, putting functions/objects directly in the array that cause unnecessary re-runs. This leads to:
+*   **Stale Closures:** Your effect uses an outdated value of a variable.
+*   **Infinite Loops:** Your effect causes a state update, which triggers a re-render, which re-runs the effect, which causes another state update... you get the picture.
+*   **Unnecessary Re-renders/API Calls:** Your effect runs more often than it needs to, hammering your backend or bogging down performance.
+
+**Bad Example:**
+
+```jsx
+// This will only run once, `count` will be stale after the first render
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log('Count changed:', count); // Will always log 0 after initial render
+  }, []); // Missing `count` in dependencies!
+
+  return <button onClick={() => setCount(count + 1)}>Increment ({count})</button>;
+}
+```
+
+**The Fix:**
+Always include all values your effect depends on. If a function or object is causing issues, wrap it in `useCallback` or `useMemo` respectively.
+
+**Good Example:**
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log('Count changed:', count);
+  }, [count]); // Correctly including `count`
+
+  // Example with a function dependency (if needed)
+  const fetchData = useCallback(() => {
+    // ... fetch data
+  }, []); // Empty array if fetchData doesn't depend on props/state
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]); // Correctly including `fetchData`
+
+  return <button onClick={() => setCount(count + 1)}>Increment ({count})</button>;
+}
+```
+
+---
+
+### 🚫 Mistake #2: Mutating State Directly (The Invisible Bug)
+
+This is React 101, yet it's astonishing how often developers forget it. React relies on immutability to detect changes and trigger re-renders efficiently. Mutating state directly bypasses React's reconciliation process.
+
+**The Problem:**
+You update a state variable directly (e.g., `state.array.push(newItem)` or `state.object.property = newValue`) instead of creating a *new* copy with the changes.
+*   **UI Not Updating:** React doesn't detect a change in the reference, so your component doesn't re-render.
+*   **Unpredictable Behavior:** Debugging becomes a nightmare as your internal state doesn't match what's rendered.
+
+**Bad Example:**
+
+```jsx
+function ShoppingList() {
+  const [items, setItems] = useState(['Apples', 'Milk']);
+
+  const addItem = (newItem) => {
+    items.push(newItem); // 🚩 DIRECT MUTATION!
+    setItems(items); // React won't see a change in `items` reference
+  };
+
+  return (
+    <div>
+      <ul>
+        {items.map((item, index) => <li key={index}>{item}</li>)}
+      </ul>
+      <button onClick={() => addItem('Bread')}>Add Bread</button>
+    </div>
+  );
+}
+```
+
+**The Fix:**
+Always create a *new* array or object when updating state that contains collections or objects. Use spread syntax (`...`) or methods that return new instances (like `map`, `filter`, `slice` for arrays).
+
+**Good Example:**
+
+```jsx
+import React, { useState } from 'react';
+
+function ShoppingList() {
+  const [items, setItems] = useState(['Apples', 'Milk']);
+
+  const addItem = (newItem) => {
+    setItems([...items, newItem]); // ✅ Creating a new array
+  };
+
+  const updateItem = (index, newValue) => {
+    setItems(items.map((item, i) => (i === index ? newValue : item))); // ✅ Creating a new array
+  };
+
+  return (
+    <div>
+      <ul>
+        {items.map((item, index) => <li key={index}>{item}</li>)}
+      </ul>
+      <button onClick={() => addItem('Bread')}>Add Bread</button>
+      <button onClick={() => updateItem(0, 'Oranges')}>Change Apples to Oranges</button>
+    </div>
+  );
+}
+```
+
+---
+
+### ⛰️ Mistake #3: The Prop Drilling Abyss (Or, The Maintenance Nightmare)
+
+You know the drill: you have data in a top-level component, and a deeply nested component needs it. So, you pass it down through 5+ layers of components that don't even use that prop themselves.
+
+**The Problem:**
+*   **Code Clutter:** Components are littered with props they don't care about.
+*   **Refactoring Hell:** Changing the name or type of a prop means updating every single intermediate component.
+*   **Performance Issues (sometimes):** Unnecessary re-renders of intermediate components if props change (though React context helps mitigate this if used correctly).
+
+**Bad Example:**
+
+```jsx
+function App() {
+  const user = { name: 'Alice', theme: 'dark' };
+  return <ParentComponent user={user} />;
+}
+
+function ParentComponent({ user }) {
+  return <ChildComponent user={user} />; // Parent doesn't use `user`
+}
+
+function ChildComponent({ user }) {
+  return <GrandchildComponent user={user} />; // Child doesn't use `user`
+}
+
+function GrandchildComponent({ user }) {
+  return <DeeplyNestedComponent userTheme={user.theme} />; // Deeply nested needs `theme`
+}
+
+function DeeplyNestedComponent({ userTheme }) {
+  return <p style={{ color: userTheme === 'dark' ? 'white' : 'black' }}>Hello from deep down!</p>;
+}
+```
+
+**The Fix:**
+When data needs to be shared across many components, especially if they are not direct parent-child relationships, reach for:
+*   **React Context API:** Perfect for global/semi-global state like themes, user info, or language settings.
+*   **A Dedicated State Management Library:** For more complex application states (e.g., Redux, Zustand, Jotai, Recoil).
+
+**Good Example (using Context):**
+
+```jsx
+import React, { createContext, useContext, useState } from 'react';
+
+const UserContext = createContext(null);
+
+function App() {
+  const [user] = useState({ name: 'Alice', theme: 'dark' });
+  return (
+    <UserContext.Provider value={user}>
+      <ParentComponent />
+    </UserContext.Provider>
+  );
+}
+
+function ParentComponent() {
+  return <ChildComponent />;
+}
+
+function ChildComponent() {
+  return <GrandchildComponent />;
+}
+
+function GrandchildComponent() {
+  return <DeeplyNestedComponent />;
+}
+
+function DeeplyNestedComponent() {
+  const user = useContext(UserContext); // ✅ Directly access `user`
+  return <p style={{ color: user.theme === 'dark' ? 'white' : 'black' }}>Hello from deep down!</p>;
+}
+```
+
+---
+
+### 🔑 Mistake #4: Forgetting `key` Props in Lists (The Reconciliation Headache)
+
+This one is less about immediate bugs and more about performance and unexpected behavior during list re-renders.
+
+**The Problem:**
+When rendering lists of components, React needs a stable way to identify each item. Without a `key` prop, or using `index` as a key when the list order can change, React's reconciliation algorithm struggles.
+*   **Performance Degradation:** React might re-render entire list items instead of just updating changed ones.
+*   **State Issues:** Input fields might lose focus, or internal component state might get mixed up if items are added, removed, or reordered.
+
+**Bad Example:**
+
+```jsx
+function ItemList({ items }) {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li>{item.name}</li> // 🚩 No `key` prop!
+      ))}
+    </ul>
+  );
+}
+
+function BadItemListWithIndexKey({ items }) {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>{item.name}</li> // ⚠️ `index` is bad if list order changes!
+      ))}
+    </ul>
+  );
+}
+```
+
+**The Fix:**
+Always provide a stable, unique `key` prop for each item in a list. This should ideally be a unique ID from your data (e.g., `item.id`). Only use `index` as a key if the list is static and will never be reordered, filtered, or have items added/removed.
+
+**Good Example:**
+
+```jsx
+import React from 'react';
+
+function ItemList({ items }) {
+  // Assume each item has a unique `id` property
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>{item.name}</li> // ✅ Using a stable, unique ID
+      ))}
+    </ul>
+  );
+}
+```
+
+---
+
+### Wrapping Up
+
+React is a fantastic tool, but like any powerful instrument, it demands respect and understanding. These common React mistakes aren't just minor annoyances; they're often the root cause of hard-to-debug issues, performance bottlenecks, and a general decline in developer happiness.
+
+By consciously avoiding direct state mutation, mastering `useEffect` dependencies, tackling prop drilling with Context, and always providing stable keys for lists, you'll be writing more robust, maintainable, and performant React applications. So, go forth, refactor, and build better!

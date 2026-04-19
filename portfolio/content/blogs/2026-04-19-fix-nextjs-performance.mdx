@@ -1,0 +1,89 @@
+---
+title: "How to Fix Next.js Performance Issues (Step by Step)"
+description: "A practical guide to identifying and fixing performance bottlenecks in your Next.js applications."
+date: "2026-04-19"
+tags: ["nextjs", "performance", "optimization"]
+type: "fix"
+---
+
+## 🚀 Quick Wins
+
+### 1. Enable Server Components
+
+Convert client components to server components where possible:
+
+```tsx
+// Before (Client Component)
+'use client'
+export default function BlogList() {
+  const [posts, setPosts] = useState([])
+  // ...
+}
+
+// After (Server Component)
+export default async function BlogList() {
+  const posts = await getPosts()
+  // ...
+}
+```
+
+### 2. Add Caching
+
+Use `revalidate` for dynamic data:
+
+```tsx
+export const revalidate = 60 // Revalidate every 60 seconds
+```
+
+### 3. Optimize Images
+
+Use Next.js Image component:
+
+```tsx
+import Image from 'next/image'
+
+<Image
+  src="/hero.jpg"
+  alt="Hero"
+  width={800}
+  height={600}
+  priority
+/>
+```
+
+## 📊 Advanced Optimization
+
+### Bundle Analysis
+
+```bash
+npm run build
+npm run analyze
+```
+
+### Code Splitting
+
+```tsx
+import dynamic from 'next/dynamic'
+
+const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
+  ssr: false,
+  loading: () => <div>Loading...</div>
+})
+```
+
+## 🎯 Performance Checklist
+
+- [ ] Use Server Components
+- [ ] Add proper caching
+- [ ] Optimize images
+- [ ] Analyze bundle size
+- [ ] Implement code splitting
+- [ ] Use memoization wisely
+- [ ] Optimize database queries
+
+## 🧠 Pro Tips
+
+- Monitor Core Web Vitals
+- Use edge runtime for API routes
+- Implement proper error boundaries
+- Test on slow networks
