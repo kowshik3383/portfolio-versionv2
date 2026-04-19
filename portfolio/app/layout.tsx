@@ -24,12 +24,73 @@ const robotoFlex = Roboto({
     subsets: ['latin'],
     variable: '--font-roboto-flex',
 });
-
 export const metadata: Metadata = {
-    title: 'Portfolio - Kowshik valipireddy',
-    description: 'Personal portfolio of kowshik',
-};
+  title: 'Kowshik Valipireddy | Frontend Developer Portfolio (Next.js, React, Performance)',
+  description:
+    'Frontend Developer specializing in Next.js, React, and performance optimization. Explore real-world projects, case studies, and solutions to common frontend problems like slow websites, SEO issues, and bad UI/UX.',
 
+  keywords: [
+    // Core identity
+    'Kowshik Valipireddy',
+    'Kowshik portfolio',
+    'Frontend developer portfolio',
+    'Next.js developer',
+    'React developer',
+    'Frontend developer India',
+
+    // Skill-based searches
+    'Next.js performance optimization',
+    'React performance tuning',
+    'frontend optimization techniques',
+    'SEO for Next.js',
+    'improve website speed',
+    'Core Web Vitals fix',
+
+    // Problem-based (high traffic 🔥)
+    'why website is slow',
+    'fix slow React app',
+    'Next.js SEO issues',
+    'bad frontend performance fix',
+    'frontend bugs troubleshooting',
+    'UI UX problems and solutions',
+
+    // Negative / doubt-based (VERY IMPORTANT 💀)
+    'frontend developer mistakes',
+    'common React mistakes',
+    'Next.js disadvantages',
+    'is Next.js worth it',
+    'bad portfolio examples',
+    'how not to design a website',
+    'frontend security vulnerabilities',
+    'XSS in React apps',
+    'frontend vulnerabilities examples',
+
+    // Hiring intent
+    'hire frontend developer India',
+    'freelance React developer',
+    'Next.js expert for hire',
+    'frontend developer projects',
+    'real world frontend case studies',
+
+    // Personal branding + trust
+    'Kowshik developer reviews',
+    'Kowshik frontend projects',
+    'is Kowshik developer good',
+  ],
+
+  verification: {
+    google: 'MrESzIcdtoSJTe-uVECDVYysvrxosTQ1h2T-hvRcVx0',
+  },
+
+  openGraph: {
+    title: 'Kowshik Valipireddy | Frontend Developer Portfolio',
+    description:
+      'Explore frontend projects, performance optimizations, and solutions to real-world UI, SEO, and speed problems.',
+    url: 'https://portfolio-versionv2-mlj2.vercel.app',
+    siteName: 'Kowshik Portfolio',
+    type: 'website',
+  },
+};
 export default function RootLayout({
     children,
 }: Readonly<{
