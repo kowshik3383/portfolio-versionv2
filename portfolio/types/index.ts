@@ -1,7 +1,4 @@
 export type Next_Page_Url = string;
-// UrlObject;
-// | __next_route_internal_types__.StaticRoutes
-// | __next_route_internal_types__.DynamicRoutes;
 
 export type Variant =
     | 'primary'
@@ -21,11 +18,11 @@ export interface IProject {
     year?: number;
     description: string;
     role?: string;
-    tags?: string[]; // optional
-    techStack?: string[]; // ✅ add this
+    tags?: string[];
+    techStack: string[];
     thumbnail: string;
     longThumbnail?: string;
-    images?: string[];
+    images: string[];
     link: string;
     liveUrl: string;
     sourceCode?: string;
@@ -37,3 +34,40 @@ export interface IProject {
     };
 }
 
+export interface ITableOfContentsItem {
+    id: string;
+    title: string;
+    level: 2 | 3;
+}
+
+export interface IBlogAuthor {
+    name: string;
+    role: string;
+    avatar: string;
+    bio?: string;
+    github?: string;
+    linkedin?: string;
+    twitter?: string;
+}
+
+export interface IBlogPost {
+    slug: string;
+    title: string;
+    metaTitle: string;
+    metaDescription: string;
+    excerpt: string;
+    content: string;
+    coverImage: string;
+    publishedAt: string;
+    updatedAt?: string;
+    readingTime: string;
+    category: string;
+    tags: string[];
+    keywords: string[];
+    featured?: boolean;
+    author: IBlogAuthor;
+    tableOfContents: ITableOfContentsItem[];
+    relatedProjectSlug?: string;
+    relatedProjectTitle?: string;
+    relatedProjectDescription?: string;
+}

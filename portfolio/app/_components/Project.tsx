@@ -1,3 +1,4 @@
+'use client';
 import TransitionLink from '@/components/TransitionLink';
 import { cn } from '@/lib/utils';
 import { IProject } from '@/types';
@@ -110,22 +111,24 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
             {selectedProject === null && (
                 <Image
                     src={project.thumbnail}
-                    alt="Project"
-                    width="300"
-                    height="200"
+                    alt={`${project.title} project screenshot`}
+                    width={400}
+                    height={267}
+                    sizes="(max-width: 768px) 100vw, 400px"
                     className={cn(
-                        'w-full object-cover  mb-6 aspect-[3/2] object-top',
+                        'w-full object-cover mb-6 aspect-[3/2] object-top rounded-xl',
                     )}
                     key={project.slug}
                     loading="lazy"
+                    decoding="async"
                 />
             )}
             <div className="flex gap-2 md:gap-5">
-                <div className="font-anton text-muted-foreground">
+                <div className="font-anton text-neutral-400">
                     _{(index + 1).toString().padStart(2, '0')}.
                 </div>
                 <div className="">
-                    <h4 className="text-4xl xs:text-6xl flex gap-4 font-anton transition-all duration-700 bg-gradient-to-r from-primary to-foreground from-[50%] to-[50%] bg-[length:200%] bg-right bg-clip-text text-transparent group-hover:bg-left">
+                    <h3 className="text-4xl xs:text-6xl flex gap-4 font-anton transition-all duration-700 bg-gradient-to-r from-primary to-foreground from-[50%] to-[50%] bg-[length:200%] bg-right bg-clip-text text-transparent group-hover:bg-left">
                         {project.title}
                         <span className="text-foreground opacity-0 group-hover:opacity-100 transition-all">
                             <svg
@@ -148,7 +151,7 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
                                 <path id="arrow-curb" d="M15 3h6v6"></path>
                             </svg>
                         </span>
-                    </h4>
+                    </h3>
                     <div className="mt-2 flex flex-wrap gap-3 text-muted-foreground text-xs">
                         {project.techStack
                             .slice(0, 3)

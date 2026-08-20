@@ -130,7 +130,7 @@ export const PROJECTS: IProject[] = [
             challenges: "Integrating accurate and fast speech-to-text transcription in real-world noisy environments was a core challenge. We overcame it by fine-tuning AI models and implementing custom noise-filtering layers. Additionally, prescription import compatibility across varying formats required robust parsing logic.",
             outcome: "The system reduced manual data entry by 65%, improved doctor efficiency, and significantly enhanced patient satisfaction by streamlining check-in and follow-up workflows."
         },
-        link: ''
+        link: 'https://app.genixai.info/'
     },
     {
         title: 'NextGen UI Landing Page',
@@ -139,9 +139,9 @@ export const PROJECTS: IProject[] = [
         year: 2025,
         description: 'A futuristic and responsive landing page crafted to highlight modern UI/UX design principles and interaction patterns.',
         techStack: ['HTML5', 'CSS3', 'Tailwind CSS', 'JavaScript', 'Responsive Design'],
-        thumbnail: 'https://i.ibb.co/KcHSW9nC/Visionary-Builders-Google-Chrome-28-01-2025-09-41-37.png',
-        longThumbnail: 'https://i.ibb.co/KcHSW9nC/Visionary-Builders-Google-Chrome-28-01-2025-09-41-37.png',
-        images: ['https://i.ibb.co/KcHSW9nC/Visionary-Builders-Google-Chrome-28-01-2025-09-41-37.png'],
+        thumbnail: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80',
+        longThumbnail: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80',
+        images: ['https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80'],
         details: {
             overview: "NextGen is a concept landing page designed to demonstrate cutting-edge UI skills with a focus on clean layouts, fluid animations, and a modern aesthetic. It serves as a showcase for interactive components, consistent theming, and responsive behavior across devices.",
             features: [
@@ -154,7 +154,7 @@ export const PROJECTS: IProject[] = [
             challenges: "Achieving pixel-perfect responsiveness and maintaining consistent animation performance across all devices required careful layout planning and optimization. Advanced Tailwind utilities and custom breakpoints were used to achieve fluid responsiveness.",
             outcome: "The project effectively showcases UI proficiency and has been used as a template for multiple client presentations, helping secure design-related freelance work and collaborations."
         },
-        link: ''
+        link: 'https://nextgen-mern-stack.vercel.app/'
     },
     {
         title: 'DataMate - The ADA Platform',
@@ -163,9 +163,9 @@ export const PROJECTS: IProject[] = [
         year: 2025,
         description: 'A robust and user-friendly platform designed to empower your data analysis journey with advanced AI tools and seamless integrations.',
         techStack: ['AI', 'Data Analysis', 'Machine Learning', 'API Integration'],
-        thumbnail: 'https://i.ibb.co/zTnygQ9s/React-App-Google-Chrome-23-04-2025-00-03-11.png',
-        longThumbnail: 'https://i.ibb.co/zTnygQ9s/React-App-Google-Chrome-23-04-2025-00-03-11.png',
-        images: ['https://i.ibb.co/zTnygQ9s/React-App-Google-Chrome-23-04-2025-00-03-11.png'],
+        thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
+        longThumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
+        images: ['https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80'],
         details: {
             overview: "DataMate is a powerful platform that simplifies data analysis and enables users to build custom AI-powered analysts, integrate data sources seamlessly, and automate reporting. With a no-code interface, DataMate empowers users of all technical levels to gain valuable insights from their data.",
             features: [
@@ -178,7 +178,7 @@ export const PROJECTS: IProject[] = [
             challenges: "Building a seamless integration system that could handle multiple data sources in real-time while maintaining performance was a significant challenge. Data security and user access control were also crucial areas of focus.",
             outcome: "DataMate successfully streamlined data workflows and empowered businesses to make data-driven decisions faster. With real-time insights, customizable reports, and powerful AI tools, DataMate significantly improved operational efficiency for its users."
         },
-        link: ''
+        link: 'https://datamate.connectplus.org.uk/'
     },
     {
         title: 'PostCrafts Auth System',
@@ -187,9 +187,9 @@ export const PROJECTS: IProject[] = [
         year: 2025,
         description: 'A secure and modern authentication system built using the MERN stack with full-featured login and registration flows.',
         techStack: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Tailwind CSS', 'JWT'],
-        thumbnail: 'https://i.ibb.co/Jw9ZxyXP/Next-Gen-Google-Chrome-06-02-2025-18-29-55.png',
-        longThumbnail: 'https://i.ibb.co/Jw9ZxyXP/Next-Gen-Google-Chrome-06-02-2025-18-29-55.png',
-        images: ['https://i.ibb.co/Jw9ZxyXP/Next-Gen-Google-Chrome-06-02-2025-18-29-55.png'],
+        thumbnail: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=80',
+        longThumbnail: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=80',
+        images: ['https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=80'],
         details: {
             overview: "PostCrafts provides a clean and secure authentication interface using the MERN stack. It includes fully validated login and registration forms, token-based authentication, and responsive UI styling with Tailwind CSS.",
             features: [
@@ -202,7 +202,7 @@ export const PROJECTS: IProject[] = [
             challenges: "Ensuring secure password handling and session management was a key focus. JWT was integrated with refresh token logic for scalable session control. On the frontend, managing form validation and dynamic error handling required careful UX considerations.",
             outcome: "The auth module was successfully deployed and integrated into a broader content platform, serving as the foundation for protected user experiences and admin-level access control."
         },
-        link: ''
+        link: 'https://mern-postcrafts-kowshik.vercel.app/'
     },
     // Add the rest of the projects following the same pattern
 ];

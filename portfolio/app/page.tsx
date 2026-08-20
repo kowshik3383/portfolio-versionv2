@@ -3,7 +3,7 @@ import Banner from './_components/Banner';
 import Experiences from './_components/Experiences';
 import Skills from './_components/Skills';
 import ProjectList from './_components/ProjectList';
-import MusicPlayer from '@/components/MusicPlayer';
+import LatestBlogs from './_components/LatestBlogs';
 
 export default function Home() {
     return (
@@ -13,8 +13,7 @@ export default function Home() {
             <Skills />
             <Experiences />
             <ProjectList />
-            <MusicPlayer src="/music.mp3" />
-
+            <LatestBlogs />
         </div>
     );
 }

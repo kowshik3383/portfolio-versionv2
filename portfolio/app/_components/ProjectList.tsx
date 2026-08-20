@@ -128,9 +128,12 @@ const ProjectList = () => {
                                 {PROJECTS.map((project) => (
                                     <Image
                                         src={project.thumbnail}
-                                        alt="Project"
-                                        width="400"
-                                        height="500"
+                                        alt={`${project.title} live showcase`}
+                                        width={400}
+                                        height={533}
+                                        sizes="(max-width: 1200px) 280px, 380px"
+                                        loading="lazy"
+                                        decoding="async"
                                         className={cn(
                                             'absolute inset-0 transition-all duration-700 ease-out w-full h-full object-cover scale-105',
                                             {

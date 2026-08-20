@@ -185,36 +185,33 @@ const Banner = () => {
                 <div className="md:absolute bottom-[10%] right-[4%] flex md:flex-col gap-4 md:gap-8 text-center md:text-right">
                     <div className="slide-up-and-fade group">
                         <div className="relative inline-block">
-                            <h5 className={`text-3xl sm:text-4xl font-anton bg-gradient-to-r ${currentRole.gradient} bg-clip-text text-transparent mb-1.5 transition-all duration-500`}>
+                            <div className={`text-3xl sm:text-4xl font-anton bg-gradient-to-r ${currentRole.gradient} bg-clip-text text-transparent mb-1.5 transition-all duration-500`}>
                                 1.5+
-                            </h5>
-                            {/* <div className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r ${currentRole.gradient} opacity-50 group-hover:w-full transition-all duration-300`} /> */}
+                            </div>
                         </div>
-                        <p className="text-muted-foreground text-sm font-medium">
+                        <p className="text-neutral-300 text-sm font-medium">
                             Years of Experience
                         </p>
                     </div>
 
                     <div className="slide-up-and-fade group">
                         <div className="relative inline-block">
-                            <h5 className={`text-3xl sm:text-4xl font-anton bg-gradient-to-r ${currentRole.gradient} bg-clip-text text-transparent mb-1.5 transition-all duration-500`}>
+                            <div className={`text-3xl sm:text-4xl font-anton bg-gradient-to-r ${currentRole.gradient} bg-clip-text text-transparent mb-1.5 transition-all duration-500`}>
                                 30+
-                            </h5>
-                            {/* <div className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r ${currentRole.gradient} opacity-50 group-hover:w-full transition-all duration-300`} /> */}
+                            </div>
                         </div>
-                        <p className="text-muted-foreground text-sm font-medium">
+                        <p className="text-neutral-300 text-sm font-medium">
                             Completed Projects
                         </p>
                     </div>
 
                     <div className="slide-up-and-fade group">
                         <div className="relative inline-block">
-                            <h5 className={`text-3xl sm:text-4xl font-anton bg-gradient-to-r ${currentRole.gradient} bg-clip-text text-transparent mb-1.5 transition-all duration-500`}>
+                            <div className={`text-3xl sm:text-4xl font-anton bg-gradient-to-r ${currentRole.gradient} bg-clip-text text-transparent mb-1.5 transition-all duration-500`}>
                                 3+
-                            </h5>
-                            {/* <div className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r ${currentRole.gradient} opacity-50 group-hover:w-full transition-all duration-300`} /> */}
+                            </div>
                         </div>
-                        <p className="text-muted-foreground text-sm font-medium">
+                        <p className="text-neutral-300 text-sm font-medium">
                             Technologies Mastered
                         </p>
                     </div>

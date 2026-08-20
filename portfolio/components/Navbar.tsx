@@ -1,8 +1,8 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import Link from 'next/link';
 import { MoveUpRight, Mail } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 
 const COLORS = [
@@ -10,6 +10,7 @@ const COLORS = [
     'bg-gradient-to-br from-blue-500 to-indigo-600 text-white',
     'bg-gradient-to-br from-teal-400 to-cyan-500 text-black',
     'bg-gradient-to-br from-indigo-500 to-purple-600 text-white',
+    'bg-gradient-to-br from-emerald-400 to-green-500 text-black',
 ];
 
 const MENU_LINKS = [
@@ -29,12 +30,15 @@ const MENU_LINKS = [
         name: 'Projects',
         url: '/#selected-projects',
     },
+    {
+        name: 'Blog',
+        url: '/blog',
+    },
 ];
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const router = useRouter();
     const handleEmailClick = () => {
         const mailto = `mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(
             GENERAL_INFO.emailSubject
@@ -165,8 +169,8 @@ const Navbar = () => {
 
                         <div className="space-y-6">
                             <div className="flex items-center gap-2">
-                                <div className="h-px w-6 bg-gradient-to-r from-transparent to-muted-foreground/50"></div>
-                                <p className="text-xs font-medium tracking-[0.2em] text-muted-foreground/80 uppercase">
+                                <div className="h-px w-6 bg-gradient-to-r from-transparent to-neutral-400"></div>
+                                <p className="text-xs font-medium tracking-[0.2em] text-neutral-300 uppercase">
                                     Menu
                                 </p>
                             </div>
@@ -184,14 +188,12 @@ const Navbar = () => {
                                             transitionDelay: `${200 + idx * 50}ms`,
                                         }}
                                     >
-                                        <button
-                                            onClick={() => {
-                                                router.push(link.url);
-                                                setIsMenuOpen(false);
-                                            }}
+                                        <Link
+                                            href={link.url}
+                                            onClick={() => setIsMenuOpen(false)}
                                             onMouseEnter={() => setHoveredIndex(idx)}
                                             onMouseLeave={() => setHoveredIndex(null)}
-                                            className="group text-xl font-medium flex items-center gap-3 relative"
+                                            className="group text-xl font-medium flex items-center gap-3 relative text-white"
                                         >
                                             <span
                                                 className={cn(
@@ -227,46 +229,46 @@ const Navbar = () => {
                                                     )}
                                                 ></span>
                                             </span>
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
+                                        </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div
-                    className={cn(
-                        'w-full max-w-[340px] mx-8 sm:mx-auto space-y-4 opacity-0 translate-y-4 transition-all duration-500 delay-500',
-                        {
-                            'opacity-100 translate-y-0': isMenuOpen,
-                        },
-                    )}
-                >
-                    <div className="flex items-center gap-2">
-                        <div className="h-px w-6 bg-gradient-to-r from-transparent to-muted-foreground/50"></div>
-                        <p className="text-xs font-medium tracking-[0.2em] text-muted-foreground/80 uppercase">
-                            Get in Touch
-                        </p>
-                    </div>
-                    <a
-                        onClick={handleEmailClick}
-                        className="group inline-flex cursor-pointer items-center gap-3 px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
+                    <div
+                        className={cn(
+                            'w-full max-w-[340px] mx-8 sm:mx-auto space-y-4 opacity-0 translate-y-4 transition-all duration-500 delay-500',
+                            {
+                                'opacity-100 translate-y-0': isMenuOpen,
+                            },
+                        )}
                     >
-
-                        <Mail
-                            size={16}
-                            className="text-muted-foreground group-hover:text-primary transition-colors"
-                        />
-                        <span className="text-sm font-medium">{GENERAL_INFO.email}</span>
-                        <MoveUpRight
-                            size={14}
-                            className="ml-auto opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300"
-                        />
-                    </a>
-
+                        <div className="flex items-center gap-2">
+                            <div className="h-px w-6 bg-gradient-to-r from-transparent to-neutral-400"></div>
+                            <p className="text-xs font-medium tracking-[0.2em] text-neutral-300 uppercase">
+                                Get in Touch
+                            </p>
+                        </div>
+                        <a
+                            href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(GENERAL_INFO.emailSubject)}`}
+                            onClick={handleEmailClick}
+                            className="group inline-flex cursor-pointer items-center gap-3 px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
+                            aria-label={`Email ${GENERAL_INFO.email}`}
+                        >
+                            <Mail
+                                size={16}
+                                className="text-neutral-300 group-hover:text-primary transition-colors"
+                            />
+                            <span className="text-sm font-medium text-white">{GENERAL_INFO.email}</span>
+                            <MoveUpRight
+                                size={14}
+                                className="ml-auto opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300"
+                            />
+                        </a>
+                    </div>
                 </div>
-            </div>
         </>
     );
 };

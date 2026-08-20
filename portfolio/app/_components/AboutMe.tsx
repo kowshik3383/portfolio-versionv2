@@ -74,7 +74,7 @@ const AboutMe = () => {
                     <div className="name-column">
                         <div className="name-wrapper slide-up-and-fade">
                             <span className="greeting">Hi, I&apos;m</span>
-                            <h3 className="name">kowshik. Valipireddy</h3>
+                            <h3 className="name">Kowshik Valipireddy</h3>
                             <div className="accent-line"></div>
                         </div>
                     </div>
@@ -103,11 +103,7 @@ const AboutMe = () => {
 
                 {/* Decorative Background Element */}
                 <div className="bg-decoration"></div>
-            </div>
-
-            <style jsx>{`
-                @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&family=Crimson+Pro:wght@200;300;400;600&display=swap');
-
+            </div>            <style jsx>{`
                 .about-me-section {
                     position: relative;
                     padding: 8rem 0 12rem;
@@ -128,12 +124,12 @@ const AboutMe = () => {
                 }
 
                 .hero-statement {
-                    font-family: 'Darker Grotesque', sans-serif;
+                    font-family: inherit;
                     font-size: clamp(2.5rem, 6vw, 5rem);
                     font-weight: 300;
                     line-height: 1.2;
                     letter-spacing: -0.02em;
-                    color: #e8e8e8;
+                    color: #f3f4f6;
                     max-width: 1100px;
                 }
 
@@ -156,19 +152,18 @@ const AboutMe = () => {
                 }
 
                 .divider-text {
-                    font-family: 'Crimson Pro', serif;
                     font-size: 0.875rem;
-                    font-weight: 300;
+                    font-weight: 400;
                     letter-spacing: 0.15em;
                     text-transform: uppercase;
-                    color: #888888;
+                    color: #d1d5db;
                     white-space: nowrap;
                 }
 
                 .divider-line {
                     height: 1px;
                     flex: 1;
-                    background: linear-gradient(to right, #333333 0%, transparent 100%);
+                    background: linear-gradient(to right, #4b5563 0%, transparent 100%);
                 }
 
                 /* Content Grid */
@@ -197,16 +192,15 @@ const AboutMe = () => {
 
                 .greeting {
                     display: block;
-                    font-family: 'Crimson Pro', serif;
                     font-size: 1.125rem;
-                    font-weight: 300;
-                    color: #888888;
+                    font-weight: 400;
+                    color: #d1d5db;
                     margin-bottom: 0.75rem;
                     letter-spacing: 0.05em;
                 }
 
                 .name {
-                    font-family: 'Darker Grotesque', sans-serif;
+                    font-family: inherit;
                     font-size: clamp(3rem, 5vw, 4.5rem);
                     font-weight: 800;
                     letter-spacing: -0.03em;
@@ -233,11 +227,10 @@ const AboutMe = () => {
                 }
 
                 .bio-paragraph {
-                    font-family: 'Crimson Pro', serif;
                     font-size: 1.25rem;
                     font-weight: 300;
                     line-height: 1.8;
-                    color: #b8b8b8;
+                    color: #e5e7eb;
                     margin-bottom: 2rem;
                 }
 
@@ -247,7 +240,7 @@ const AboutMe = () => {
 
                 .emphasis {
                     color: #ffffff;
-                    font-weight: 400;
+                    font-weight: 500;
                     font-style: italic;
                 }
 

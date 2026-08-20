@@ -30,25 +30,26 @@ const Footer = () => {
                 <div className="mx-auto max-w-4xl space-y-8 text-center">
                     {/* Heading */}
                     <div className="space-y-3">
-                        <p className="text-base font-medium uppercase tracking-wide text-gray-400 sm:text-lg">
+                        <p className="text-base font-medium uppercase tracking-wide text-neutral-300 sm:text-lg">
                             Have a project in mind?
                         </p>
-                        <h2 className="text-xl text-gray-300 sm:text-2xl">
+                        <h2 className="text-xl text-white font-anton sm:text-2xl">
                             Let&apos;s work together
                         </h2>
                     </div>
 
                     {/* Email CTA */}
-                    <button
+                    <a
+                        href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(GENERAL_INFO.emailSubject)}`}
                         onClick={handleEmailClick}
                         className="group relative inline-block focus:outline-none"
-                        aria-label="Send email"
+                        aria-label={`Send email to ${GENERAL_INFO.email}`}
                     >
                         <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text font-anton text-3xl text-transparent transition-transform duration-300 group-hover:scale-105 sm:text-5xl md:text-6xl">
                             {GENERAL_INFO.email}
                         </span>
                         <span className="mt-2 block h-0.5 origin-left scale-x-0 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 transition-transform duration-300 group-hover:scale-x-100" />
-                    </button>
+                    </a>
 
                     {/* Divider */}
                     <div className="pt-8">
@@ -57,19 +58,18 @@ const Footer = () => {
 
                     {/* Footer Bottom */}
                     <div className="space-y-4 pt-8">
-                        <div
-                            onClick={handleEmailClick}
-                            rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-2 text-sm text-gray-500 transition-colors duration-200 hover:text-gray-300"
+                        <a
+                            href={`mailto:${GENERAL_INFO.email}`}
+                            className="group inline-flex items-center gap-2 text-sm text-neutral-300 transition-colors duration-200 hover:text-white"
                         >
                             <span className="relative">
-                                Design &amp; built by Kowshik Valipireddy
-                                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-gray-300 transition-transform duration-200 group-hover:scale-x-100" />
+                                Designed &amp; built by Kowshik Valipireddy
+                                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-primary transition-transform duration-200 group-hover:scale-x-100" />
                             </span>
-                        </div>
+                        </a>
 
-                        <p className="text-xs text-gray-600">
-                            © {new Date().getFullYear()} All rights reserved
+                        <p className="text-xs text-neutral-400">
+                            © {new Date().getFullYear()} Kowshik Valipireddy. All rights reserved.
                         </p>
                     </div>
                 </div>

@@ -46,7 +46,7 @@ const Experiences = () => {
                 {/* Header */}
                 <div className="mb-24 text-center">
                     <SectionTitle title="My Experience" />
-                    <p className="mt-4 font-mono text-sm tracking-wide text-neutral-500">
+                    <p className="mt-4 font-mono text-sm tracking-wide text-neutral-300">
                         Career milestones and professional journey
                     </p>
                 </div>
@@ -82,18 +82,18 @@ const Experiences = () => {
                                         <span className="font-mono text-sm tracking-widest text-cyan-400">
                                             {String(index + 1).padStart(2, '0')}
                                         </span>
-                                        <span className="font-mono text-sm uppercase tracking-wide text-neutral-400">
+                                        <span className="font-mono text-sm uppercase tracking-wide text-neutral-300">
                                             {item.company}
                                         </span>
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="mb-6 text-3xl font-extrabold tracking-tight text-neutral-200 transition group-hover:text-white">
+                                    <h3 className="mb-6 text-3xl font-extrabold tracking-tight text-white transition">
                                         {item.title}
                                     </h3>
 
                                     {/* Duration */}
-                                    <div className="flex items-center gap-2 font-mono text-sm text-neutral-400">
+                                    <div className="flex items-center gap-2 font-mono text-sm text-neutral-300">
                                         <svg
                                             width="16"
                                             height="16"

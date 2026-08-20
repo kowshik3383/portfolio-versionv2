@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Article {
+  id            String   @id @default(cuid())
+  title         String
+  url           String   @unique
+  content       String?
+  source        String
+  publishedAt   DateTime
+  hash          String   @unique
+  
+  status        String   @default("SCRAPED")
+  intentScore   Int?
+  viralityScore Int?
+  freshnessScore Int?
+  
+  blogGenerated Boolean  @default(false)
+  
+  keywords      ArticleKeyword[]
+  blogPost      BlogPost?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String
+  metaDesc    String
+  excerpt     String?
+  
+  articleId   String?
+  article     Article? @relation(fields: [articleId], references: [id])
+  
+  tags        BlogPostTag[]
+  keywords    BlogPostKeyword[]
+  
+  status      String   @default("DRAFT")
+  publishedAt DateTime?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Keyword {
+  id          String   @id @default(cuid())
+  text        String   @unique
+  type        String   // PRIMARY, SECONDARY, LONGTAIL
+  searchVolume Int?
+  difficulty   Int?
+  
+  articles    ArticleKeyword[]
+  blogPosts   BlogPostKeyword[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ArticleKeyword {
+  article   Article  @relation(fields: [articleId], references: [id])
+  articleId String
+  
+  keyword   Keyword  @relation(fields: [keywordId], references: [id])
+  keywordId String
+  
+  @@id([articleId, keywordId])
+}
+
+model BlogPostKeyword {
+  blogPost  BlogPost @relation(fields: [blogPostId], references: [id])
+  blogPostId String
+  
+  keyword   Keyword  @relation(fields: [keywordId], references: [id])
+  keywordId String
+  
+  @@id([blogPostId, keywordId])
+}
+
+model BlogTag {
+  id        String     @id @default(cuid())
+  name      String     @unique
+  slug      String     @unique
+  
+  blogPosts BlogPostTag[]
+  
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model BlogPostTag {
+  blogPost  BlogPost @relation(fields: [blogPostId], references: [id])
+  blogPostId String
+  
+  tag       BlogTag  @relation(fields: [tagId], references: [id])
+  tagId     String
+  
+  @@id([blogPostId, tagId])
+}
