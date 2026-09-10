@@ -3,6 +3,7 @@ export type Next_Page_Url = string;
 export type Variant =
     | 'primary'
     | 'secondary'
+    | 'outline'
     | 'success'
     | 'warning'
     | 'danger'
@@ -11,6 +12,14 @@ export type Variant =
     | 'dark'
     | 'link'
     | 'no-color';
+
+export interface IExperience {
+    title: string;
+    company: string;
+    duration: string;
+    highlights?: string[];
+    description?: string;
+}
 
 export interface IProject {
     slug: string;

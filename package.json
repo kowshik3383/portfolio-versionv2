@@ -1,4 +1,11 @@
 {
+	"name": "portfolio-root",
+	"scripts": {
+		"dev": "pnpm --prefix portfolio dev",
+		"build": "pnpm --prefix portfolio build",
+		"deploy": "pnpm --prefix portfolio deploy",
+		"prod:deploy": "pnpm --prefix portfolio prod:deploy"
+	},
 	"dependencies": {
 		"@prisma/client": "^7.6.0",
 		"cheerio": "^1.2.0",

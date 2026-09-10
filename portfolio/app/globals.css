@@ -53,3 +53,46 @@
         @apply pl-5 mt-2 list-disc;
     }
 }
+
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+
+    html, body {
+        background: #ffffff !important;
+        color: #18181b !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Suppress site navigation, footers, particles, indicators and fixed overlays when printing */
+    header,
+    footer,
+    nav,
+    aside,
+    #contact,
+    .print\:hidden,
+    .fixed,
+    [aria-hidden="true"],
+    .bg-particle {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+    }
+
+    main {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        display: block !important;
+        width: 100% !important;
+    }
+}

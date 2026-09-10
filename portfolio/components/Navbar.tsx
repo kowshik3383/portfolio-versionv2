@@ -1,274 +1,176 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { MoveUpRight, Mail } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { ArrowUpRight, Mail, Menu, X } from 'lucide-react';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 
-const COLORS = [
-    'bg-gradient-to-br from-yellow-400 to-orange-500 text-black',
-    'bg-gradient-to-br from-blue-500 to-indigo-600 text-white',
-    'bg-gradient-to-br from-teal-400 to-cyan-500 text-black',
-    'bg-gradient-to-br from-indigo-500 to-purple-600 text-white',
-    'bg-gradient-to-br from-emerald-400 to-green-500 text-black',
-];
-
-const MENU_LINKS = [
-    {
-        name: 'Home',
-        url: '/',
-    },
-    {
-        name: 'About Me',
-        url: '/#about-me',
-    },
-    {
-        name: 'Experience',
-        url: '/#my-experience',
-    },
-    {
-        name: 'Projects',
-        url: '/#selected-projects',
-    },
-    {
-        name: 'Blog',
-        url: '/blog',
-    },
+const NAV_LINKS = [
+    { name: 'About', url: '/#about-me' },
+    { name: 'Stack', url: '/#my-stack' },
+    { name: 'Experience', url: '/#my-experience' },
+    { name: 'Projects', url: '/#selected-projects' },
+    { name: 'Blog', url: '/blog' },
+    { name: 'Resume', url: '/resume' },
 ];
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 20) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const handleEmailClick = () => {
-        const mailto = `mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(
-            GENERAL_INFO.emailSubject
-        )}&body=${encodeURIComponent(GENERAL_INFO.emailBody)}`;
+        const subject = encodeURIComponent(GENERAL_INFO.emailSubject);
+        const body = encodeURIComponent(GENERAL_INFO.emailBody);
+        const mailto = `mailto:${GENERAL_INFO.email}?subject=${subject}&body=${body}`;
 
-        // Try native mail app
         window.location.href = mailto;
-
-        // Fallback for Android / Chrome
         setTimeout(() => {
             window.open(
-                `https://mail.google.com/mail/?view=cm&fs=1&to=${GENERAL_INFO.email}&su=${encodeURIComponent(
-                    GENERAL_INFO.emailSubject
-                )}&body=${encodeURIComponent(GENERAL_INFO.emailBody)}`,
-                '_blank'
+                `https://mail.google.com/mail/?view=cm&fs=1&to=${GENERAL_INFO.email}&su=${subject}&body=${body}`,
+                '_blank',
             );
         }, 300);
     };
 
     return (
         <>
-            <div className="sticky top-0 z-[4]">
-                <button
+            <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 pointer-events-none">
+                <nav
                     className={cn(
-                        'group size-14 absolute top-5 right-5 md:right-10 z-[2]',
-                        'backdrop-blur-sm bg-background/30 rounded-full',
-                        'border border-white/10 hover:border-white/20 transition-all duration-300',
-                        'hover:shadow-lg hover:shadow-primary/20',
-                        'flex items-center justify-center',
+                        'max-w-5xl mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 pointer-events-auto border',
+                        scrolled
+                            ? 'bg-neutral-950/80 backdrop-blur-xl border-white/10 shadow-2xl shadow-black/60'
+                            : 'bg-neutral-900/40 backdrop-blur-md border-white/5',
                     )}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    aria-label="Toggle menu"
                 >
-                    <span
-                        className={cn(
-                            'inline-block w-5 h-0.5 bg-foreground rounded-full absolute duration-300',
-                            {
-                                'rotate-45': isMenuOpen,
-                                '-translate-y-1.5 md:group-hover:rotate-12': !isMenuOpen,
-                            },
-                        )}
-                    ></span>
-                    <span
-                        className={cn(
-                            'inline-block w-5 h-0.5 bg-foreground rounded-full absolute duration-300',
-                            {
-                                '-rotate-45': isMenuOpen,
-                                'translate-y-1.5 md:group-hover:-rotate-12': !isMenuOpen,
-                            },
-                        )}
-                    ></span>
-                </button>
-            </div>
+                    {/* Brand / Logo */}
+                    <Link
+                        href="/"
+                        className="group flex items-center gap-2.5 text-white font-anton tracking-wider text-base sm:text-lg focus:outline-none"
+                    >
+                        <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="group-hover:text-primary transition-colors">
+                            KOWSHIK<span className="text-primary">.</span>DEV
+                        </span>
+                    </Link>
 
+                    {/* Desktop Navigation Links */}
+                    <div className="hidden md:flex items-center gap-1 sm:gap-1.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/5">
+                        {NAV_LINKS.map((link) => {
+                            const isCurrentBlog = link.url === '/blog' && pathname?.startsWith('/blog');
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.url}
+                                    className={cn(
+                                        'px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200',
+                                        isCurrentBlog
+                                            ? 'text-white bg-white/10 shadow-sm'
+                                            : 'text-neutral-300 hover:text-white hover:bg-white/5',
+                                    )}
+                                >
+                                    {link.name}
+                                </Link>
+                            );
+                        })}
+                    </div>
+
+                    {/* Right CTA / Menu Toggle */}
+                    <div className="flex items-center gap-2 sm:gap-3">
+                        <button
+                            onClick={handleEmailClick}
+                            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white text-xs font-medium transition-all group"
+                        >
+                            <span>Hire Me</span>
+                            <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </button>
+
+                        <button
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            className="md:hidden p-2 rounded-full bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/10 transition-colors"
+                            aria-label="Toggle mobile menu"
+                        >
+                            {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+                        </button>
+                    </div>
+                </nav>
+            </header>
+
+            {/* Mobile Drawer Overlay */}
             <div
                 className={cn(
-                    'overlay fixed inset-0 z-[2] bg-black/80 backdrop-blur-sm transition-all duration-500',
-                    {
-                        'opacity-0 invisible pointer-events-none': !isMenuOpen,
-                    },
+                    'fixed inset-0 z-40 bg-black/80 backdrop-blur-md transition-opacity duration-300 md:hidden',
+                    isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none',
                 )}
                 onClick={() => setIsMenuOpen(false)}
-            ></div>
+            />
 
+            {/* Mobile Drawer Content */}
             <div
                 className={cn(
-                    'fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-3rem)] transform translate-x-full transition-transform duration-700 z-[3] overflow-hidden',
-                    'flex flex-col lg:justify-center py-10',
-                    { 'translate-x-0': isMenuOpen },
+                    'fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-neutral-950/95 border-l border-white/10 z-50 p-6 flex flex-col justify-between transition-transform duration-300 ease-out md:hidden backdrop-blur-2xl shadow-2xl',
+                    isMenuOpen ? 'translate-x-0' : 'translate-x-full',
                 )}
             >
-                {/* Animated background with gradient */}
-                <div
-                    className={cn(
-                        'fixed inset-0 scale-150 translate-x-1/2 rounded-[50%] duration-700 delay-150 z-[-2]',
-                        'bg-gradient-to-br from-background-light via-background-light to-background',
-                        {
-                            'translate-x-0': isMenuOpen,
-                        },
-                    )}
-                ></div>
+                <div className="space-y-6 pt-16">
+                    <p className="text-[11px] font-mono uppercase tracking-widest text-neutral-500">Navigation</p>
+                    <nav className="flex flex-col space-y-3">
+                        {NAV_LINKS.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.url}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="text-lg font-anton tracking-wide text-neutral-200 hover:text-primary transition-colors py-1 flex items-center justify-between"
+                            >
+                                <span>{link.name}</span>
+                                <ArrowUpRight size={14} className="text-neutral-500" />
+                            </Link>
+                        ))}
+                    </nav>
+                </div>
 
-                {/* Subtle grain texture overlay */}
-                <div className="fixed inset-0 z-[-1] opacity-[0.02] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]"></div>
-
-                <div className="grow flex md:items-center w-full max-w-[340px] mx-8 sm:mx-auto">
-                    <div className="flex gap-12 lg:gap-16 lg:justify-between max-lg:flex-col w-full">
-                        <div className="max-lg:order-2 space-y-6">
-                            <div className="flex items-center gap-2">
-                                <div className="h-px w-6 bg-gradient-to-r from-transparent to-muted-foreground/50"></div>
-                                <p className="text-xs font-medium tracking-[0.2em] text-muted-foreground/80 uppercase">
-                                    Social
-                                </p>
-                            </div>
-                            <ul className="space-y-4">
-                                {SOCIAL_LINKS.map((link, idx) => (
-                                    <li
-                                        key={link.name}
-                                        className={cn(
-                                            'opacity-0 translate-x-4 transition-all duration-500',
-                                            {
-                                                'opacity-100 translate-x-0': isMenuOpen,
-                                            },
-                                        )}
-                                        style={{
-                                            transitionDelay: `${300 + idx * 50}ms`,
-                                        }}
-                                    >
-                                        <a
-                                            href={link.url}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="group text-base capitalize inline-flex items-center gap-2 hover:text-primary transition-colors relative"
-                                        >
-                                            <span className="relative">
-                                                {link.name}
-                                                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300"></span>
-                                            </span>
-                                            <MoveUpRight
-                                                size={14}
-                                                className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300"
-                                            />
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div className="space-y-6">
-                            <div className="flex items-center gap-2">
-                                <div className="h-px w-6 bg-gradient-to-r from-transparent to-neutral-400"></div>
-                                <p className="text-xs font-medium tracking-[0.2em] text-neutral-300 uppercase">
-                                    Menu
-                                </p>
-                            </div>
-                            <ul className="space-y-4">
-                                {MENU_LINKS.map((link, idx) => (
-                                    <li
-                                        key={link.name}
-                                        className={cn(
-                                            'opacity-0 translate-x-4 transition-all duration-500',
-                                            {
-                                                'opacity-100 translate-x-0': isMenuOpen,
-                                            },
-                                        )}
-                                        style={{
-                                            transitionDelay: `${200 + idx * 50}ms`,
-                                        }}
-                                    >
-                                        <Link
-                                            href={link.url}
-                                            onClick={() => setIsMenuOpen(false)}
-                                            onMouseEnter={() => setHoveredIndex(idx)}
-                                            onMouseLeave={() => setHoveredIndex(null)}
-                                            className="group text-xl font-medium flex items-center gap-3 relative text-white"
-                                        >
-                                            <span
-                                                className={cn(
-                                                    'relative size-4 rounded-full flex items-center justify-center transition-all duration-300',
-                                                    'before:absolute before:inset-0 before:rounded-full before:bg-white/5 before:scale-100',
-                                                    'group-hover:before:scale-150 group-hover:before:opacity-0 before:transition-all before:duration-500',
-                                                    COLORS[idx],
-                                                    {
-                                                        'scale-125 shadow-lg': hoveredIndex === idx,
-                                                    },
-                                                )}
-                                            >
-                                                <MoveUpRight
-                                                    size={10}
-                                                    className={cn(
-                                                        'scale-0 transition-all duration-300',
-                                                        {
-                                                            'scale-100 rotate-0': hoveredIndex === idx,
-                                                        },
-                                                    )}
-                                                />
-                                            </span>
-                                            <span className="relative">
-                                                {link.name}
-                                                <span
-                                                    className={cn(
-                                                        'absolute -bottom-1 left-0 h-px bg-gradient-to-r transition-all duration-300',
-                                                        COLORS[idx],
-                                                        {
-                                                            'w-full opacity-30': hoveredIndex === idx,
-                                                            'w-0 opacity-0': hoveredIndex !== idx,
-                                                        },
-                                                    )}
-                                                ></span>
-                                            </span>
-                                        </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        className={cn(
-                            'w-full max-w-[340px] mx-8 sm:mx-auto space-y-4 opacity-0 translate-y-4 transition-all duration-500 delay-500',
-                            {
-                                'opacity-100 translate-y-0': isMenuOpen,
-                            },
-                        )}
+                <div className="space-y-6 pt-6 border-t border-white/10">
+                    <button
+                        onClick={() => {
+                            setIsMenuOpen(false);
+                            handleEmailClick();
+                        }}
+                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-black font-semibold text-xs tracking-wider uppercase transition-transform active:scale-95"
                     >
-                        <div className="flex items-center gap-2">
-                            <div className="h-px w-6 bg-gradient-to-r from-transparent to-neutral-400"></div>
-                            <p className="text-xs font-medium tracking-[0.2em] text-neutral-300 uppercase">
-                                Get in Touch
-                            </p>
-                        </div>
-                        <a
-                            href={`mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(GENERAL_INFO.emailSubject)}`}
-                            onClick={handleEmailClick}
-                            className="group inline-flex cursor-pointer items-center gap-3 px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
-                            aria-label={`Email ${GENERAL_INFO.email}`}
-                        >
-                            <Mail
-                                size={16}
-                                className="text-neutral-300 group-hover:text-primary transition-colors"
-                            />
-                            <span className="text-sm font-medium text-white">{GENERAL_INFO.email}</span>
-                            <MoveUpRight
-                                size={14}
-                                className="ml-auto opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300"
-                            />
-                        </a>
+                        <Mail size={15} />
+                        <span>Start Conversation</span>
+                    </button>
+
+                    <div className="flex items-center justify-center gap-4 text-xs text-neutral-400">
+                        {SOCIAL_LINKS.map((social) => (
+                            <a
+                                key={social.name}
+                                href={social.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="capitalize hover:text-white transition-colors"
+                            >
+                                {social.name}
+                            </a>
+                        ))}
                     </div>
                 </div>
+            </div>
         </>
     );
 };

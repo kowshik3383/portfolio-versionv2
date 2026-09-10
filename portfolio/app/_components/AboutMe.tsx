@@ -2,302 +2,196 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import React from 'react';
+import React, { useRef } from 'react';
+import SectionTitle from '@/components/SectionTitle';
+import { Code, Smartphone, Zap, CheckCircle2, MapPin, Sparkles } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+const HIGHLIGHTS = [
+    {
+        icon: Smartphone,
+        title: 'Mobile & Web Convergence',
+        description: 'Building seamless cross-platform React Native apps and Next.js platforms with shared TypeScript logic and clean design systems.',
+    },
+    {
+        icon: Zap,
+        title: 'Performance & 60fps Interactions',
+        description: 'Obsessed with sub-second LCP, zero-CLS layout stability, and fluid native gesture-driven animations.',
+    },
+    {
+        icon: Code,
+        title: 'End-to-End Product Craft',
+        description: 'From UI/UX architecture to PostgreSQL schemas, NestJS/Node APIs, and reliable cloud deployments.',
+    },
+];
+
+const CORE_CAPABILITIES = [
+    'Full Stack Web (React 19 & Next.js 15 App Router)',
+    'Cross-Platform Mobile Apps (React Native & Expo)',
+    'Scalable APIs & Microservices (Node.js & NestJS)',
+    'Database Architecture (PostgreSQL, MySQL & Prisma)',
+];
+
 const AboutMe = () => {
-    const container = React.useRef<HTMLDivElement>(null);
+    const container = useRef<HTMLDivElement>(null);
 
     useGSAP(
         () => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    id: 'about-me-in',
-                    trigger: container.current,
-                    start: 'top 70%',
-                    end: 'bottom bottom',
-                    scrub: 0.5,
+            gsap.fromTo(
+                '.about-fade',
+                { y: 40, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    stagger: 0.15,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: container.current,
+                        start: 'top 75%',
+                        toggleActions: 'play none none reverse',
+                    },
                 },
-            });
-
-            tl.from('.slide-up-and-fade', {
-                y: 150,
-                opacity: 0,
-                stagger: 0.05,
-            });
-        },
-        { scope: container },
-    );
-
-    useGSAP(
-        () => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    id: 'about-me-out',
-                    trigger: container.current,
-                    start: 'bottom 50%',
-                    end: 'bottom 10%',
-                    scrub: 0.5,
-                },
-            });
-
-            tl.to('.slide-up-and-fade', {
-                y: -150,
-                opacity: 0,
-                stagger: 0.02,
-            });
+            );
         },
         { scope: container },
     );
 
     return (
-        <section className="about-me-section" id="about-me">
-            <div className="about-me-container" ref={container}>
+        <section className="relative py-24 sm:py-32 overflow-hidden border-t border-white/5" id="about-me">
+            {/* Ambient background glow */}
+            <div className="absolute top-1/2 -right-40 w-96 h-96 bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none -z-10" />
+
+            <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" ref={container}>
+                <div className="mb-16">
+                    <SectionTitle title="ABOUT ME" />
+                    <p className="font-mono text-sm tracking-wide text-neutral-400 -mt-6">
+                        Philosophy, engineering discipline &amp; craftsmanship
+                    </p>
+                </div>
+
                 {/* Hero Statement */}
-                <div className="hero-statement-wrapper">
-                    <h2 className="hero-statement slide-up-and-fade">
-                        I design and build with users at the center—every decision driven by{' '}
-                        <span className="highlight">real needs</span>, not assumptions.
+                <div className="about-fade mb-16 sm:mb-20 max-w-4xl">
+                    <h2 className="text-3xl sm:text-5xl md:text-6xl font-anton tracking-tight text-white leading-[1.05]">
+                        I design and build with users at the center — every engineering decision driven by{' '}
+                        <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
+                            real usability &amp; speed
+                        </span>
+                        , not assumptions.
                     </h2>
                 </div>
 
-                {/* Section Divider */}
-                <div className="section-divider slide-up-and-fade">
-                    <span className="divider-text">This is me.</span>
-                    <div className="divider-line"></div>
-                </div>
+                {/* 2-Column Content Grid - Equal Height and Balanced Weight */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+                    {/* Left Column: Rich Engineering Identity & Metrics Bento Card */}
+                    <div className="lg:col-span-5 flex flex-col">
+                        <div className="about-fade h-full flex flex-col justify-between p-7 sm:p-9 rounded-2xl bg-white/[0.02] hover:bg-white/[0.035] border border-white/10 hover:border-cyan-400/30 transition-all duration-300 relative overflow-hidden backdrop-blur-md">
+                            <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" />
 
-                {/* Main Content Grid */}
-                <div className="content-grid">
-                    {/* Left Column - Name */}
-                    <div className="name-column">
-                        <div className="name-wrapper slide-up-and-fade">
-                            <span className="greeting">Hi, I&apos;m</span>
-                            <h3 className="name">Kowshik Valipireddy</h3>
-                            <div className="accent-line"></div>
+                            {/* Top Bio Header */}
+                            <div className="space-y-4">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-xs font-mono text-cyan-400 font-medium">
+                                    <Sparkles size={13} />
+                                    <span>Full Stack &amp; Mobile Engineer</span>
+                                </div>
+
+                                <h3 className="text-3xl sm:text-4xl font-anton text-white tracking-tight">
+                                    Kowshik Valipireddy
+                                </h3>
+
+                                <p className="text-sm text-neutral-300 font-light leading-relaxed">
+                                    Bridging the gap between design fidelity and robust systems architecture across web and mobile platforms.
+                                </p>
+                            </div>
+
+                            {/* Middle 4-Stat Metric Matrix */}
+                            <div className="my-6 pt-6 border-t border-white/10 grid grid-cols-2 gap-4 sm:gap-5">
+                                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+                                    <div className="text-2xl sm:text-3xl font-anton text-white">2+</div>
+                                    <p className="text-xs text-neutral-400 font-mono mt-0.5">Years Experience</p>
+                                </div>
+                                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+                                    <div className="text-2xl sm:text-3xl font-anton text-cyan-400">30+</div>
+                                    <p className="text-xs text-neutral-400 font-mono mt-0.5">Completed Projects</p>
+                                </div>
+                                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+                                    <div className="text-2xl sm:text-3xl font-anton text-emerald-400">100%</div>
+                                    <p className="text-xs text-neutral-400 font-mono mt-0.5">Code Reliability</p>
+                                </div>
+                                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+                                    <div className="text-2xl sm:text-3xl font-anton text-teal-300">Web &amp; App</div>
+                                    <p className="text-xs text-neutral-400 font-mono mt-0.5">Dual Expertise</p>
+                                </div>
+                            </div>
+
+                            {/* Core Capabilities Checklist */}
+                            <div className="space-y-2.5 pb-6 border-b border-white/10">
+                                <p className="text-xs font-mono uppercase tracking-widest text-neutral-400">
+                                    Core Focus Areas
+                                </p>
+                                <div className="space-y-2">
+                                    {CORE_CAPABILITIES.map((cap) => (
+                                        <div key={cap} className="flex items-start gap-2 text-xs text-neutral-300">
+                                            <CheckCircle2 size={14} className="text-cyan-400 shrink-0 mt-0.5" />
+                                            <span>{cap}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Bottom Availability Status */}
+                            <div className="pt-4 flex items-center justify-between text-xs font-mono text-neutral-400">
+                                <div className="flex items-center gap-2">
+                                    <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+                                    <span>Available for Hire</span>
+                                </div>
+                                <div className="flex items-center gap-1 text-neutral-400">
+                                    <MapPin size={12} className="text-cyan-400" />
+                                    <span>India (Remote)</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Right Column - Bio */}
-                    <div className="bio-column">
-                        <div className="bio-content">
-                            <p className="bio-paragraph slide-up-and-fade">
-                                I am a frontend and backend developer with a strong foundation in web design,
-                                capable of building complete digital products from initial concept to
-                                production-ready deployment. I don&apos;t just write code — I translate ideas,
-                                requirements, and problems into{' '}
-                                <span className="emphasis">fast, scalable, and visually refined</span> web
-                                experiences.
+                    {/* Right Column: Bio Narrative & Pillars */}
+                    <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+                        <div className="about-fade p-7 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md space-y-4">
+                            <h4 className="text-xl font-anton text-white tracking-wide uppercase">
+                                Engineering Craft &amp; Execution
+                            </h4>
+                            <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+                                I specialize in crafting complete digital solutions from whiteboard ideation to production deployment. I don&apos;t just write syntax — I convert complex product requirements into <strong className="text-white font-medium">fast, accessible, and resilient</strong> web platforms and cross-platform mobile apps.
                             </p>
+                            <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
+                                Whether building interactive web applications with <span className="text-white font-normal">Next.js 15 &amp; React 19</span>, fluid mobile gesture workflows with <span className="text-white font-normal">React Native &amp; Expo</span>, or scalable APIs with <span className="text-white font-normal">Node.js, PostgreSQL &amp; Prisma</span>, I prioritize performance, clean code architecture, and intuitive user experiences.
+                            </p>
+                        </div>
 
-                            <p className="bio-paragraph slide-up-and-fade">
-                                My work is driven by a user-centered design philosophy, where every interface
-                                decision is guided by usability, clarity, and real user behavior. I combine
-                                clean UI design with solid engineering practices to ensure performance,
-                                accessibility, and responsiveness across all devices and platforms.
-                            </p>
+                        {/* Craft Pillars Bento */}
+                        <div className="space-y-3.5">
+                            {HIGHLIGHTS.map((h) => (
+                                <div
+                                    key={h.title}
+                                    className="about-fade p-5 sm:p-6 rounded-xl bg-white/[0.015] hover:bg-white/[0.04] border border-white/5 hover:border-white/15 transition-all duration-300 flex items-start gap-4 sm:gap-5"
+                                >
+                                    <div className="p-3 rounded-lg bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 shrink-0">
+                                        <h.icon size={20} />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <h5 className="text-base font-anton tracking-wide text-white">
+                                            {h.title}
+                                        </h5>
+                                        <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+                                            {h.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
-
-                {/* Decorative Background Element */}
-                <div className="bg-decoration"></div>
-            </div>            <style jsx>{`
-                .about-me-section {
-                    position: relative;
-                    padding: 8rem 0 12rem;
-                    overflow: hidden;
-                }
-
-                .about-me-container {
-                    max-width: 1400px;
-                    margin: 0 auto;
-                    padding: 0 2rem;
-                    position: relative;
-                    z-index: 2;
-                }
-
-                /* Hero Statement */
-                .hero-statement-wrapper {
-                    margin-bottom: 8rem;
-                }
-
-                .hero-statement {
-                    font-family: inherit;
-                    font-size: clamp(2.5rem, 6vw, 5rem);
-                    font-weight: 300;
-                    line-height: 1.2;
-                    letter-spacing: -0.02em;
-                    color: #f3f4f6;
-                    max-width: 1100px;
-                }
-
-                .highlight {
-                    position: relative;
-                    font-weight: 600;
-                    color: #ffffff;
-                    background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                }
-
-                /* Section Divider */
-                .section-divider {
-                    display: flex;
-                    align-items: center;
-                    gap: 2rem;
-                    margin-bottom: 5rem;
-                }
-
-                .divider-text {
-                    font-size: 0.875rem;
-                    font-weight: 400;
-                    letter-spacing: 0.15em;
-                    text-transform: uppercase;
-                    color: #d1d5db;
-                    white-space: nowrap;
-                }
-
-                .divider-line {
-                    height: 1px;
-                    flex: 1;
-                    background: linear-gradient(to right, #4b5563 0%, transparent 100%);
-                }
-
-                /* Content Grid */
-                .content-grid {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    gap: 4rem;
-                }
-
-                @media (min-width: 768px) {
-                    .content-grid {
-                        grid-template-columns: 5fr 7fr;
-                        gap: 6rem;
-                    }
-                }
-
-                /* Name Column */
-                .name-column {
-                    position: relative;
-                }
-
-                .name-wrapper {
-                    position: sticky;
-                    top: 8rem;
-                }
-
-                .greeting {
-                    display: block;
-                    font-size: 1.125rem;
-                    font-weight: 400;
-                    color: #d1d5db;
-                    margin-bottom: 0.75rem;
-                    letter-spacing: 0.05em;
-                }
-
-                .name {
-                    font-family: inherit;
-                    font-size: clamp(3rem, 5vw, 4.5rem);
-                    font-weight: 800;
-                    letter-spacing: -0.03em;
-                    color: #ffffff;
-                    line-height: 1;
-                    margin: 0 0 1.5rem 0;
-                    text-transform: lowercase;
-                }
-
-                .accent-line {
-                    width: 60px;
-                    height: 3px;
-                    background: linear-gradient(to right, #00d4ff, #7c3aed);
-                    border-radius: 2px;
-                }
-
-                /* Bio Column */
-                .bio-column {
-                    position: relative;
-                }
-
-                .bio-content {
-                    max-width: 550px;
-                }
-
-                .bio-paragraph {
-                    font-size: 1.25rem;
-                    font-weight: 300;
-                    line-height: 1.8;
-                    color: #e5e7eb;
-                    margin-bottom: 2rem;
-                }
-
-                .bio-paragraph:last-child {
-                    margin-bottom: 0;
-                }
-
-                .emphasis {
-                    color: #ffffff;
-                    font-weight: 500;
-                    font-style: italic;
-                }
-
-                /* Decorative Background */
-                .bg-decoration {
-                    position: absolute;
-                    top: 20%;
-                    right: -10%;
-                    width: 600px;
-                    height: 600px;
-                    background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 1;
-                    filter: blur(80px);
-                }
-
-                /* Responsive adjustments */
-                @media (max-width: 767px) {
-                    .about-me-section {
-                        padding: 5rem 0 8rem;
-                    }
-
-                    .hero-statement-wrapper {
-                        margin-bottom: 5rem;
-                    }
-
-                    .section-divider {
-                        margin-bottom: 3rem;
-                    }
-
-                    .name-wrapper {
-                        position: relative;
-                        top: 0;
-                    }
-
-                    .bio-paragraph {
-                        font-size: 1.125rem;
-                    }
-                }
-
-                /* Animation enhancement */
-                .slide-up-and-fade {
-                    will-change: transform, opacity;
-                }
-
-                /* Hover effects for interactive feel */
-                @media (hover: hover) {
-                    .name:hover {
-                        background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        transition: all 0.3s ease;
-                    }
-                }
-            `}</style>
+            </div>
         </section>
     );
 };

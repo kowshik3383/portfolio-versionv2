@@ -165,9 +165,19 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                         <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/30 font-mono uppercase tracking-wider">
                             {post.category}
                         </span>
-                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
                             <Calendar size={13} />
-                            <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+                            <time dateTime={post.publishedAt}>
+                                Published {formatDate(post.publishedAt)}
+                            </time>
+                            {post.updatedAt && post.updatedAt !== post.publishedAt && (
+                                <>
+                                    <span className="text-muted-foreground/60">•</span>
+                                    <span className="text-primary font-medium">
+                                        Updated {formatDate(post.updatedAt)}
+                                    </span>
+                                </>
+                            )}
                         </div>
                         <span className="text-muted-foreground">•</span>
                         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">

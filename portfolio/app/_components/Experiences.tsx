@@ -6,13 +6,27 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { useRef } from 'react';
+import { Calendar, Briefcase } from 'lucide-react';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+const renderFormattedText = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+            return (
+                <strong key={index} className="text-white font-medium">
+                    {part.slice(2, -2)}
+                </strong>
+            );
+        }
+        return <span key={index}>{part}</span>;
+    });
+};
 
 const Experiences = () => {
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Animate experience cards ONCE (no scrub = no duplication)
     useGSAP(
         () => {
             gsap.fromTo(
@@ -21,117 +35,97 @@ const Experiences = () => {
                 {
                     y: 0,
                     opacity: 1,
-                    stagger: 0.25,
+                    stagger: 0.2,
+                    duration: 0.8,
                     ease: 'power2.out',
                     scrollTrigger: {
                         trigger: containerRef.current,
-                        start: 'top 70%',
+                        start: 'top 75%',
                         toggleActions: 'play none none reverse',
                     },
-                }
+                },
             );
         },
-        { scope: containerRef }
+        { scope: containerRef },
     );
 
     return (
         <section
             id="my-experience"
-            className="relative overflow-hidden  py-32"
+            className="relative py-24 sm:py-32 overflow-hidden border-t border-white/5"
         >
             <div
                 ref={containerRef}
-                className="relative z-10 mx-auto max-w-6xl px-6"
+                className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
             >
                 {/* Header */}
-                <div className="mb-24 text-center">
-                    <SectionTitle title="My Experience" />
-                    <p className="mt-4 font-mono text-sm tracking-wide text-neutral-300">
-                        Career milestones and professional journey
+                <div className="mb-16">
+                    <SectionTitle title="MY EXPERIENCE" />
+                    <p className="font-mono text-sm tracking-wide text-neutral-400 -mt-6">
+                        Career milestones &amp; engineering journey
                     </p>
                 </div>
 
                 {/* Timeline Wrapper */}
-                <div className="relative pl-16">
-                    {/* Vertical Line */}
-                    <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-transparent via-cyan-400 to-transparent" />
+                <div className="relative pl-6 sm:pl-10 border-l border-white/10 space-y-12 sm:space-y-16">
+                    {MY_EXPERIENCE.map((item, index) => (
+                        <div
+                            key={`${item.title}-${index}`}
+                            className="experience-item relative group"
+                        >
+                            {/* Timeline Dot */}
+                            <div className="absolute -left-[31px] sm:-left-[47px] top-6 z-10 flex items-center justify-center">
+                                <span className="absolute size-5 rounded-full bg-cyan-400/20 animate-ping" />
+                                <span className="relative size-3 rounded-full bg-cyan-400 ring-4 ring-neutral-950 shadow-[0_0_12px_rgba(34,211,238,0.8)]" />
+                            </div>
 
-                    {/* Experience Items */}
-                    <div className="space-y-16">
-                        {MY_EXPERIENCE.map((item, index) => (
-                            <div
-                                key={`${item.title}-${index}`}
-                                className="experience-item relative pl-16"
-                            >
-                                {/* Timeline Dot (perfectly aligned) */}
-                                <div className="absolute left-6 top-10 -translate-x-1/2 z-10">
-                                    <span className="absolute h-6 w-6 animate-ping rounded-full bg-cyan-400/20" />
-                                    <span className="relative block h-2.5 w-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.6)]" />
-                                </div>
+                            {/* Experience Card */}
+                            <div className="p-7 sm:p-9 rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 hover:border-cyan-400/30 transition-all duration-300 relative overflow-hidden backdrop-blur-sm">
+                                <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
 
-                                {/* Card */}
-                                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 p-10 transition-all duration-300 hover:translate-x-2 hover:shadow-[0_20px_60px_rgba(34,211,238,0.08)]">
-                                    {/* Glow */}
-                                    <div className="pointer-events-none absolute right-0 top-0 h-52 w-52 rounded-full bg-cyan-400/10 blur-3xl" />
-
-                                    {/* Border */}
-                                    <div className="pointer-events-none absolute inset-0 rounded-2xl border border-transparent transition group-hover:border-cyan-400/20" />
-
-                                    {/* Header */}
-                                    <div className="mb-6 flex items-center gap-4">
-                                        <span className="font-mono text-sm tracking-widest text-cyan-400">
-                                            {String(index + 1).padStart(2, '0')}
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                                    <div className="flex items-center gap-3">
+                                        <span className="font-mono text-xs text-cyan-400 font-semibold px-2.5 py-0.5 rounded-full bg-cyan-400/10 border border-cyan-400/20">
+                                            0{index + 1}
                                         </span>
-                                        <span className="font-mono text-sm uppercase tracking-wide text-neutral-300">
+                                        <span className="text-sm font-semibold tracking-wide text-white flex items-center gap-2">
+                                            <Briefcase size={14} className="text-neutral-400" />
                                             {item.company}
                                         </span>
                                     </div>
 
-                                    {/* Title */}
-                                    <h3 className="mb-6 text-3xl font-extrabold tracking-tight text-white transition">
-                                        {item.title}
-                                    </h3>
-
-                                    {/* Duration */}
-                                    <div className="flex items-center gap-2 font-mono text-sm text-neutral-300">
-                                        <svg
-                                            width="16"
-                                            height="16"
-                                            viewBox="0 0 16 16"
-                                            fill="none"
-                                            className="transition group-hover:text-cyan-400"
-                                        >
-                                            <circle
-                                                cx="8"
-                                                cy="8"
-                                                r="6.5"
-                                                stroke="currentColor"
-                                                strokeWidth="1"
-                                            />
-                                            <path
-                                                d="M8 4V8L11 10"
-                                                stroke="currentColor"
-                                                strokeWidth="1"
-                                                strokeLinecap="round"
-                                            />
-                                        </svg>
-                                        {item.duration}
+                                    <div className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-400 bg-white/[0.03] px-3 py-1 rounded-full border border-white/5 self-start sm:self-auto">
+                                        <Calendar size={12} className="text-cyan-400" />
+                                        <span>{item.duration}</span>
                                     </div>
-
-                                    {/* Shine */}
-                                    <div className="pointer-events-none absolute inset-y-0 -left-full w-1/2 bg-gradient-to-r from-transparent via-white/5 to-transparent transition-all duration-700 group-hover:left-full" />
                                 </div>
+
+                                <h3 className="text-2xl sm:text-3xl font-anton text-white tracking-wide mb-4">
+                                    {item.title}
+                                </h3>
+
+                                {item.highlights && item.highlights.length > 0 ? (
+                                    <ul className="space-y-3 pt-3 border-t border-white/5">
+                                        {item.highlights.map((bullet, bulletIdx) => (
+                                            <li
+                                                key={bulletIdx}
+                                                className="flex items-start gap-3 text-sm sm:text-[14.5px] text-neutral-300 font-light leading-relaxed"
+                                            >
+                                                <span className="mt-2 size-1.5 rounded-full bg-cyan-400 shrink-0 shadow-[0_0_6px_rgba(34,211,238,0.8)]" />
+                                                <span>{renderFormattedText(bullet)}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : item.description ? (
+                                    <p className="text-sm text-neutral-300 font-light leading-relaxed">
+                                        {item.description}
+                                    </p>
+                                ) : null}
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </div>
-
-            {/* Background Grid */}
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
-
-            {/* Glow Sphere */}
-            <div className="pointer-events-none absolute right-[-200px] top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-violet-600/10 blur-[120px]" />
         </section>
     );
 };

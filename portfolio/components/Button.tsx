@@ -52,6 +52,7 @@ const Button = ({
     const variantClasses = {
         primary: `bg-primary text-primary-foreground  hover:bg-primary-hover`,
         secondary: `bg-secondary text-secondary-foreground hover:bg-secondary-hover`,
+        outline: `bg-transparent text-foreground border border-white/20 hover:border-white/40 hover:bg-white/10`,
         success: `bg-green-500 text-white hover:bg-green-600`,
         warning: `bg-orange-500 text-white hover:bg-orange-600`,
         danger: `bg-destructive text-destructive-foreground hover:bg-destructive/70`,
@@ -84,10 +85,10 @@ const Button = ({
                     {...props}
                     href={props.href ? props.href.toString() : '/'}
                 >
-                    {variant !== 'link' && (
+                    {variant !== 'link' && variant !== 'outline' && (
                         <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-[50%] group-hover:top-0 transition-all duration-500 scale-150"></span>
                     )}
-                    <span className="z-[1]">
+                    <span className="z-[1] inline-flex items-center justify-center gap-2">
                         {loading ? <Child icon={icon} /> : children}
                     </span>
                 </a>
@@ -96,10 +97,10 @@ const Button = ({
 
         return (
             <Link className={buttonClasses} {...props} href={props.href || '/'}>
-                {variant !== 'link' && (
+                {variant !== 'link' && variant !== 'outline' && (
                     <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-[50%] group-hover:top-0 transition-all duration-500 scale-150"></span>
                 )}
-                <span className="z-[1]">
+                <span className="z-[1] inline-flex items-center justify-center gap-2">
                     {loading ? <Child icon={icon} /> : children}
                 </span>
             </Link>
@@ -109,10 +110,10 @@ const Button = ({
 
         return (
             <button className={buttonClasses} {...props}>
-                {variant !== 'link' && (
+                {variant !== 'link' && variant !== 'outline' && (
                     <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-[50%] group-hover:top-0 transition-all duration-500 scale-150"></span>
                 )}
-                <span className="z-[1]">
+                <span className="z-[1] inline-flex items-center justify-center gap-2">
                     {loading ? <Child icon={icon} /> : children}
                 </span>
             </button>

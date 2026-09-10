@@ -3,11 +3,13 @@ import { getAllBlogs, getAllCategories, getAllTags } from '@/lib/blogs';
 import BlogListClient from './_components/BlogListClient';
 
 export const metadata: Metadata = {
-    title: 'Engineering Blog - Kowshik Valipireddy | Full Stack & AI Architecture',
+    title: 'Engineering Blog - Kowshik Valipireddy | Full Stack, React Native & AI Architecture',
     description:
-        'Technical articles, architecture guides, and tutorials on Next.js 15, AI Agent Engineering, PostgreSQL & Prisma, Web Performance, and 60fps Animations by Kowshik Valipireddy.',
+        'Technical articles, architecture guides, and tutorials on Next.js 15, React Native (iOS & Android), AI Agent Engineering, PostgreSQL & Prisma, Web Performance, and 60fps Animations by Kowshik Valipireddy.',
     keywords: [
         'Next.js 15 Blog',
+        'React Native Blog',
+        'Mobile App Architecture',
         'Full Stack Developer Blog',
         'AI Agent Architecture',
         'React 19 Server Components',

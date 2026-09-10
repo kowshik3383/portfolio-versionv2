@@ -5,7 +5,6 @@ import { ReactLenis } from 'lenis/react';
 import 'lenis/dist/lenis.css';
 import './globals.css';
 import Footer from '@/components/Footer';
-import Navbar from '@/components/Navbar';
 import Preloader from '../components/Preloader';
 import ParticleBackground from '@/components/ParticleBackground';
 import ScrollProgressIndicator from '@/components/ScrollProgressIndicator';
@@ -31,11 +30,12 @@ const robotoFlex = Roboto({
 
 export const metadata: Metadata = {
     title: {
-        default: 'Kowshik Valipireddy | Full Stack Developer & AI Engineer Portfolio',
+        default:
+            'Kowshik Valipireddy | Full Stack & React Native Mobile Engineer',
         template: '%s | Kowshik Valipireddy',
     },
     description:
-        'Official portfolio & engineering blog of Kowshik Valipireddy. Full Stack Developer and AI Engineer specializing in React, Next.js, TypeScript, Node.js, and high-performance web solutions.',
+        'Official portfolio & engineering blog of Kowshik Valipireddy. Full Stack Developer, React Native Mobile Engineer, and AI Solutions Specialist specializing in Next.js, React, React Native (iOS & Android), TypeScript, Node.js, and high-performance cross-platform apps.',
     keywords: [
         'Kowshik',
         'Valipireddy',
@@ -46,15 +46,24 @@ export const metadata: Metadata = {
         'Kowshik Portfolio',
         'Valipireddy Portfolio',
         'Kowshik Valipireddy Portfolio',
+        'React Native Engineer',
+        'React Native Developer Kowshik',
+        'Mobile App Developer Kowshik',
+        'Cross Platform Mobile Developer',
         'Full Stack Engineer Kowshik',
         'Frontend Developer Kowshik Valipireddy',
         'Next.js React Developer Kowshik',
+        'React Native Expo Developer',
+        'iOS Android Developer Kowshik',
         'Kowshik AI Engineer',
         'kowshik3383',
         'Kowshik Software Engineer',
     ],
     authors: [
-        { name: 'Kowshik Valipireddy', url: 'https://kowshik-valipireddy.pages.dev' },
+        {
+            name: 'Kowshik Valipireddy',
+            url: 'https://kowshik-valipireddy.pages.dev',
+        },
         { name: 'Kowshik' },
         { name: 'Valipireddy' },
     ],
@@ -65,9 +74,9 @@ export const metadata: Metadata = {
         canonical: 'https://kowshik-valipireddy.pages.dev',
     },
     openGraph: {
-        title: 'Kowshik Valipireddy | Full Stack Developer & AI Engineer',
+        title: 'Kowshik Valipireddy | Full Stack & React Native Mobile Engineer',
         description:
-            'Official portfolio and engineering blog of Kowshik Valipireddy. Explore featured web projects, technical articles, and AI workflows.',
+            'Official portfolio and engineering blog of Kowshik Valipireddy. Explore featured web & mobile projects, technical articles, and AI workflows.',
         url: 'https://kowshik-valipireddy.pages.dev',
         siteName: 'Kowshik Valipireddy Portfolio',
         type: 'website',
@@ -83,9 +92,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Kowshik Valipireddy | Full Stack Developer Portfolio',
+        title: 'Kowshik Valipireddy | Full Stack & React Native Engineer Portfolio',
         description:
-            'Portfolio & technical engineering blog of Kowshik Valipireddy. Full Stack Development, React, Next.js, and AI.',
+            'Portfolio & technical engineering blog of Kowshik Valipireddy. Full Stack Development, React Native Mobile, React, Next.js, and AI.',
         images: [
             'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80',
         ],
@@ -126,20 +135,25 @@ export default function RootLayout({
                     'Kowshik V',
                     'kowshik valipireddy',
                     'Kowshik Developer',
+                    'Kowshik React Native Developer',
                 ],
                 givenName: 'Kowshik',
                 familyName: 'Valipireddy',
                 url: 'https://kowshik-valipireddy.pages.dev',
-                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80',
-                jobTitle: 'Full Stack Developer & AI Engineer',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3iU7_eaFHg4VstsVmXTGALCaWwVpFs7ewYduzp1K4n94mvB1MeDC4wkA&s=10',
+                jobTitle: 'Full Stack Developer & React Native Mobile Engineer',
                 description:
-                    'Full Stack Developer and AI Solutions Engineer specializing in Next.js, React, Node.js, and high-performance web systems.',
+                    'Full Stack Developer, React Native Mobile Engineer, and AI Solutions Specialist building high-performance cross-platform mobile and web systems.',
                 sameAs: [
                     'https://github.com/kowshik3383',
                     'https://www.linkedin.com/in/kowshikvalipireddy',
                 ],
                 knowsAbout: [
                     'Kowshik Valipireddy',
+                    'React Native',
+                    'Mobile App Development',
+                    'Cross-Platform iOS & Android',
+                    'Expo',
                     'Full Stack Development',
                     'Frontend Engineering',
                     'Backend Engineering',
@@ -174,7 +188,9 @@ export default function RootLayout({
             <head>
                 <script
                     type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(personSchema),
+                    }}
                 />
             </head>
             <body
@@ -188,7 +204,6 @@ export default function RootLayout({
                         duration: 1.4,
                     }}
                 >
-                    <Navbar />
                     <main>{children}</main>
                     <Footer />
                     <Preloader />

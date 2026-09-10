@@ -76,33 +76,62 @@ export default async function BlogPostPage({ params }: Props) {
 
     const relatedPosts = getRelatedBlogs(slug, 3);
 
-    // Schema.org BlogPosting structured data for Google Search rich snippets
+    // Schema.org BlogPosting & BreadcrumbList structured data for Google Search rich snippets
     const structuredData = {
         '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: post.title,
-        description: post.metaDescription,
-        image: [post.coverImage],
-        datePublished: post.publishedAt,
-        dateModified: post.updatedAt || post.publishedAt,
-        author: {
-            '@type': 'Person',
-            name: post.author.name,
-            jobTitle: post.author.role,
-            url: 'https://kowshik-valipireddy.pages.dev',
-        },
-        publisher: {
-            '@type': 'Person',
-            name: 'Kowshik Valipireddy',
-            url: 'https://kowshik-valipireddy.pages.dev',
-        },
-        mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': `https://kowshik-valipireddy.pages.dev/blog/${post.slug}`,
-        },
-        keywords: post.keywords.join(', '),
-        articleSection: post.category,
-        wordCount: post.content.split(/\s+/).length,
+        '@graph': [
+            {
+                '@type': 'BlogPosting',
+                '@id': `https://kowshik-valipireddy.pages.dev/blog/${post.slug}#article`,
+                headline: post.title,
+                description: post.metaDescription,
+                image: [post.coverImage],
+                datePublished: post.publishedAt,
+                dateModified: post.updatedAt || post.publishedAt,
+                author: {
+                    '@type': 'Person',
+                    name: post.author.name,
+                    jobTitle: post.author.role,
+                    url: 'https://kowshik-valipireddy.pages.dev',
+                },
+                publisher: {
+                    '@type': 'Person',
+                    name: 'Kowshik Valipireddy',
+                    url: 'https://kowshik-valipireddy.pages.dev',
+                },
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': `https://kowshik-valipireddy.pages.dev/blog/${post.slug}`,
+                },
+                keywords: post.keywords.join(', '),
+                articleSection: post.category,
+                wordCount: post.content.split(/\s+/).length,
+            },
+            {
+                '@type': 'BreadcrumbList',
+                '@id': `https://kowshik-valipireddy.pages.dev/blog/${post.slug}#breadcrumb`,
+                itemListElement: [
+                    {
+                        '@type': 'ListItem',
+                        position: 1,
+                        name: 'Home',
+                        item: 'https://kowshik-valipireddy.pages.dev',
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 2,
+                        name: 'Blog',
+                        item: 'https://kowshik-valipireddy.pages.dev/blog',
+                    },
+                    {
+                        '@type': 'ListItem',
+                        position: 3,
+                        name: post.title,
+                        item: `https://kowshik-valipireddy.pages.dev/blog/${post.slug}`,
+                    },
+                ],
+            },
+        ],
     };
 
     return (

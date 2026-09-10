@@ -22,7 +22,7 @@ const StickyEmail = () => {
         }, 300);
     };
     return (
-        <div className="max-xl:hidden fixed bottom-32 left-0 block">
+        <div className="max-xl:hidden fixed bottom-32 left-0 block print:hidden">
             <div
                 onClick={handleEmailClick}
                 className="px-3 text-muted-foreground tracking-[1px] transition-all !bg-bottom hover:text-foreground hover:!bg-center"

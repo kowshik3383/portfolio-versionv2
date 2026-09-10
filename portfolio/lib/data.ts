@@ -1,4 +1,4 @@
-import { IProject } from '@/types';
+import { IProject, IExperience } from '@/types';
 
 export const GENERAL_INFO = {
     email: 'kowshikvalipireddy@gmail.com',
@@ -17,6 +17,24 @@ export const SOCIAL_LINKS = [
 ];
 
 export const MY_STACK = {
+    mobile: [
+        {
+            name: 'React Native',
+            icon: '/logo/react-native.svg',
+        },
+        {
+            name: 'Expo',
+            icon: '/logo/expo.svg',
+        },
+        {
+            name: 'iOS & Android',
+            icon: '/logo/react.png',
+        },
+        {
+            name: 'Redux / Zustand',
+            icon: '/logo/redux.png',
+        },
+    ],
     frontend: [
         {
             name: 'JavaScript',
@@ -91,10 +109,32 @@ export const MY_STACK = {
             icon: '/logo/prisma.png',
         },
     ],
+    deployment: [
+        {
+            name: 'Vercel',
+            icon: '/logo/vercel.svg',
+        },
+        {
+            name: 'EAS & App Store/Play Store',
+            icon: '/logo/expo.svg',
+        },
+        {
+            name: 'Docker Containers',
+            icon: '/logo/docker.svg',
+        },
+        {
+            name: 'AWS Cloud',
+            icon: '/logo/aws.png',
+        },
+    ],
     tools: [
         {
-            name: 'Git',
+            name: 'Git & GitHub',
             icon: '/logo/git.png',
+        },
+        {
+            name: 'Figma & Plugin Dev',
+            icon: '/logo/figma.svg',
         },
         {
             name: 'Docker',
@@ -109,116 +149,130 @@ export const MY_STACK = {
 
 export const PROJECTS: IProject[] = [
     {
-        title: 'GenixAI Hospital Management',
-        slug: 'genixai-hospital-management',
-        liveUrl: 'https://app.genixai.info/',
-        year: 2025,
-        description: 'A smart healthcare dashboard to manage appointments, patient records, and prescriptions — powered by AI-driven voice recognition.',
-        techStack: ['React', 'Tailwind CSS', 'Firebase', 'AI', 'Speech-to-Text'],
-        thumbnail: 'https://i.ibb.co/WpKw1Qdf/Genix-Google-Chrome-13-04-2025-19-13-43.png',
-        longThumbnail: 'https://i.ibb.co/WpKw1Qdf/Genix-Google-Chrome-13-04-2025-19-13-43.png',
-        images: ['https://i.ibb.co/WpKw1Qdf/Genix-Google-Chrome-13-04-2025-19-13-43.png'],
+        title: 'Figma to Code [HTML, Tailwind, React]',
+        slug: 'figma-to-code-plugin',
+        liveUrl: 'https://www.figma.com/community/plugin/1670837309887282952/figma-to-code-html-tailwind-react',
+        year: 2026,
+        description: 'A professional Figma Community plugin that converts Figma frames, components, and Auto Layouts into clean, responsive HTML, Tailwind CSS (v3 & v4), React JSX, and Next.js projects 100% offline.',
+        techStack: ['Figma Plugin API', 'TypeScript', 'Tailwind CSS', 'React (JSX)', 'HTML5 & CSS3', 'Design Tokens', 'Next.js Export'],
+        thumbnail: '/c96141d7cf5528a042ffdc81b2207244be355d8d.png',
+        longThumbnail: '/c96141d7cf5528a042ffdc81b2207244be355d8d.png',
+        images: ['/c96141d7cf5528a042ffdc81b2207244be355d8d.png'],
         details: {
-            overview: "GenixAI Hospital Management is an intelligent platform designed to streamline patient care. It helps hospitals and clinics automate appointment scheduling, generate medical notes using AI-powered speech-to-text, and simplify prescription handling.",
+            overview: "Figma to Code is an official Figma Community plugin engineered to bridge the gap between design and production development. It converts complex Figma frames, components, typography, variables, and Auto Layout structures into clean, responsive, production-ready code in seconds — running 100% offline inside the Figma desktop client without external API keys.",
             features: [
-                "AI-driven speech-to-text for quick note generation",
-                "Seamless appointment booking and tracking",
-                "Prescription uploads and import from external sources",
-                "Patient history and record management",
-                "Real-time notifications and role-based access"
+                "Supported Frameworks: Tailwind CSS (v3 & v4), Semantic HTML5 & CSS3, React (JSX), Next.js project exports, Vite, Svelte, and Styled Components.",
+                "100% Offline & Private: Operates entirely inside the Figma client sandbox with zero telemetry and no external cloud dependency.",
+                "One-Click Full Project Export: Downloads complete, runnable projects as .zip files with generated component code and asset bundles.",
+                "Smart Asset & Icon Handling: Automatic detection, scaling, and export for PNG raster assets and clean SVG vector icons.",
+                "Design Tokens & Figma Variables: Extracts colors, gradients, and custom design variables into reusable code tokens.",
+                "Auto Layout Translation: Maps Figma flex auto-layouts directly into responsive CSS Flexbox and Grid structures.",
+                "In-Plugin Live Responsive Preview: Real-time viewport preview across mobile and desktop breakpoints directly within Figma Dev Mode."
             ],
-            challenges: "Integrating accurate and fast speech-to-text transcription in real-world noisy environments was a core challenge. We overcame it by fine-tuning AI models and implementing custom noise-filtering layers. Additionally, prescription import compatibility across varying formats required robust parsing logic.",
-            outcome: "The system reduced manual data entry by 65%, improved doctor efficiency, and significantly enhanced patient satisfaction by streamlining check-in and follow-up workflows."
+            challenges: "Parsing deeply nested Figma scene graphs, converting divergent layout constraints into clean CSS Flexbox without visual layout drift, and serializing raster and vector assets into downloadable zip bundles fully offline.",
+            outcome: "Published on the official Figma Community with instant adoption, empowering designers and developers to export pixel-perfect code in one click."
         },
-        link: 'https://app.genixai.info/'
+        link: 'https://www.figma.com/community/plugin/1670837309887282952/figma-to-code-html-tailwind-react'
     },
     {
-        title: 'NextGen UI Landing Page',
-        slug: 'nextgen-ui-landing-page',
-        liveUrl: 'https://nextgen-mern-stack.vercel.app/',
+        title: 'AI Technical Interviewer',
+        slug: 'ai-technical-interviewer',
+        liveUrl: 'https://ai-interviewer-ten-delta.vercel.app/',
         year: 2025,
-        description: 'A futuristic and responsive landing page crafted to highlight modern UI/UX design principles and interaction patterns.',
-        techStack: ['HTML5', 'CSS3', 'Tailwind CSS', 'JavaScript', 'Responsive Design'],
-        thumbnail: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80',
-        longThumbnail: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80',
-        images: ['https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80'],
+        description: 'A voice-first AI technical evaluation platform that speaks aloud, observes candidate keystrokes live via WebSockets, provides proactive hints when stuck, and outputs structured hiring decision scorecards.',
+        techStack: ['Next.js 15', 'React 19', 'TypeScript', 'WebSockets', 'Shunya Labs AI Voice', 'Monaco Editor', 'OpenRouter AI', 'Tailwind CSS'],
+        thumbnail: '/image (6).png',
+        longThumbnail: '/image (6).png',
+        images: ['/image (6).png'],
         details: {
-            overview: "NextGen is a concept landing page designed to demonstrate cutting-edge UI skills with a focus on clean layouts, fluid animations, and a modern aesthetic. It serves as a showcase for interactive components, consistent theming, and responsive behavior across devices.",
+            overview: "AI Technical Interviewer is an authentic technical assessment platform powered by conversational voice AI and real-time code observability. The AI conducts natural dialogue using Shunya Labs Zero-TTS, inspects uncommitted buffer changes over WebSockets in an embedded Monaco Editor, delivers gentle spoken coaching hints during pauses (>35s), and compiles candidate solutions in isolated sandboxes to generate comprehensive radar scorecards.",
             features: [
-                "Hero section with layered animations and CTA",
-                "Mobile-first responsive layout",
-                "Smooth scroll and section-based navigation",
-                "Modern typography and glassmorphism effects",
-                "Animated cards, tooltips, and hover states"
+                "Voice-First Dialogue: Neural voice speech synthesis with Shunya Labs Zero-TTS (Varun voice profile) and real-time turn-taking silence detection.",
+                "Live Keystroke Observability: Monaco Editor streaming live code over WebSockets with proactive micro-hints when candidates stall.",
+                "9 Specialized Language Banks: Pre-loaded junior, mid, and senior coding challenges across JavaScript, Python, Java, C++, C, C#, SQL, HTML5, and CSS3.",
+                "Multi-Model Fallback Chain: OpenRouter orchestration with automatic silent failovers across Claude 3.5 Sonnet, GPT-4o, Gemini 2.5 Pro, DeepSeek, and LLaMA 3.3.",
+                "Deterministic FSM & Sandboxing: Finite state machine preventing hallucinated interview states and measuring runtime, stderr, and memory safely.",
+                "Hiring Decision Scorecards: Interactive competency radar matrix, rubric audit logs, and PDF export."
             ],
-            challenges: "Achieving pixel-perfect responsiveness and maintaining consistent animation performance across all devices required careful layout planning and optimization. Advanced Tailwind utilities and custom breakpoints were used to achieve fluid responsiveness.",
-            outcome: "The project effectively showcases UI proficiency and has been used as a template for multiple client presentations, helping secure design-related freelance work and collaborations."
+            challenges: "Achieving sub-second voice latency while simultaneously synchronizing continuous WebSocket editor deltas and orchestrating multi-model LLM failovers. Solved by implementing a deterministic finite state machine on the server, lightweight delta buffers, and client-side audio streaming.",
+            outcome: "Delivered a realistic, high-fidelity technical interview simulator across 9 programming ecosystems with zero rate-limit aborts and human-level conversational cadence."
         },
-        link: 'https://nextgen-mern-stack.vercel.app/'
+        link: 'https://ai-interviewer-ten-delta.vercel.app/'
     },
     {
-        title: 'DataMate - The ADA Platform',
-        slug: 'datamate-ada-platform',
-        liveUrl: 'https://datamate.connectplus.org.uk/',
+        title: 'HealthTrack Analytics Platform',
+        slug: 'healthtrack-analytics-platform',
+        liveUrl: 'https://tracker-mocha-ten.vercel.app/',
         year: 2025,
-        description: 'A robust and user-friendly platform designed to empower your data analysis journey with advanced AI tools and seamless integrations.',
-        techStack: ['AI', 'Data Analysis', 'Machine Learning', 'API Integration'],
-        thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
-        longThumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
-        images: ['https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80'],
+        description: 'A full-stack health and fitness analytics dashboard featuring personalized onboarding, meal planning, hydration logs, sleep cadence, and interactive progress charts.',
+        techStack: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'Prisma ORM', 'PostgreSQL', 'Recharts', 'NextAuth'],
+        thumbnail: '/image (5).png',
+        longThumbnail: '/image (5).png',
+        images: ['/image (5).png'],
         details: {
-            overview: "DataMate is a powerful platform that simplifies data analysis and enables users to build custom AI-powered analysts, integrate data sources seamlessly, and automate reporting. With a no-code interface, DataMate empowers users of all technical levels to gain valuable insights from their data.",
+            overview: "HealthTrack is a full-stack health and fitness management ecosystem built on Next.js 15 App Router and PostgreSQL. It empowers users to schedule workouts, monitor hydration levels, log daily meals, track sleep duration, and visualize fitness progress through responsive charts.",
             features: [
-                "Bot Studio: Build custom AI data analysts tailored to your specific needs. No coding experience required!",
-                "Analyst Assist: Get intelligent suggestions and real-time insights for data interpretation.",
-                "Seamless Integration: Integrate effortlessly with spreadsheets, CRMs, databases, and third-party APIs.",
-                "Conversational AI: Interact with your data using natural language, asking questions and getting instant answers.",
-                "Reporting Manager: Generate professional reports in minutes with customizable templates and automated scheduling."
+                "Multi-Step Onboarding Architecture: Intuitive 5-step guided setup (StepBasicInfo, StepActivity, StepTargets, StepReview, ProgressSidebar) calculating personalized BMR & macros.",
+                "Interactive Modal Logging Suite: Quick modals for AddMeal, LogExercise, LogWater, and guided ProductTour.",
+                "Comprehensive Health & Habit Tracking: Modules for analytics, calendar scheduling, hydration, workouts, meal planning, and sleep tracking.",
+                "PostgreSQL & Prisma Persistence: Type-safe database modeling for daily nutrition, fitness timeseries, and user goals.",
+                "Interactive Data Visualizations: Dynamic charts illustrating caloric deficits, macro splits, and weekly exercise frequency."
             ],
-            challenges: "Building a seamless integration system that could handle multiple data sources in real-time while maintaining performance was a significant challenge. Data security and user access control were also crucial areas of focus.",
-            outcome: "DataMate successfully streamlined data workflows and empowered businesses to make data-driven decisions faster. With real-time insights, customizable reports, and powerful AI tools, DataMate significantly improved operational efficiency for its users."
+            challenges: "Handling multi-step state synchronization during user onboarding while calculating dynamic caloric targets and ensuring instant optimistic UI updates across diverse health logging categories.",
+            outcome: "Delivered a high-performance wellness dashboard with sub-second API responses, seamless mobile-responsive workflows, and complete daily health progress visibility."
         },
-        link: 'https://datamate.connectplus.org.uk/'
+        link: 'https://tracker-mocha-ten.vercel.app/'
     },
     {
-        title: 'PostCrafts Auth System',
-        slug: 'postcrafts-auth-system',
-        liveUrl: 'https://mern-postcrafts-kowshik.vercel.app/',
+        title: 'Antique Journal - AI Tactile Sanctuary',
+        slug: 'antique-journal-ai-sanctuary',
+        liveUrl: 'https://antique-journal2.vercel.app/',
         year: 2025,
-        description: 'A secure and modern authentication system built using the MERN stack with full-featured login and registration flows.',
-        techStack: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Tailwind CSS', 'JWT'],
-        thumbnail: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=80',
-        longThumbnail: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=80',
-        images: ['https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=80'],
+        description: 'A tactile digital haven combining the mindful weight of leather-bound paper with AI semantic memory recall, emotional chronometer tracking, and zero-knowledge client encryption.',
+        techStack: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS', 'Semantic AI Search', 'Client Encryption', 'Vector Embeddings'],
+        thumbnail: '/image (4).png',
+        longThumbnail: '/image (4).png',
+        images: ['/image (4).png'],
         details: {
-            overview: "PostCrafts provides a clean and secure authentication interface using the MERN stack. It includes fully validated login and registration forms, token-based authentication, and responsive UI styling with Tailwind CSS.",
+            overview: "Antique Journal recreates the meditative focus of writing on archival rag paper while augmenting memory with AI intelligence. It features semantic memory recall, evening reflection synthesis, an interactive mood chronometer, and archival photo plates with strict privacy protection.",
             features: [
-                "User registration with input validation",
-                "Secure login with JWT-based session handling",
-                "Password hashing using bcrypt",
-                "Persistent sessions and protected routes",
-                "Tailwind-styled responsive UI with error feedback"
+                "Tactile Digital Typography: Distraction-free editorial canvas with continuous autosave, custom serif typography, and tactile paper styling.",
+                "AI Semantic Memory Recall: Natural language querying over personal archives allowing users to query past realizations and life themes.",
+                "Evening Mirror & Synthesis: Thoughtful end-of-day AI reflection highlighting emotional cadence, recurring habits, and personal growth.",
+                "Quiet Mood Chronometer: One-gesture emotional topography logging across calm, grateful, inspired, resilient, pensive, and triumphant states.",
+                "Zero-Knowledge Encryption: Strict client-side encryption and passkey authentication with zero telemetry or tracking.",
+                "Archival Photo Plates: Seamless image embedding to preserve visual textures alongside prose."
             ],
-            challenges: "Ensuring secure password handling and session management was a key focus. JWT was integrated with refresh token logic for scalable session control. On the frontend, managing form validation and dynamic error handling required careful UX considerations.",
-            outcome: "The auth module was successfully deployed and integrated into a broader content platform, serving as the foundation for protected user experiences and admin-level access control."
+            challenges: "Balancing the nostalgic, skeuomorphic feel of physical bound paper with high-performance responsive web typography and secure client-side vector search without compromising zero-knowledge privacy.",
+            outcome: "Built a tranquil, deeply private digital sanctuary with lightning-fast semantic recall, serving as a lifelong archive for thoughtful writers."
         },
-        link: 'https://mern-postcrafts-kowshik.vercel.app/'
-    },
-    // Add the rest of the projects following the same pattern
+        link: 'https://antique-journal2.vercel.app/'
+    }
 ];
 
-
-
-export const MY_EXPERIENCE = [
+export const MY_EXPERIENCE: IExperience[] = [
     {
-        title: 'Full Stack Developer',
+        title: 'Full Stack & Mobile Developer',
         company: 'Tap Health',
         duration: 'April 2025 - Present',
+        highlights: [
+            'Architected and shipped core patient health flows in **React, Next.js, and React Native** — including daily glucose tracking, meal logging, and multi-step onboarding.',
+            'Identified and resolved critical application bottlenecks, navigation deadlocks, date/timezone issues, and state sync bugs, significantly improving reliability.',
+            'Designed and shipped **30+ high-performance landing pages** in Next.js 15, optimizing for sub-second LCP and higher user conversion.',
+            'Collaborated directly with clinicians, users, and product teams to translate real-world medical pain points into intuitive, accessible mobile & web experiences.',
+            'Implemented end-to-end **analytics and event-tracking funnels**, providing complete visibility into patient drop-off and retention.',
+        ],
     },
     {
-        title: 'Full Stack Developer',
+        title: 'Full Stack & React Native Developer',
         company: 'ZarvisGenix',
-        duration: 'Sep 2024 - April 2025',
+        duration: 'Sep 2024 – Apr 2025',
+        highlights: [
+            'Built and deployed **multiple production digital products from scratch** across web and mobile using React, React Native, Node.js, and PostgreSQL.',
+            'Engineered scalable **doctor portals, HR platforms, and administrative dashboards** with role-based access control (RBAC) and real-time data sync.',
+            'Developed and integrated **AI-powered speech-to-text pipelines**, enabling intelligent voice transcription and automated user workflows.',
+            'Implemented secure authentication, rate-limited REST APIs, and type-safe database schemas with Prisma ORM.',
+            '**Pitched product architecture directly to investors and stakeholders**, translating business requirements into scalable, production-ready software.',
+        ],
     },
-
 ];

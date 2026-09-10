@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://kowshik-valipireddy.pages.dev/resume">
+    <title>Kowshik Valipireddy - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #121214;
+            color: #27272a;
+            font-size: 10.2px;
+            line-height: 1.34;
+            padding: 24px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .toolbar {
+            width: 100%;
+            max-width: 210mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .btn-print {
+            background-color: #22c55e;
+            color: #000000;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+            transition: transform 0.15s ease;
+        }
+        .btn-print:hover {
+            transform: scale(1.03);
+        }
+        .btn-back {
+            color: #e4e4e7;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+        }
+        .resume-sheet {
+            width: 100%;
+            max-width: 210mm;
+            background: #fafaf8;
+            border: 1px solid rgba(228, 228, 231, 0.6);
+            border-radius: 8px;
+            padding: 34px 38px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        header {
+            text-align: center;
+            border-bottom: 1px solid #e4e4e7;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #09090b;
+            margin-bottom: 4px;
+        }
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            font-size: 9.8px;
+            color: #52525b;
+            margin-bottom: 3px;
+        }
+        .contact-row a {
+            color: #52525b;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .contact-row a:hover {
+            color: #09090b;
+        }
+        .summary {
+            font-size: 9.8px;
+            color: #3f3f46;
+            text-align: left;
+            margin-top: 6px;
+            line-height: 1.36;
+        }
+        .summary a {
+            color: #09090b;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .section {
+            margin-bottom: 10px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid #e4e4e7;
+            padding-bottom: 2px;
+            margin-bottom: 6px;
+        }
+        .section-title {
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #09090b;
+        }
+        .section-meta {
+            font-size: 9.5px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #71717a;
+        }
+        .entry {
+            margin-bottom: 6px;
+        }
+        .entry:last-child {
+            margin-bottom: 0;
+        }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+        .entry-title {
+            font-weight: 700;
+            font-size: 10.8px;
+            color: #09090b;
+        }
+        .entry-company {
+            font-weight: 500;
+            font-size: 10.5px;
+            color: #18181b;
+        }
+        .entry-date {
+            font-size: 9.5px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #71717a;
+        }
+        ul {
+            padding-left: 16px;
+            margin-top: 2px;
+        }
+        li {
+            font-size: 9.8px;
+            color: #27272a;
+            margin-bottom: 2px;
+            line-height: 1.34;
+        }
+        li strong, p strong {
+            font-weight: 600;
+            color: #09090b;
+        }
+        .project-tagline {
+            font-size: 9.8px;
+            color: #71717a;
+        }
+        .project-desc {
+            font-size: 9.8px;
+            color: #3f3f46;
+            margin-top: 1px;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 95px 1fr;
+            row-gap: 3px;
+            font-size: 9.8px;
+        }
+        .skill-label {
+            font-weight: 700;
+            color: #09090b;
+        }
+        .skill-values {
+            color: #3f3f46;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: -1px;
+            width: 11px;
+            height: 11px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 6mm 8mm;
+            }
+            body {
+                background: #ffffff !important;
+                color: #18181b !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .toolbar {
+                display: none !important;
+            }
+            .resume-sheet {
+                border: none !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                background: #ffffff !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+            a {
+                text-decoration: none !important;
+                color: inherit !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <a href="/" class="btn-back">← Return to Portfolio</a>
+        <button onclick="window.print()" class="btn-print">
+            <svg class="icon" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print / Save PDF (1-Page)
+        </button>
+    </div>
+
+    <div class="resume-sheet">
+        <header>
+            <h1>Kowshik Valipireddy</h1>
+            <div class="contact-row">
+                <span>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Hyderabad, Telangana, India
+                </span>
+                <span>·</span>
+                <a href="tel:+918328107601">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    +91-8328107601
+                </a>
+                <span>·</span>
+                <a href="mailto:kowshikvalipireddy@gmail.com" style="color: #09090b; font-weight: 500;">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    kowshikvalipireddy@gmail.com
+                </a>
+            </div>
+            <div class="contact-row">
+                <a href="https://kowshik-valipireddy.pages.dev" target="_blank">
+                    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    kowshik-valipireddy.pages.dev
+                </a>
+                <span>·</span>
+                <a href="https://www.linkedin.com/in/kowshikvalipireddy" target="_blank">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                </a>
+                <span>·</span>
+                <a href="https://github.com/kowshik3383" target="_blank">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    GitHub
+                </a>
+            </div>
+            <p class="summary">
+                <strong>Full Stack &amp; React Native Engineer</strong> with <strong>2+ years</strong> of experience shipping production mobile and web applications. Built healthcare products with <strong>100K+ downloads</strong> across iOS and Android, with strong experience in <strong>React Native, Next.js, TypeScript, Node.js, and PostgreSQL</strong>.
+            </p>
+        </header>
+
+        <!-- EXPERIENCE -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-title">Experience</span>
+                <span class="section-meta">2+ yrs full-time</span>
+            </div>
+
+            <!-- Tap Health -->
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">Full Stack &amp; Mobile Developer</span>
+                        <span style="color: #71717a;"> — </span>
+                        <span class="entry-company">Tap Health</span>
+                    </div>
+                    <span class="entry-date">Apr 2025 – Present</span>
+                </div>
+                <ul>
+                    <li>Built and shipped patient-facing healthcare experiences in <strong>React Native, Next.js, and TypeScript</strong>, including glucose tracking, meal logging, and multi-step onboarding.</li>
+                    <li>Integrated backend APIs and synchronized patient data across mobile and web flows, resolving state-management and navigation issues affecting core user journeys.</li>
+                    <li>Diagnosed complex navigation deadlocks, race conditions, and date/timezone bugs, improving application reliability across platforms.</li>
+                    <li>Designed and shipped <strong>30+ Next.js landing pages</strong>, optimizing rendering and Web Vitals for fast page loads and smooth user experiences.</li>
+                    <li>Implemented product analytics and event-tracking funnels to identify onboarding and patient journey drop-off points.</li>
+                </ul>
+            </div>
+
+            <!-- ZarvisGenix -->
+            <div class="entry" style="margin-top: 4px;">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">Full Stack &amp; React Native Developer</span>
+                        <span style="color: #71717a;"> — </span>
+                        <span class="entry-company">ZarvisGenix</span>
+                    </div>
+                    <span class="entry-date">Sep 2024 – Apr 2025</span>
+                </div>
+                <ul>
+                    <li>Built and deployed production web and mobile products using <strong>React, React Native, Node.js, and PostgreSQL</strong>.</li>
+                    <li>Developed clinician portals, administrative dashboards, and HR platforms with RBAC, authentication, and data synchronization.</li>
+                    <li>Integrated speech-to-text pipelines to support voice transcription and automated workflows.</li>
+                    <li>Designed PostgreSQL schemas with Prisma ORM and built secure, rate-limited REST APIs.</li>
+                    <li>Worked directly with stakeholders and investors to turn product requirements into technical architectures and production releases.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-title">Projects</span>
+                <span class="section-meta">3 Production Products</span>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">Figma to Code</span>
+                        <span class="project-tagline"> · TypeScript, Figma Plugin API, React, Tailwind</span>
+                    </div>
+                    <span class="entry-date"><a href="https://www.figma.com/community/plugin/1670837309887282952/figma-to-code-html-tailwind-react" target="_blank" style="color: #09090b; text-decoration: underline;">Figma Community ↗</a></span>
+                </div>
+                <p class="project-desc">Official Figma Community plugin that converts Figma frames and Auto Layout structures into responsive HTML, Tailwind CSS, React JSX, and Next.js output. Runs entirely inside the Figma client and packages generated projects into downloadable ZIP files.</p>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">AI Technical Interviewer</span>
+                        <span class="project-tagline"> · Next.js, WebSockets, Monaco Editor, Voice AI</span>
+                    </div>
+                    <span class="entry-date"><a href="https://ai-interviewer-ten-delta.vercel.app/" target="_blank" style="color: #09090b; text-decoration: underline;">Live Platform ↗</a></span>
+                </div>
+                <p class="project-desc">Real-time technical assessment platform combining voice interaction, WebSocket-based editor streaming, Monaco Editor, model fallback, and automated evaluation workflows.</p>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">HealthTrack Analytics</span>
+                        <span class="project-tagline"> · Next.js, React, Prisma, PostgreSQL</span>
+                    </div>
+                    <span class="entry-date"><a href="https://tracker-mocha-ten.vercel.app/" target="_blank" style="color: #09090b; text-decoration: underline;">Live Platform ↗</a></span>
+                </div>
+                <p class="project-desc">Full-stack health and fitness platform with guided onboarding, BMR/macro calculations, nutrition and hydration logging, workout tracking, and relational analytics.</p>
+            </div>
+        </section>
+
+        <!-- TECHNICAL SKILLS -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-title">Technical Skills</span>
+            </div>
+            <div class="skills-grid">
+                <span class="skill-label">Languages</span>
+                <span class="skill-values">TypeScript, JavaScript, SQL, Python, HTML, CSS</span>
+
+                <span class="skill-label">Frontend</span>
+                <span class="skill-values">React, Next.js, Tailwind CSS</span>
+
+                <span class="skill-label">Mobile</span>
+                <span class="skill-values">React Native, Expo, React Navigation, iOS &amp; Android</span>
+
+                <span class="skill-label">Backend</span>
+                <span class="skill-values">Node.js, Express.js, REST APIs, WebSockets</span>
+
+                <span class="skill-label">Data</span>
+                <span class="skill-values">PostgreSQL, Prisma ORM</span>
+
+                <span class="skill-label">Tools</span>
+                <span class="skill-values">Git, GitHub, Docker, Vercel, Figma Plugin API, Postman</span>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-title">Education</span>
+                <span class="section-meta">2023 – 2026</span>
+            </div>
+            <div class="entry-header">
+                <div>
+                    <span class="entry-title">B.Sc, Computer Science</span>
+                    <span style="color: #71717a;"> — </span>
+                    <span class="entry-company" style="font-weight: 400; color: #3f3f46;">Satavahana University · Telangana, India</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS -->
+        <section class="section" style="margin-bottom: 0;">
+            <div class="section-header">
+                <span class="section-title">Highlights</span>
+            </div>
+            <ul>
+                <li>Shipped production React Native features for an application with <strong>100K+ downloads</strong> across iOS and Android.</li>
+                <li>Published an official <strong>Figma Community plugin</strong> for automated design-to-code generation.</li>
+                <li>Built and deployed <strong>4+ production web and mobile products</strong> end-to-end.</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>

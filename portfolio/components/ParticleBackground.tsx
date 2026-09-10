@@ -59,7 +59,7 @@ const ParticleBackground = () => {
     if (!mounted) return null;
 
     return (
-        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" ref={containerRef} aria-hidden="true">
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden print:hidden" ref={containerRef} aria-hidden="true">
             {Array.from({ length: 25 }).map((_, i) => (
                 <div
                     key={i}

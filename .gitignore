@@ -1,3 +1,5 @@
 /.github
 /.qodo
 node_modules
+.agents
+.env*
