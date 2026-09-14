@@ -1,138 +1,433 @@
 'use client';
-import ArrowAnimation from '@/components/ArrowAnimation';
+
+import React, { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import Button from '@/components/Button';
 import { GENERAL_INFO } from '@/lib/data';
+import { useLenis } from 'lenis/react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import React, { useRef } from 'react';
-import { ArrowUpRight, Smartphone, Layers, Terminal, ChevronDown } from 'lucide-react';
+import {
+    ArrowUpRight,
+    ShieldCheck,
+    Activity,
+    CheckCircle2,
+    Cpu,
+} from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const Banner = () => {
-    const containerRef = useRef<HTMLDivElement>(null);
+interface SprayCardProps {
+    metric: string;
+    title: string;
+    sub: string;
+    tag: string;
+    iconSrc?: string;
+    LucideIcon?: React.ElementType;
+    className?: string;
+    style?: React.CSSProperties;
+}
 
-    // Smooth subtle parallax slide-up on scroll
-    useGSAP(
-        () => {
-            const tl = gsap.timeline({
+const SprayCard: React.FC<SprayCardProps> = ({
+    metric,
+    title,
+    sub,
+    tag,
+    iconSrc,
+    LucideIcon,
+    className = '',
+    style,
+}) => {
+    return (
+        <div
+            style={style}
+            className={`spray-card-item p-2 xl:p-2.5 rounded-2xl bg-white border border-[#E8E3DA] shadow-md shadow-neutral-900/5 flex items-center gap-2.5 transition-shadow duration-300 hover:shadow-xl hover:border-[#0E7490]/40 group select-none ${className}`}
+        >
+            <div className="size-8 xl:size-9 rounded-xl bg-[#FAF8F5] border border-[#E8E3DA] p-1.5 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+                {iconSrc ? (
+                    <Image
+                        src={iconSrc}
+                        alt={title}
+                        width={18}
+                        height={18}
+                        className="object-contain"
+                    />
+                ) : LucideIcon ? (
+                    <LucideIcon size={16} className="text-[#0E7490]" />
+                ) : null}
+            </div>
+            <div className="min-w-0 flex-1 text-left">
+                <div className="flex items-center gap-1.5">
+                    <span className="font-anton text-sm xl:text-base text-[#191715] leading-none tracking-tight">
+                        {metric}
+                    </span>
+                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                </div>
+                <p className="font-mono text-[10.5px] font-semibold text-[#0E7490] truncate mt-0.5">
+                    {title}
+                </p>
+                <div className="flex items-center justify-between gap-1 mt-0.5">
+                    <p className="text-[9.5px] text-[#68645E] truncate leading-tight font-light">
+                        {sub}
+                    </p>
+                    <span className="text-[8.5px] font-mono px-1 rounded bg-[#FAF8F5] border border-[#E8E3DA] text-neutral-600 shrink-0 hidden xl:inline-block">
+                        {tag}
+                    </span>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const Banner = () => {
+    const bannerRef = useRef<HTMLDivElement>(null);
+
+    // Synchronize Lenis smooth scroll frames directly with GSAP ScrollTrigger
+    useLenis(() => {
+        ScrollTrigger.update();
+    });
+
+    // Refresh ScrollTrigger when window resizes or layout shifts
+    useEffect(() => {
+        const handleResize = () => {
+            ScrollTrigger.refresh();
+        };
+        window.addEventListener('resize', handleResize);
+        const timer = setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 500);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            clearTimeout(timer);
+        };
+    }, []);
+
+    useGSAP(() => {
+        // 1. Initial Hero Entrance Animation
+        const entranceTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        entranceTl
+            .fromTo(
+                '.hero-reveal-meta',
+                { opacity: 0, y: -15 },
+                { opacity: 1, y: 0, duration: 0.5 }
+            )
+            .fromTo(
+                '.hero-headline-word',
+                { opacity: 0, y: 25, rotateX: 12 },
+                { opacity: 1, y: 0, rotateX: 0, stagger: 0.035, duration: 0.65 },
+                '-=0.25'
+            )
+            .fromTo(
+                '.hero-body-text',
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, duration: 0.5 },
+                '-=0.3'
+            )
+            .fromTo(
+                '.hero-cta-group',
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, duration: 0.45 },
+                '-=0.25'
+            )
+            .fromTo(
+                '.left-cards-wrapper .spray-card-item',
+                { opacity: 0, scale: 0.65, x: -40 },
+                { opacity: 1, scale: 1, x: 0, stagger: 0.06, duration: 0.6 },
+                '-=0.45'
+            )
+            .fromTo(
+                '.right-cards-wrapper .spray-card-item',
+                { opacity: 0, scale: 0.65, x: 40 },
+                { opacity: 1, scale: 1, x: 0, stagger: 0.06, duration: 0.6 },
+                '-=0.55'
+            );
+
+        // 2. Scroll-Driven Convergence to Author Photo in AboutMe (matching nextjs-project script.js)
+        const mm = gsap.matchMedia();
+
+        // Desktop Setup (min-width: 1024px)
+        mm.add('(min-width: 1024px)', () => {
+            const botAnimationTimeLine = gsap.timeline({
                 scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'bottom 80%',
-                    end: 'bottom 15%',
-                    scrub: 1,
+                    trigger: '#about-me',
+                    start: 'top 85%',
+                    end: 'top 15%',
+                    scrub: 1.8,
                 },
             });
 
-            tl.fromTo(
-                '.slide-up-and-fade',
-                { y: 0, opacity: 1 },
-                { y: -60, opacity: 0, stagger: 0.02 },
+            // Target author photo in AboutMe scales down into sharp focus
+            botAnimationTimeLine.fromTo(
+                '#about-author-img-box',
+                {
+                    scale: 1.8,
+                    y: 60,
+                    opacity: 0.6,
+                    ease: 'power2.out',
+                },
+                {
+                    scale: 1,
+                    y: 0,
+                    opacity: 1,
+                    ease: 'power2.out',
+                },
+                'landing-page-img-position-change'
             );
-        },
-        { scope: containerRef },
-    );
+
+            // Left and Right card wrappers blur slightly during convergence
+            botAnimationTimeLine.to(
+                '.left-cards-wrapper',
+                {
+                    filter: 'blur(5px)',
+                },
+                'landing-page-img-position-change'
+            );
+
+            botAnimationTimeLine.to(
+                '.right-cards-wrapper',
+                {
+                    filter: 'blur(5px)',
+                },
+                'landing-page-img-position-change'
+            );
+
+            // Dynamic vector calculation: Every card travels precisely into the center of Kowshik's photo!
+            botAnimationTimeLine.to(
+                '.left-cards-wrapper .spray-card-item',
+                {
+                    x: (index, el) => {
+                        const target = document.getElementById('about-author-img-box');
+                        if (!target) return 380;
+                        const targetRect = target.getBoundingClientRect();
+                        const elRect = el.getBoundingClientRect();
+                        return (targetRect.left + targetRect.width / 2) - (elRect.left + elRect.width / 2);
+                    },
+                    y: (index, el) => {
+                        const target = document.getElementById('about-author-img-box');
+                        if (!target) return 500;
+                        const targetRect = target.getBoundingClientRect();
+                        const elRect = el.getBoundingClientRect();
+                        const targetDocY = targetRect.top + window.scrollY + 80;
+                        const elDocY = elRect.top + window.scrollY + elRect.height / 2;
+                        return targetDocY - elDocY;
+                    },
+                    scale: 0.12,
+                    opacity: 0,
+                    ease: 'power3.out',
+                    stagger: -0.05,
+                    scrub: 1.8,
+                },
+                'landing-page-img-position-change'
+            );
+
+            botAnimationTimeLine.to(
+                '.right-cards-wrapper .spray-card-item',
+                {
+                    x: (index, el) => {
+                        const target = document.getElementById('about-author-img-box');
+                        if (!target) return -380;
+                        const targetRect = target.getBoundingClientRect();
+                        const elRect = el.getBoundingClientRect();
+                        return (targetRect.left + targetRect.width / 2) - (elRect.left + elRect.width / 2);
+                    },
+                    y: (index, el) => {
+                        const target = document.getElementById('about-author-img-box');
+                        if (!target) return 500;
+                        const targetRect = target.getBoundingClientRect();
+                        const elRect = el.getBoundingClientRect();
+                        const targetDocY = targetRect.top + window.scrollY + 80;
+                        const elDocY = elRect.top + window.scrollY + elRect.height / 2;
+                        return targetDocY - elDocY;
+                    },
+                    scale: 0.12,
+                    opacity: 0,
+                    ease: 'power3.out',
+                    stagger: -0.05,
+                    scrub: 1.8,
+                },
+                'landing-page-img-position-change'
+            );
+        });
+
+        // Mobile & Tablet Setup (max-width: 1023px)
+        mm.add('(max-width: 1023px)', () => {
+            const mobileTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#about-me',
+                    start: 'top 85%',
+                    end: 'top 20%',
+                    scrub: 1.8,
+                },
+            });
+
+            mobileTimeline.fromTo(
+                '#about-author-img-box',
+                { scale: 1.4, y: 35, opacity: 0.6 },
+                { scale: 1, y: 0, opacity: 1, ease: 'power2.out' },
+                'mobile-converge'
+            );
+        });
+    });
 
     return (
         <section
-            className="relative h-[100svh] min-h-[560px] max-h-[1080px] flex flex-col justify-between overflow-hidden pt-16 pb-6 sm:pt-20 sm:pb-8"
+            ref={bannerRef}
             id="banner"
+            className="hero-one-fold w-full bg-[#FAF8F5] flex flex-col justify-between  pb-6 pt-2 sm:pb-8 relative"
         >
-            <ArrowAnimation />
+         
 
-            {/* Subtle atmospheric ambient glow */}
-            <div className="absolute top-1/4 -left-32 w-80 h-80 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none -z-10" />
-            <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+            {/* Sprayed Elements: Desktop Left Flank (4 Sleek Badges Sprayed on Perimeter) */}
+            <div className="left-cards-wrapper hidden lg:block">
+                {/* Left Card 1: Figma Plugin Achievement (Top Outer Left) */}
+                <SprayCard
+                    metric="1.5k+ Installs"
+                    title="Figma to Code Plugin"
+                    sub="HTML · Tailwind · React Component Gen"
+                    tag="Community"
+                    iconSrc="/logo/figma.svg"
+                    className="w-[200px] xl:w-[225px] -rotate-3 hover:rotate-0 hover:scale-105"
+                    style={{ top: '12%', left: '3%' }}
+                />
 
-            <div
-                className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-between relative z-10"
-                ref={containerRef}
-            >
-                {/* Top: Status / Identity chip */}
-                <div className="slide-up-and-fade pt-2">
-                    <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md text-xs font-mono text-neutral-300">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                        </span>
-                        <span>Available for full-time &amp; contract engineering</span>
-                    </div>
+                {/* Left Card 2: React Native Worklets Tech (Upper Mid Inner Left) */}
+                <SprayCard
+                    metric="120 FPS Native"
+                    title="React Native (iOS &amp; Android)"
+                    sub="Bridgeless JSI TurboModules &amp; Worklets"
+                    tag="Mobile"
+                    iconSrc="/logo/react-native.svg"
+                    className="w-[200px] xl:w-[225px] rotate-2 hover:rotate-0 hover:scale-105"
+                    style={{ top: '35%', left: '12%' }}
+                />
+
+                {/* Left Card 3: App Users Driven Achievement (Lower Mid Outer Left) */}
+                <SprayCard
+                    metric="20k+ App Users"
+                    title="Driven via 30+ Next.js LPs"
+                    sub="Sub-750ms LCP &amp; Edge RSC Streaming"
+                    tag="Growth"
+                    iconSrc="/logo/next.png"
+                    className="w-[200px] xl:w-[225px] -rotate-2 hover:rotate-0 hover:scale-105"
+                    style={{ top: '58%', left: '3%' }}
+                />
+
+                {/* Left Card 4: React 19 Frontend Tech (Bottom Inner Left) */}
+                <SprayCard
+                    metric="React 19 &amp; Next.js 15"
+                    title="Server Actions &amp; Optimistic UI"
+                    sub="Deterministic State Machines &amp; Zero-JS"
+                    tag="Frontend"
+                    iconSrc="/logo/react.png"
+                    className="w-[200px] xl:w-[225px] rotate-3 hover:rotate-0 hover:scale-105"
+                    style={{ top: '80%', left: '13%' }}
+                />
+            </div>
+
+            {/* Sprayed Elements: Desktop Right Flank (4 Sleek Badges Sprayed on Perimeter) */}
+            <div className="right-cards-wrapper hidden lg:block">
+                {/* Right Card 1: Paid Conversions Achievement (Top Outer Right) */}
+                <SprayCard
+                    metric="1,500+ Paid Users"
+                    title="Patient &amp; Member Funnels"
+                    sub="High-Fidelity Onboarding Conversion"
+                    tag="Conversions"
+                    LucideIcon={CheckCircle2}
+                    className="w-[200px] xl:w-[225px] rotate-3 hover:rotate-0 hover:scale-105"
+                    style={{ top: '12%', right: '3%' }}
+                />
+
+                {/* Right Card 2: PostgreSQL Latency & DB Tech (Upper Mid Inner Right) */}
+                <SprayCard
+                    metric="p95 Latency &lt; 25ms"
+                    title="PostgreSQL &amp; PgBouncer"
+                    sub="EXPLAIN Profiled Composite B-Trees"
+                    tag="Database"
+                    iconSrc="/logo/postgreSQL.png"
+                    className="w-[200px] xl:w-[225px] -rotate-2 hover:rotate-0 hover:scale-105"
+                    style={{ top: '35%', right: '12%' }}
+                />
+
+                {/* Right Card 3: Deterministic Systems & Core Web Vitals (Lower Mid Outer Right) */}
+                <SprayCard
+                    metric="100% Core Web Vitals"
+                    title="State &amp; Layout Invariants"
+                    sub="CLS 0.000 · INP &lt; 25ms · Optimistic UI"
+                    tag="Invariants"
+                    LucideIcon={ShieldCheck}
+                    className="w-[200px] xl:w-[225px] rotate-2 hover:rotate-0 hover:scale-105"
+                    style={{ top: '58%', right: '3%' }}
+                />
+
+                {/* Right Card 4: Backend Node.js & TypeScript Contracts (Bottom Inner Right) */}
+                <SprayCard
+                    metric="End-to-End Type Safety"
+                    title="Node.js &amp; TypeScript"
+                    sub="Strict Monorepo Zod Contracts"
+                    tag="Backend"
+                    iconSrc="/logo/ts.png"
+                    className="w-[200px] xl:w-[225px] -rotate-3 hover:rotate-0 hover:scale-105"
+                    style={{ top: '80%', right: '13%' }}
+                />
+            </div>
+
+            {/* Core Centered Selling Info: Balanced across 2 Clean Lines with Wide Breathing Space */}
+            <div className="container max-w-4xl xl:max-w-5xl mx-auto px-4 text-center my-auto relative z-20 py-2">
+                {/* Micro-Eyebrow */}
+                <div className="hero-center-badge inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E8E3DA] text-xs font-mono text-[#0E7490] font-medium mb-4 shadow-xs">
+                    <Cpu size={13} />
+                    <span>Scientific Architecture &amp; Latency Invariants</span>
                 </div>
 
-                {/* Center: Main Display & Core Value */}
-                <div className="my-auto py-3 sm:py-4">
-                    {/* Primary Uncluttered Headline */}
-                    <h1 className="slide-up-and-fade font-anton text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.5rem] tracking-tight leading-[0.95] text-white uppercase max-w-5xl">
-                        Engineering{' '}
-                        <span className="bg-gradient-to-r from-cyan-300 via-teal-200 to-emerald-300 bg-clip-text text-transparent">
-                            Web Platforms
-                        </span>{' '}
-                        &amp;{' '}
-                        <span className="bg-gradient-to-r from-teal-200 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
-                            React Native
-                        </span>{' '}
-                        Mobile Apps.
-                    </h1>
+                {/* Master Display Headline: Full-Stack Engineer — Web & Mobile Specialist */}
+                <h1 className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-[4.1rem] xl:text-[4.6rem] tracking-tight leading-[1] text-black uppercase mx-auto">
+                    <span className="block">
+                        <span className="inline-block hero-headline-word hero-bw-word">Full-Stack</span>{' '}
+                        <span className="inline-block hero-headline-word hero-bw-word">Engineer</span>
+                    </span>
+                    <span className="block mt-1 sm:mt-2">
+                        <span className="inline-block hero-headline-word hero-bw-word">Web</span>{' '}
+                        <span className="inline-block hero-headline-word hero-bw-word">&amp;</span>{' '}
+                        <span className="inline-block hero-headline-word hero-bw-word">Mobile</span>{' '}
+                        <span className="inline-block hero-headline-word hero-bw-word">Specialist.</span>
+                    </span>
+                </h1>
 
-                    {/* Clear, focused description */}
-                    <p className="slide-up-and-fade mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-neutral-300 font-light leading-relaxed max-w-2xl">
-                        Hi, I&apos;m <span className="text-white font-medium">Kowshik Valipireddy</span>. A full-stack developer and mobile engineer crafting high-performance, resilient applications with React, Next.js, React Native, and Node.js.
-                    </p>
+                {/* Technical Elevator Pitch: Broad, Balanced 2-Line Layout */}
+                <p className="hero-body-text text-sm sm:text-base md:text-[1.05rem] text-[#68645E] font-light leading-relaxed max-w-2xl xl:max-w-3xl mx-auto mt-4 sm:mt-5 text-balance">
+                    Hi, I&apos;m <span className="text-[#191715] font-semibold">Kowshik Valipireddy</span>. A full-stack engineer and React Native specialist building resilient, low-latency applications with <strong className="text-[#191715] font-medium">Next.js 15, React 19, React Native, Node.js, and PostgreSQL</strong>. Every architectural decision is measured against frame budgets and deterministic state invariants.
+                </p>
 
-                    {/* CTAs */}
-                    <div className="slide-up-and-fade flex flex-wrap items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
-                        <Button
-                            as="link"
-                            href="#selected-projects"
-                            variant="primary"
-                            className="banner-button px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-cyan-500/20 transition-all text-sm"
-                        >
-                            <span>Explore Projects</span>
-                        </Button>
-
-                        <Button
-                            as="link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={GENERAL_INFO.upworkProfile}
-                            variant="outline"
-                            className="banner-button  px-6 py-3 rounded-xl font-medium border-white/15 hover:border-white/40 transition-colors text-sm inline-flex items-center gap-2"
-                        >
-                            <span>Let&apos;s Connect</span>
-                            <ArrowUpRight size={15} />
-                        </Button>
-                    </div>
-                </div>
-
-                {/* Bottom: Quiet craft tags & scroll hint */}
-                <div className="slide-up-and-fade pt-3 pb-1 border-t border-white/5 flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-neutral-400">
-                    <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-                        <div className="flex items-center gap-1.5">
-                            <Layers size={13} className="text-cyan-400" />
-                            <span>Next.js 15 &amp; React 19</span>
-                        </div>
-                        <span className="text-neutral-700 hidden sm:inline">•</span>
-                        <div className="flex items-center gap-1.5">
-                            <Smartphone size={13} className="text-teal-400" />
-                            <span>React Native (iOS &amp; Android)</span>
-                        </div>
-                        <span className="text-neutral-700 hidden sm:inline">•</span>
-                        <div className="flex items-center gap-1.5">
-                            <Terminal size={13} className="text-emerald-400" />
-                            <span>Node.js &amp; PostgreSQL</span>
-                        </div>
-                    </div>
-
-                    <a
-                        href="#about-me"
-                        className="hidden md:inline-flex items-center gap-1 text-neutral-400 hover:text-white transition-colors"
+                {/* Centered Action CTAs */}
+                <div className="hero-cta-group flex flex-wrap items-center justify-center gap-3.5 pt-6 sm:pt-7">
+                    <Button
+                        as="link"
+                        href="#selected-projects"
+                        variant="primary"
+                        className="banner-button px-6 py-3 rounded-xl font-medium bg-[#0E7490] hover:bg-[#0c627a] text-white transition-all text-sm shadow-md"
                     >
-                        <span>Scroll down</span>
-                        <ChevronDown size={14} className="animate-bounce" />
-                    </a>
+                        <span>Inspect Production Work</span>
+                    </Button>
+
+                    <Button
+                        as="link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={GENERAL_INFO.upworkProfile}
+                        variant="outline"
+                        className="banner-button px-6 py-3 rounded-xl font-medium border-[#E8E3DA] bg-white hover:bg-[#FAF8F5] text-[#191715] transition-colors text-sm inline-flex items-center gap-1.5 shadow-sm"
+                    >
+                        <span>Schedule Consultation</span>
+                        <ArrowUpRight size={15} />
+                    </Button>
                 </div>
             </div>
+
+            {/* Subtle bottom spacing */}
+            <div className="h-2 sm:h-4" />
         </section>
     );
 };
