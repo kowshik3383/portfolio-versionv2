@@ -69,20 +69,20 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
     return (
         <div className="min-h-screen pt-24 pb-20" ref={containerRef}>
             {/* Background ambient lighting */}
-            <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10" />
-            <div className="absolute top-80 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl pointer-events-none -z-10" />
+            <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10" />
+            <div className="absolute top-80 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
             <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header section */}
                 <div className="max-w-3xl mb-12">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-primary font-mono mb-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs text-primary font-mono mb-4">
                         <Sparkles size={13} className="text-primary" />
                         <span>ARTICLES & INSIGHTS</span>
                     </div>
-                    <h1 className="text-4xl sm:text-6xl font-anton tracking-tight text-white uppercase mb-4">
+                    <h1 className="text-4xl sm:text-6xl font-anton tracking-tight text-neutral-900 uppercase mb-4">
                         Engineering <span className="text-primary">Blog</span>
                     </h1>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
+                    <p className="text-lg text-neutral-600 leading-relaxed">
                         Deep dives into Full Stack Architecture, Next.js 15, AI Agent Engineering, Web Performance, and scalable system design.
                     </p>
                 </div>
@@ -90,35 +90,35 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                 {/* Featured Post Hero */}
                 {featuredPost && selectedCategory === 'All' && selectedTag === 'All' && !searchQuery && (
                     <div className="mb-16">
-                        <div className="text-xs uppercase font-mono tracking-wider text-muted-foreground mb-4 flex items-center gap-2">
+                        <div className="text-xs uppercase font-mono tracking-wider text-neutral-500 mb-4 flex items-center gap-2">
                             <BookOpen size={14} className="text-primary" />
                             <span>FEATURED ARTICLE</span>
                         </div>
                         <TransitionLink
                             href={`/blog/${featuredPost.slug}`}
-                            className="group block relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-primary/50 transition-all duration-500"
+                            className="group block relative rounded-2xl overflow-hidden border border-neutral-200 bg-white hover:bg-neutral-50/50 hover:border-primary/50 transition-all duration-500 shadow-md shadow-neutral-900/5"
                         >
                             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-8 items-center">
                                 <div className="lg:col-span-7 space-y-4">
                                     <div className="flex flex-wrap items-center gap-3">
-                                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/30">
+                                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
                                             {featuredPost.category}
                                         </span>
-                                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                        <div className="flex items-center gap-1.5 text-xs text-neutral-500">
                                             <Calendar size={13} />
                                             <span>{formatDate(featuredPost.publishedAt)}</span>
                                         </div>
-                                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                        <div className="flex items-center gap-1.5 text-xs text-neutral-500">
                                             <Clock size={13} />
                                             <span>{featuredPost.readingTime}</span>
                                         </div>
                                     </div>
 
-                                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-anton tracking-tight text-white group-hover:text-primary transition-colors duration-300">
+                                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-anton tracking-tight text-neutral-900 group-hover:text-primary transition-colors duration-300">
                                         {featuredPost.title}
                                     </h2>
 
-                                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed line-clamp-3">
+                                    <p className="text-neutral-600 text-sm sm:text-base leading-relaxed line-clamp-3">
                                         {featuredPost.excerpt}
                                     </p>
 
@@ -126,7 +126,7 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                         {featuredPost.tags.slice(0, 4).map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="text-xs px-2.5 py-1 rounded-md bg-white/5 text-foreground/80 border border-white/5"
+                                                className="text-xs px-2.5 py-1 rounded-md bg-neutral-100 text-neutral-700 border border-neutral-200"
                                             >
                                                 #{tag}
                                             </span>
@@ -140,7 +140,7 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                     </div>
                                 </div>
 
-                                <div className="lg:col-span-5 aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-xl overflow-hidden relative border border-white/10">
+                                <div className="lg:col-span-5 aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-xl overflow-hidden relative border border-neutral-200">
                                     <Image
                                         src={featuredPost.coverImage}
                                         alt={featuredPost.title}
@@ -149,7 +149,7 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                         sizes="(max-width: 1024px) 100vw, 500px"
                                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                                 </div>
                             </div>
                         </TransitionLink>
@@ -169,8 +169,8 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                 className={cn(
                                     'px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 border',
                                     selectedCategory === 'All'
-                                        ? 'bg-primary text-black border-primary font-bold'
-                                        : 'bg-white/5 text-muted-foreground border-white/10 hover:border-white/20 hover:text-white'
+                                        ? 'bg-primary text-primary-foreground border-primary font-bold shadow-sm'
+                                        : 'bg-neutral-100 text-neutral-600 border-neutral-200 hover:border-neutral-300 hover:text-neutral-900'
                                 )}
                             >
                                 All Posts ({posts.length})
@@ -185,8 +185,8 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                     className={cn(
                                         'px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all duration-200 border',
                                         selectedCategory === cat.name
-                                            ? 'bg-primary text-black border-primary font-bold'
-                                            : 'bg-white/5 text-muted-foreground border-white/10 hover:border-white/20 hover:text-white'
+                                            ? 'bg-primary text-primary-foreground border-primary font-bold shadow-sm'
+                                            : 'bg-neutral-100 text-neutral-600 border-neutral-200 hover:border-neutral-300 hover:text-neutral-900'
                                     )}
                                 >
                                     {cat.name} ({cat.count})
@@ -205,7 +205,7 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                 placeholder="Search articles or tags..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/60 transition-colors"
+                                className="w-full pl-10 pr-4 py-2 rounded-full bg-neutral-100 border border-neutral-200 text-sm text-neutral-900 placeholder:text-neutral-500 focus:outline-none focus:border-primary/60 focus:bg-white transition-colors"
                             />
                         </div>
                     </div>
@@ -224,8 +224,8 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                 className={cn(
                                     'px-2.5 py-0.5 rounded-full text-xs font-mono transition-colors border',
                                     selectedTag === tag.name
-                                        ? 'bg-secondary text-black border-secondary font-bold'
-                                        : 'bg-white/[0.03] text-foreground/70 border-white/5 hover:border-white/20'
+                                        ? 'bg-secondary text-white border-secondary font-bold shadow-sm'
+                                        : 'bg-neutral-100 text-neutral-600 border-neutral-200 hover:border-neutral-300 hover:text-neutral-900'
                                 )}
                             >
                                 #{tag.name} ({tag.count})
@@ -236,7 +236,7 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
 
                 {/* Blog Grid */}
                 {filteredPosts.length === 0 ? (
-                    <div className="py-20 text-center rounded-2xl border border-white/10 bg-white/[0.02]">
+                    <div className="py-20 text-center rounded-2xl border border-neutral-200 bg-white shadow-sm">
                         <p className="text-lg text-muted-foreground mb-4">
                             No articles found matching &quot;{searchQuery || selectedCategory}&quot;
                         </p>
@@ -246,7 +246,7 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                 setSelectedCategory('All');
                                 setSelectedTag('All');
                             }}
-                            className="px-5 py-2 rounded-full bg-primary text-black text-sm font-semibold hover:opacity-90 transition-opacity"
+                            className="px-5 py-2 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary.hover transition-colors shadow-sm"
                         >
                             Reset Filters
                         </button>
@@ -257,10 +257,10 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                             <TransitionLink
                                 key={post.slug}
                                 href={`/blog/${post.slug}`}
-                                className="fade-in-blog group flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-primary/40 transition-all duration-300"
+                                className="fade-in-blog group flex flex-col rounded-2xl overflow-hidden border border-neutral-200 bg-white hover:bg-neutral-50/50 hover:border-primary/50 shadow-sm hover:shadow-md transition-all duration-300"
                             >
                                 {/* Thumbnail */}
-                                <div className="aspect-[16/10] relative overflow-hidden bg-background-light">
+                                <div className="aspect-[16/10] relative overflow-hidden bg-neutral-100">
                                     <Image
                                         src={post.coverImage}
                                         alt={post.title}
@@ -269,7 +269,7 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                         className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                     />
                                     <div className="absolute top-3 left-3">
-                                        <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-black/70 backdrop-blur-md text-white border border-white/10">
+                                        <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white/90 backdrop-blur-md text-neutral-800 border border-neutral-200/80 shadow-sm">
                                             {post.category}
                                         </span>
                                     </div>
@@ -290,21 +290,21 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                             </div>
                                         </div>
 
-                                        <h3 className="text-xl font-anton tracking-tight text-white group-hover:text-primary transition-colors line-clamp-2">
+                                        <h3 className="text-xl font-anton tracking-tight text-neutral-900 group-hover:text-primary transition-colors line-clamp-2">
                                             {post.title}
                                         </h3>
 
-                                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                                        <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
                                             {post.excerpt}
                                         </p>
                                     </div>
 
-                                    <div className="pt-2 border-t border-white/5 flex items-center justify-between">
+                                    <div className="pt-2 border-t border-neutral-100 flex items-center justify-between">
                                         <div className="flex gap-1.5 overflow-hidden">
                                             {post.tags.slice(0, 2).map((t) => (
                                                 <span
                                                     key={t}
-                                                    className="text-[10px] font-mono text-muted-foreground/80 bg-white/5 px-2 py-0.5 rounded"
+                                                    className="text-[10px] font-mono text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded border border-neutral-200"
                                                 >
                                                     #{t}
                                                 </span>

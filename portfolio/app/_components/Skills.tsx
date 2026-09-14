@@ -75,15 +75,12 @@ const Skills = () => {
     );
 
     return (
-        <section id="my-stack" className="relative py-24 sm:py-32 overflow-hidden border-t border-white/5" ref={containerRef}>
-            {/* Subtle glow */}
-            <div className="absolute bottom-10 left-10 w-96 h-96 bg-teal-500/5 rounded-full blur-[140px] pointer-events-none -z-10" />
-
+        <section id="my-stack" className="relative py-20 sm:py-28 overflow-hidden border-t border-[#E8E3DA] bg-[#FAF8F5]" ref={containerRef}>
             <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="mb-16">
-                    <SectionTitle title="MY STACK" />
-                    <p className="font-mono text-sm tracking-wide text-neutral-400 -mt-6">
-                        Production technologies, frameworks &amp; architectural toolchain
+                <div className="mb-14">
+                    <SectionTitle title="TECHNICAL TOOLCHAIN" />
+                    <p className="font-mono text-xs uppercase tracking-widest text-[#68645E] -mt-5">
+                        Production ecosystems, runtime frameworks &amp; cloud deployment
                     </p>
                 </div>
 
@@ -92,7 +89,7 @@ const Skills = () => {
                         const meta = CATEGORY_META[key] || {
                             label: key.toUpperCase(),
                             icon: Layout,
-                            gradient: 'from-cyan-400 to-blue-500',
+                            gradient: '',
                             desc: '',
                         };
                         const Icon = meta.icon;
@@ -100,25 +97,25 @@ const Skills = () => {
                         return (
                             <div
                                 key={key}
-                                className="stack-card group relative p-6 sm:p-8 rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 hover:border-cyan-400/30 transition-all duration-300 flex flex-col justify-between"
+                                className="stack-card group relative p-6 sm:p-8 rounded-2xl bg-white hover:bg-[#FAF8F5]/50 border border-[#E8E3DA] hover:border-[#0E7490]/40 transition-all duration-300 flex flex-col justify-between shadow-sm"
                             >
                                 <div>
                                     {/* Header */}
                                     <div className="flex items-start justify-between gap-4 mb-6">
                                         <div className="space-y-1">
                                             <div className="flex items-center gap-2">
-                                                <Icon size={18} className="text-cyan-400" />
-                                                <h3 className="text-xl sm:text-2xl font-anton text-white tracking-wide">
+                                                <Icon size={18} className="text-[#0E7490]" />
+                                                <h3 className="text-xl sm:text-2xl font-anton text-[#191715] tracking-wide">
                                                     {meta.label}
                                                 </h3>
                                             </div>
-                                            <p className="text-xs text-neutral-400 font-mono">
+                                            <p className="text-xs text-[#68645E] font-mono">
                                                 {meta.desc}
                                             </p>
                                         </div>
 
-                                        <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-white/5 text-neutral-400 border border-white/5">
-                                            {items.length} skills
+                                        <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-[#FAF8F5] text-[#68645E] border border-[#E8E3DA]">
+                                            {items.length} technologies
                                         </span>
                                     </div>
 
@@ -127,7 +124,7 @@ const Skills = () => {
                                         {items.map((item) => (
                                             <div
                                                 key={item.name}
-                                                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 hover:border-white/20 transition-all duration-200 group/item"
+                                                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#FAF8F5] hover:bg-white border border-[#E8E3DA] hover:border-[#0E7490]/40 transition-all duration-200 group/item shadow-2xs"
                                             >
                                                 <div className="size-5 flex items-center justify-center shrink-0">
                                                     <Image
@@ -138,7 +135,7 @@ const Skills = () => {
                                                         className="object-contain max-h-5 max-w-5 group-hover/item:scale-110 transition-transform"
                                                     />
                                                 </div>
-                                                <span className="text-xs sm:text-sm font-medium text-neutral-200 group-hover/item:text-white">
+                                                <span className="text-xs sm:text-sm font-medium text-[#191715] group-hover/item:text-[#0E7490] font-mono">
                                                     {item.name}
                                                 </span>
                                             </div>

@@ -7,7 +7,7 @@ import LatestBlogs from './_components/LatestBlogs';
 
 export default function Home() {
     return (
-        <div className="page-">
+        <div className="bg-[#FAF8F5] min-h-screen text-[#191715] selection:bg-[#0E7490] selection:text-white">
             <Banner />
             <AboutMe />
             <Skills />

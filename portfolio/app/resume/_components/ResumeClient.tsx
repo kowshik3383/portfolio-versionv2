@@ -49,12 +49,12 @@ export default function ResumeClient() {
     };
 
     return (
-        <main className="min-h-screen bg-[#121214] text-[#18181b] py-6 sm:py-10 px-2 sm:px-4 print:p-0 print:bg-white print:m-0">
+        <main className="min-h-screen bg-neutral-100 text-[#18181b] py-6 sm:py-10 px-2 sm:px-4 print:p-0 print:bg-white print:m-0">
             {/* Top Toolbar (Hidden when printing) */}
             <div className="max-w-[210mm] mx-auto mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 print:hidden px-2">
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-mono transition-colors border border-white/10"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-mono transition-colors border border-neutral-300 shadow-sm"
                 >
                     <ArrowLeft size={14} />
                     <span>Return to Portfolio</span>
@@ -65,7 +65,7 @@ export default function ResumeClient() {
                         href="/resume.html"
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/10 text-xs font-mono transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-50 text-neutral-700 hover:text-neutral-900 border border-neutral-300 text-xs font-mono transition-colors shadow-sm"
                     >
                         <span>Standalone View</span>
                         <ExternalLink size={12} />
@@ -74,7 +74,7 @@ export default function ResumeClient() {
                     <a
                         href="/resume.html"
                         download="Kowshik-Valipireddy-Resume.html"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/10 text-xs font-mono transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-50 text-neutral-700 hover:text-neutral-900 border border-neutral-300 text-xs font-mono transition-colors shadow-sm"
                     >
                         <Download size={13} />
                         <span>Download HTML</span>
@@ -83,7 +83,7 @@ export default function ResumeClient() {
                     <a
                         href="/Kowshik-Valipireddy-Resume.pdf"
                         download="Kowshik-Valipireddy-Resume.pdf"
-                        className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-primary text-black font-semibold text-xs tracking-wider uppercase transition-transform hover:scale-105 shadow-xl active:scale-95"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-semibold text-xs tracking-wider uppercase transition-transform hover:scale-105 hover:bg-primary.hover shadow-md active:scale-95"
                     >
                         <Download size={15} />
                         <span>Download PDF</span>
@@ -92,7 +92,7 @@ export default function ResumeClient() {
                     <button
                         onClick={handlePrint}
                         disabled={isPrinting}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-xs tracking-wider uppercase transition-all border border-white/15 active:scale-95 disabled:opacity-50"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-neutral-50 text-neutral-800 font-medium text-xs tracking-wider uppercase transition-all border border-neutral-300 shadow-sm active:scale-95 disabled:opacity-50"
                     >
                         <Printer size={15} />
                         <span>{isPrinting ? 'Preparing...' : 'Print / Save PDF'}</span>
@@ -101,7 +101,7 @@ export default function ResumeClient() {
             </div>
 
             {/* Resume Sheet Container (Strict A4 single-page bounds) */}
-            <div className="resume-sheet max-w-[210mm] mx-auto bg-[#fafaf8] border border-neutral-300/40 rounded-xl shadow-2xl overflow-hidden print:border-none print:shadow-none print:rounded-none print:max-w-none print:w-full print:bg-white">
+            <div className="resume-sheet max-w-[210mm] mx-auto bg-white border border-neutral-300 rounded-xl shadow-xl overflow-hidden print:border-none print:shadow-none print:rounded-none print:max-w-none print:w-full print:bg-white">
                 <div className="p-7 sm:p-9 md:p-10 print:p-8 space-y-3.5 text-[10px] sm:text-[10.5px] leading-[1.34] text-[#27272a] font-sans">
                     
                     {/* Header */}

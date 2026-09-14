@@ -140,7 +140,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                         Blog
                     </TransitionLink>
                     <ChevronRight size={12} />
-                    <span className="text-foreground/80 font-medium truncate max-w-[200px] sm:max-w-md">
+                    <span className="text-neutral-900 font-medium truncate max-w-[200px] sm:max-w-md">
                         {post.title}
                     </span>
                 </nav>
@@ -162,7 +162,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                 {/* Article Header */}
                 <header className="fade-in-article space-y-6 mb-12">
                     <div className="flex flex-wrap items-center gap-3">
-                        <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/30 font-mono uppercase tracking-wider">
+                        <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/25 font-mono uppercase tracking-wider">
                             {post.category}
                         </span>
                         <div className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
@@ -186,14 +186,14 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                         </div>
                     </div>
 
-                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-anton tracking-tight text-white uppercase leading-[1.1]">
+                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-anton tracking-tight text-neutral-900 uppercase leading-[1.1]">
                         {post.title}
                     </h1>
 
                     {/* Author & Share Bar */}
-                    <div className="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-white/10">
+                    <div className="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-neutral-200">
                         <div className="flex items-center gap-3">
-                            <div className="size-11 rounded-full overflow-hidden relative border border-white/10 bg-background-light">
+                            <div className="size-11 rounded-full overflow-hidden relative border border-neutral-200 bg-neutral-100">
                                 <Image
                                     src={post.author.avatar}
                                     alt={post.author.name}
@@ -202,7 +202,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                                 />
                             </div>
                             <div>
-                                <p className="text-sm font-semibold text-white">
+                                <p className="text-sm font-semibold text-neutral-900">
                                     {post.author.name}
                                 </p>
                                 <p className="text-xs text-muted-foreground">
@@ -219,21 +219,21 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                             <button
                                 onClick={handleShareTwitter}
                                 title="Share on Twitter / X"
-                                className="size-9 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 hover:text-primary flex items-center justify-center transition-colors text-muted-foreground"
+                                className="size-9 rounded-full bg-neutral-100 border border-neutral-200 hover:border-primary hover:text-primary flex items-center justify-center transition-colors text-neutral-600"
                             >
                                 <Twitter size={15} />
                             </button>
                             <button
                                 onClick={handleShareLinkedIn}
                                 title="Share on LinkedIn"
-                                className="size-9 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 hover:text-primary flex items-center justify-center transition-colors text-muted-foreground"
+                                className="size-9 rounded-full bg-neutral-100 border border-neutral-200 hover:border-primary hover:text-primary flex items-center justify-center transition-colors text-neutral-600"
                             >
                                 <Linkedin size={15} />
                             </button>
                             <button
                                 onClick={handleCopy}
                                 title="Copy link"
-                                className="px-3 h-9 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 hover:text-primary flex items-center gap-1.5 transition-colors text-xs text-muted-foreground"
+                                className="px-3 h-9 rounded-full bg-neutral-100 border border-neutral-200 hover:border-primary hover:text-primary flex items-center gap-1.5 transition-colors text-xs text-neutral-600"
                             >
                                 {copied ? (
                                     <>
@@ -252,7 +252,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                 </header>
 
                 {/* Hero Cover Image */}
-                <div className="fade-in-article mb-14 rounded-2xl overflow-hidden aspect-[16/9] sm:aspect-[21/9] relative border border-white/10 shadow-2xl">
+                <div className="fade-in-article mb-14 rounded-2xl overflow-hidden aspect-[16/9] sm:aspect-[21/9] relative border border-neutral-200 shadow-xl">
                     <Image
                         src={post.coverImage}
                         alt={post.title}
@@ -269,8 +269,8 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                     {/* Left Sticky Table of Contents Sidebar */}
                     {post.tableOfContents && post.tableOfContents.length > 0 && (
                         <aside className="lg:col-span-4 hidden lg:block">
-                            <div className="sticky top-28 space-y-6 p-6 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm">
-                                <div className="flex items-center gap-2 text-xs font-mono tracking-wider text-muted-foreground uppercase pb-3 border-b border-white/10">
+                            <div className="sticky top-28 space-y-6 p-6 rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                                <div className="flex items-center gap-2 text-xs font-mono tracking-wider text-muted-foreground uppercase pb-3 border-b border-neutral-200">
                                     <List size={14} className="text-primary" />
                                     <span>TABLE OF CONTENTS</span>
                                 </div>
@@ -283,7 +283,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                                                 'block text-xs leading-snug transition-all duration-200 py-1 pl-2 border-l-2',
                                                 activeSection === item.id
                                                     ? 'border-primary text-primary font-medium pl-3'
-                                                    : 'border-transparent text-muted-foreground hover:text-white hover:border-white/20'
+                                                    : 'border-transparent text-neutral-500 hover:text-neutral-900 hover:border-neutral-300'
                                             )}
                                         >
                                             {item.title}
@@ -292,7 +292,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                                 </nav>
 
                                 {/* Mini Author Info in Sidebar */}
-                                <div className="pt-6 border-t border-white/10 space-y-3">
+                                <div className="pt-6 border-t border-neutral-200 space-y-3">
                                     <div className="text-xs font-mono text-muted-foreground uppercase">
                                         About Author
                                     </div>
@@ -307,7 +307,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                     {/* Main Content Body */}
                     <div
                         className={cn(
-                            'prose prose-invert max-w-none space-y-6 text-foreground/90 leading-relaxed',
+                            'prose max-w-none space-y-6 text-neutral-800 leading-relaxed prose-headings:text-neutral-900 prose-a:text-primary hover:prose-a:underline prose-strong:text-neutral-900 prose-code:text-neutral-900 prose-code:bg-neutral-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-neutral-900 prose-pre:text-neutral-100',
                             post.tableOfContents && post.tableOfContents.length > 0
                                 ? 'lg:col-span-8'
                                 : 'lg:col-span-12'
@@ -317,28 +317,28 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
 
                         {/* High-Conversion Project Spotlight CTA */}
                         {post.relatedProjectSlug && (
-                            <div className="my-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-primary/15 via-white/[0.03] to-transparent border border-primary/30 relative overflow-hidden group">
+                            <div className="my-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-primary/10 via-neutral-50 to-white border border-primary/30 shadow-md relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
                                     <FolderGit2 className="size-28 text-primary" />
                                 </div>
                                 <div className="relative z-10 space-y-3">
                                     <div className="flex items-center gap-2">
-                                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-primary text-black">
+                                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-primary text-white">
                                             <Sparkles size={13} />
                                             Production Case Study
                                         </span>
                                     </div>
-                                    <h4 className="text-xl sm:text-2xl font-anton text-white tracking-wide">
+                                    <h4 className="text-xl sm:text-2xl font-anton text-neutral-900 tracking-wide">
                                         {post.relatedProjectTitle || 'Explore the Production Implementation'}
                                     </h4>
-                                    <p className="text-sm text-muted-foreground/90 max-w-xl leading-relaxed">
+                                    <p className="text-sm text-neutral-600 max-w-xl leading-relaxed">
                                         {post.relatedProjectDescription ||
                                             'See how these architectural patterns, performance benchmarks, and engineering decisions were executed in production.'}
                                     </p>
                                     <div className="pt-2">
                                         <TransitionLink
                                             href={`/projects/${post.relatedProjectSlug}`}
-                                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-black font-semibold text-xs tracking-wide hover:opacity-90 transition-opacity uppercase font-mono"
+                                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-semibold text-xs tracking-wide hover:bg-primary.hover transition-colors uppercase font-mono shadow-sm"
                                         >
                                             View Project Case Study
                                             <ArrowUpRight size={15} />
@@ -349,7 +349,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                         )}
 
                         {/* Article Tags */}
-                        <div className="pt-10 mt-12 border-t border-white/10">
+                        <div className="pt-10 mt-12 border-t border-neutral-200">
                             <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-3">
                                 Related Topics &amp; Technologies
                             </p>
@@ -357,7 +357,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                                 {post.tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="text-xs px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-foreground/80 font-mono"
+                                        className="text-xs px-3 py-1.5 rounded-lg bg-neutral-100 border border-neutral-200 text-neutral-700 font-mono"
                                     >
                                         #{tag}
                                     </span>
@@ -366,7 +366,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                         </div>
 
                         {/* Author Bio Card */}
-                        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col sm:flex-row gap-5 items-start">
+                        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white border border-neutral-200 shadow-sm flex flex-col sm:flex-row gap-5 items-start">
                             <div className="size-16 rounded-full overflow-hidden relative border border-primary/40 shrink-0">
                                 <Image
                                     src={post.author.avatar}
@@ -377,7 +377,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                             </div>
                             <div className="space-y-2">
                                 <div className="flex items-center justify-between">
-                                    <h3 className="text-lg font-bold text-white">
+                                    <h3 className="text-lg font-bold text-neutral-900">
                                         {post.author.name}
                                     </h3>
                                     <span className="text-xs font-mono text-primary">
@@ -387,7 +387,7 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                                 <p className="text-xs text-muted-foreground">
                                     {post.author.role}
                                 </p>
-                                <p className="text-sm text-muted-foreground/90 leading-relaxed pt-1">
+                                <p className="text-sm text-neutral-600 leading-relaxed pt-1">
                                     {post.author.bio}
                                 </p>
                             </div>
@@ -397,9 +397,9 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
 
                 {/* Related Articles Section */}
                 {relatedPosts.length > 0 && (
-                    <section className="mt-20 pt-16 border-t border-white/10">
+                    <section className="mt-20 pt-16 border-t border-neutral-200">
                         <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-2xl sm:text-3xl font-anton tracking-tight text-white uppercase">
+                            <h2 className="text-2xl sm:text-3xl font-anton tracking-tight text-neutral-900 uppercase">
                                 Recommended <span className="text-primary">Articles</span>
                             </h2>
                             <TransitionLink
@@ -415,20 +415,20 @@ const BlogPostClient = ({ post, relatedPosts }: Props) => {
                                 <TransitionLink
                                     key={relPost.slug}
                                     href={`/blog/${relPost.slug}`}
-                                    className="group rounded-xl overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-primary/40 transition-all p-5 flex flex-col justify-between space-y-4"
+                                    className="group rounded-xl overflow-hidden border border-neutral-200 bg-white hover:bg-neutral-50/50 hover:border-primary/50 shadow-sm hover:shadow-md transition-all p-5 flex flex-col justify-between space-y-4"
                                 >
                                     <div className="space-y-2">
                                         <span className="text-[11px] font-mono text-primary">
                                             {relPost.category}
                                         </span>
-                                        <h3 className="text-base font-anton text-white group-hover:text-primary transition-colors line-clamp-2">
+                                        <h3 className="text-base font-anton text-neutral-900 group-hover:text-primary transition-colors line-clamp-2">
                                             {relPost.title}
                                         </h3>
-                                        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                                        <p className="text-xs text-neutral-600 line-clamp-2 leading-relaxed">
                                             {relPost.excerpt}
                                         </p>
                                     </div>
-                                    <div className="text-[11px] text-muted-foreground flex items-center justify-between pt-2 border-t border-white/5">
+                                    <div className="text-[11px] text-muted-foreground flex items-center justify-between pt-2 border-t border-neutral-100">
                                         <span>{relPost.readingTime}</span>
                                         <span className="text-primary font-medium flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                                             Read <ChevronRight size={12} />

@@ -49,20 +49,20 @@ const LatestBlogs = () => {
     return (
         <section
             id="latest-blogs"
-            className="relative py-24 sm:py-32 overflow-hidden border-t border-white/5"
+            className="relative py-20 sm:py-28 overflow-hidden border-t border-[#E8E3DA] bg-[#FAF8F5]"
         >
             <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" ref={containerRef}>
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
                     <div>
-                        <SectionTitle title="LATEST ARTICLES" />
-                        <p className="font-mono text-sm tracking-wide text-neutral-400 -mt-6">
-                            Technical deep-dives, architectural thoughts &amp; modern web engineering
+                        <SectionTitle title="TECHNICAL ARTICLES &amp; RESEARCH" />
+                        <p className="font-mono text-xs uppercase tracking-widest text-[#68645E] -mt-5">
+                            Deep-dives into systems engineering, performance &amp; architecture
                         </p>
                     </div>
 
                     <TransitionLink
                         href="/blog"
-                        className="group inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors self-start md:self-auto"
+                        className="group inline-flex items-center gap-2 text-sm font-semibold text-[#0E7490] hover:opacity-80 transition-opacity self-start md:self-auto font-mono"
                     >
                         <span>Explore all articles</span>
                         <ArrowUpRight
@@ -77,9 +77,9 @@ const LatestBlogs = () => {
                         <TransitionLink
                             key={post.slug}
                             href={`/blog/${post.slug}`}
-                            className="blog-home-card group flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-primary/40 transition-all duration-300"
+                            className="blog-home-card group flex flex-col rounded-2xl overflow-hidden border border-[#E8E3DA] bg-white hover:bg-[#FAF8F5]/60 hover:border-[#0E7490]/40 transition-all duration-300 shadow-sm"
                         >
-                            <div className="aspect-[16/10] relative overflow-hidden bg-background-light">
+                            <div className="aspect-[16/10] relative overflow-hidden bg-[#FAF8F5]">
                                 <Image
                                     src={post.coverImage}
                                     alt={post.title}
@@ -88,7 +88,7 @@ const LatestBlogs = () => {
                                     className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                 />
                                 <div className="absolute top-3 left-3">
-                                    <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-black/70 backdrop-blur-md text-white border border-white/10">
+                                    <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white/95 backdrop-blur-md text-[#191715] border border-[#E8E3DA] shadow-2xs font-mono">
                                         {post.category}
                                     </span>
                                 </div>
@@ -96,40 +96,40 @@ const LatestBlogs = () => {
 
                             <div className="p-6 flex flex-col flex-grow justify-between space-y-4">
                                 <div className="space-y-3">
-                                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                                    <div className="flex items-center gap-3 text-xs text-[#68645E] font-mono">
                                         <div className="flex items-center gap-1">
-                                            <Calendar size={12} />
+                                            <Calendar size={12} className="text-[#0E7490]" />
                                             <span>{formatDate(post.publishedAt)}</span>
                                         </div>
                                         <span>•</span>
                                         <div className="flex items-center gap-1">
-                                            <Clock size={12} />
+                                            <Clock size={12} className="text-[#0E7490]" />
                                             <span>{post.readingTime}</span>
                                         </div>
                                     </div>
 
-                                    <h3 className="text-xl font-anton tracking-tight text-white group-hover:text-primary transition-colors line-clamp-2">
+                                    <h3 className="text-xl font-anton tracking-tight text-[#191715] group-hover:text-[#0E7490] transition-colors line-clamp-2">
                                         {post.title}
                                     </h3>
 
-                                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                                    <p className="text-xs sm:text-sm text-[#68645E] font-light leading-relaxed line-clamp-3">
                                         {post.excerpt}
                                     </p>
                                 </div>
 
-                                <div className="pt-3 border-t border-white/5 flex items-center justify-between">
+                                <div className="pt-3 border-t border-[#E8E3DA] flex items-center justify-between">
                                     <div className="flex gap-1.5 overflow-hidden">
                                         {post.tags.slice(0, 2).map((t) => (
                                             <span
                                                 key={t}
-                                                className="text-[10px] font-mono text-muted-foreground/80 bg-white/5 px-2 py-0.5 rounded"
+                                                className="text-[10px] font-mono text-[#68645E] bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#E8E3DA]"
                                             >
                                                 #{t}
                                             </span>
                                         ))}
                                     </div>
 
-                                    <span className="text-xs font-semibold text-primary inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                    <span className="text-xs font-semibold text-[#0E7490] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform font-mono">
                                         Read <ArrowRight size={13} />
                                     </span>
                                 </div>

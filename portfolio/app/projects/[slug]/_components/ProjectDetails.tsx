@@ -52,7 +52,7 @@ const ProjectDetails = ({ project }: Props) => {
                     <TransitionLink
                         back
                         href="/"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.03] hover:bg-white/10 border border-white/10 text-neutral-300 hover:text-white text-xs font-mono transition-colors group"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-100 hover:bg-neutral-200/80 border border-neutral-200 text-neutral-700 hover:text-neutral-900 text-xs font-mono transition-colors group"
                     >
                         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
                         <span>Return to all projects</span>
@@ -60,21 +60,21 @@ const ProjectDetails = ({ project }: Props) => {
                 </div>
 
                 {/* Case Study Header */}
-                <div className="case-fade space-y-6 pb-12 border-b border-white/10">
+                <div className="case-fade space-y-6 pb-12 border-b border-neutral-200">
                     <div className="flex items-center gap-3">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 text-xs font-mono">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 text-xs font-mono font-medium">
                             {isMobileProject ? <Smartphone size={13} /> : <Globe size={13} />}
                             <span>{isMobileProject ? 'React Native Mobile Case Study' : 'Web Platform Case Study'}</span>
                         </span>
                         {project.year && (
-                            <span className="text-xs font-mono text-neutral-400">
+                            <span className="text-xs font-mono text-neutral-500">
                                 {project.year}
                             </span>
                         )}
                     </div>
 
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-anton text-white tracking-tight leading-[0.95] uppercase">
+                        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-anton text-neutral-900 tracking-tight leading-[0.95] uppercase">
                             {project.title}
                         </h1>
 
@@ -84,7 +84,7 @@ const ProjectDetails = ({ project }: Props) => {
                                     href={project.liveUrl}
                                     target="_blank"
                                     rel="noreferrer noopener"
-                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-black font-semibold text-xs tracking-wide uppercase transition-all hover:bg-primary-hover shadow-lg"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-semibold text-xs tracking-wide uppercase transition-all hover:bg-primary.hover shadow-md"
                                 >
                                     <span>Live Preview</span>
                                     <ExternalLink size={14} />
@@ -95,7 +95,7 @@ const ProjectDetails = ({ project }: Props) => {
                                     href={project.sourceCode}
                                     target="_blank"
                                     rel="noreferrer noopener"
-                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-mono transition-colors"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-50 border border-neutral-300 text-neutral-800 text-xs font-mono transition-colors shadow-sm"
                                 >
                                     <Github size={15} />
                                     <span>Source Code</span>
@@ -106,17 +106,17 @@ const ProjectDetails = ({ project }: Props) => {
                 </div>
 
                 {/* Metadata Bento Bar */}
-                <div className="case-fade grid grid-cols-1 sm:grid-cols-3 gap-6 py-8 border-b border-white/10">
+                <div className="case-fade grid grid-cols-1 sm:grid-cols-3 gap-6 py-8 border-b border-neutral-200">
                     <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 uppercase tracking-wider">
-                            <Layers size={13} className="text-cyan-400" />
+                        <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 uppercase tracking-wider">
+                            <Layers size={13} className="text-cyan-600" />
                             <span>Technologies</span>
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                             {project.techStack.map((tech) => (
                                 <span
                                     key={tech}
-                                    className="px-2 py-0.5 rounded bg-white/[0.03] border border-white/5 text-xs text-neutral-300 font-mono"
+                                    className="px-2.5 py-0.5 rounded-md bg-neutral-100 border border-neutral-200 text-xs text-neutral-700 font-mono"
                                 >
                                     {tech}
                                 </span>
@@ -126,11 +126,11 @@ const ProjectDetails = ({ project }: Props) => {
 
                     {project.role && (
                         <div className="space-y-2">
-                            <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 uppercase tracking-wider">
-                                <User size={13} className="text-teal-400" />
+                            <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 uppercase tracking-wider">
+                                <User size={13} className="text-teal-600" />
                                 <span>Role &amp; Contribution</span>
                             </div>
-                            <p className="text-xs sm:text-sm text-neutral-300 font-light">
+                            <p className="text-xs sm:text-sm text-neutral-700 font-light">
                                 {parse(project.role)}
                             </p>
                         </div>
@@ -138,11 +138,11 @@ const ProjectDetails = ({ project }: Props) => {
 
                     {project.year && (
                         <div className="space-y-2">
-                            <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 uppercase tracking-wider">
-                                <Calendar size={13} className="text-emerald-400" />
+                            <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 uppercase tracking-wider">
+                                <Calendar size={13} className="text-emerald-600" />
                                 <span>Timeline</span>
                             </div>
-                            <p className="text-xs sm:text-sm text-neutral-300 font-mono">
+                            <p className="text-xs sm:text-sm text-neutral-700 font-mono">
                                 Completed in {project.year}
                             </p>
                         </div>
@@ -151,10 +151,10 @@ const ProjectDetails = ({ project }: Props) => {
 
                 {/* Project Narrative */}
                 <div className="case-fade py-12 space-y-6 max-w-3xl">
-                    <h2 className="text-2xl font-anton text-white tracking-wide uppercase">
+                    <h2 className="text-2xl font-anton text-neutral-900 tracking-wide uppercase">
                         Project Overview &amp; Architecture
                     </h2>
-                    <div className="text-base sm:text-lg text-neutral-300 font-light leading-relaxed space-y-4 prose-invert markdown-text">
+                    <div className="text-base sm:text-lg text-neutral-700 font-light leading-relaxed space-y-4 markdown-text">
                         {parse(project.description)}
                     </div>
                 </div>
@@ -162,7 +162,7 @@ const ProjectDetails = ({ project }: Props) => {
                 {/* Visual Artifacts / Gallery */}
                 <div className="case-fade space-y-8 pt-6">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <h2 className="text-2xl font-anton text-white tracking-wide uppercase">
+                        <h2 className="text-2xl font-anton text-neutral-900 tracking-wide uppercase">
                             Interface &amp; Visual Showcase
                         </h2>
                         {project.liveUrl && (
@@ -170,7 +170,7 @@ const ProjectDetails = ({ project }: Props) => {
                                 href={project.liveUrl}
                                 target="_blank"
                                 rel="noreferrer noopener"
-                                className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
+                                className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-600 hover:text-cyan-700 transition-colors"
                             >
                                 <span>Open Live Product</span>
                                 <ExternalLink size={13} />
@@ -188,7 +188,7 @@ const ProjectDetails = ({ project }: Props) => {
                                             href={targetUrl}
                                             target="_blank"
                                             rel="noreferrer noopener"
-                                            className="group relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] cursor-pointer"
+                                            className="group relative block w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-md cursor-pointer"
                                             title={`Open ${project.title} live product`}
                                         >
                                             <Image
@@ -200,19 +200,19 @@ const ProjectDetails = ({ project }: Props) => {
                                             />
 
                                             {/* Hover banner */}
-                                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                                                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-black/80 backdrop-blur-md text-white border border-white/20 text-xs font-mono tracking-wide shadow-2xl group-hover:scale-105 transition-transform">
+                                            <div className="absolute inset-0 bg-neutral-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                                                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/95 backdrop-blur-md text-neutral-900 border border-neutral-200 text-xs font-mono tracking-wide shadow-xl group-hover:scale-105 transition-transform">
                                                     <span>Open Live Product</span>
-                                                    <ExternalLink size={14} className="text-cyan-400" />
+                                                    <ExternalLink size={14} className="text-cyan-600" />
                                                 </span>
                                             </div>
 
-                                            <div className="absolute top-4 right-4 p-3 rounded-xl bg-black/70 backdrop-blur-md text-white border border-white/10 group-hover:bg-primary group-hover:text-black transition-colors">
+                                            <div className="absolute top-4 right-4 p-3 rounded-xl bg-white/90 backdrop-blur-md text-neutral-800 border border-neutral-200 group-hover:bg-primary group-hover:text-white transition-colors shadow-sm">
                                                 <ExternalLink size={16} />
                                             </div>
                                         </a>
                                     ) : (
-                                        <div className="group relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
+                                        <div className="group relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-neutral-200 bg-white shadow-md">
                                             <Image
                                                 src={image}
                                                 alt={`${project.title} screenshot ${idx + 1}`}

@@ -105,13 +105,13 @@ const ProjectList = () => {
     };
 
     return (
-        <section className="relative py-20 md:py-32 lg:py-40 overflow-hidden" id="selected-projects">
-            {/* Subtle background gradient */}
-            <div className="absolute inset-0  pointer-events-none" />
-            
+        <section className="relative py-20 sm:py-28 overflow-hidden border-t border-[#E8E3DA] bg-[#FAF8F5]" id="selected-projects">
             <div className="container relative z-10">
-                <div className="mb-16 md:mb-24">
-                    <SectionTitle title="SELECTED PROJECTS" />
+                <div className="mb-14">
+                    <SectionTitle title="SELECTED PRODUCTION SYSTEMS" />
+                    <p className="font-mono text-xs uppercase tracking-widest text-[#68645E] -mt-5">
+                        Shipped web platforms, cross-platform mobile apps &amp; developer tools
+                    </p>
                 </div>
 
                 <div className="group/projects relative" ref={containerRef}>
@@ -120,11 +120,8 @@ const ProjectList = () => {
                             className="hidden fixed right-8 xl:right-16 top-1/2 -translate-y-1/2 z-50 pointer-events-none w-[280px] xl:w-[380px] aspect-[3/4] opacity-0"
                             ref={imageContainer}
                         >
-                            {/* Glowing backdrop effect */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-3xl scale-110 opacity-60" />
-                            
                             {/* Image container with border and shadow */}
-                            <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 backdrop-blur-sm">
+                            <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-[#E8E3DA] bg-white">
                                 {PROJECTS.map((project) => (
                                     <Image
                                         src={project.thumbnail}
@@ -149,15 +146,12 @@ const ProjectList = () => {
                                         key={project.slug}
                                     />
                                 ))}
-                                
-                                {/* Overlay gradient for depth */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
                             </div>
                         </div>
                     )}
 
                     <div
-                        className="flex flex-col divide-y divide-slate-200/60 dark:divide-slate-800/60"
+                        className="flex flex-col divide-y divide-[#E8E3DA]"
                         ref={projectListRef}
                     >
                         {PROJECTS.map((project, index) => (
@@ -172,10 +166,6 @@ const ProjectList = () => {
                     </div>
                 </div>
             </div>
-            
-            {/* Decorative elements */}
-            <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
         </section>
     );
 };
