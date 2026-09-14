@@ -1,36 +1,48 @@
+/* Hallmark · macrostructure: Workbench · tone: editorial-technical · anchor hue: 185 · paper: #FAF8F5 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
     :root {
-        --background: 0 0% 13%;
-        --background-light: 0 0% 19%;
-        --foreground: 0 0% 87%;
+        /* Hallmark Paper & Ink System (#FAF8F5 Alabaster) */
+        --background: 38 33% 97.1%; /* #FAF8F5 warm alabaster */
+        --background-light: 38 22% 94%; /* #F4EFEA warm container */
+        --foreground: 30 10% 10%; /* #191715 carbon ink */
 
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
+        --card: 0 0% 100%;
+        --card-foreground: 30 10% 10%;
+        --popover: 38 33% 97.1%;
+        --popover-foreground: 30 10% 10%;
 
-        --primary: 140 100% 47%;
-        --primary-foreground: 0 0% 13%;
-        --secondary: 193 100% 47%;
-        --secondary-foreground: 0 0% 13%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 71%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
+        --primary: 185 80% 28%; /* #0E7490 architectural cyan-slate */
+        --primary-hover: 185 80% 22%;
+        --primary-foreground: 38 33% 98%;
+        --secondary: 195 50% 30%;
+        --secondary-hover: 195 50% 24%;
+        --secondary-foreground: 38 33% 98%;
+        --muted: 38 20% 92.5%;
+        --muted-foreground: 30 6% 42%; /* #68645E warm charcoal */
+        --accent: 38 22% 93%;
+        --accent-foreground: 30 10% 10%;
+        --destructive: 0 72% 51%;
         --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 24%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
+        --border: 38 18% 87%; /* #E8E3DA warm stone hairline */
+        --input: 38 18% 87%;
+        --ring: 185 80% 28%;
+
+        --color-paper: #FAF8F5;
+        --color-card: #FFFFFF;
+        --color-border: #E8E3DA;
+        --color-ink: #191715;
+        --color-ink-muted: #68645E;
+        --color-accent: #0E7490;
+
+        --chart-1: 185 80% 28%;
+        --chart-2: 160 60% 35%;
+        --chart-3: 30 80% 45%;
+        --chart-4: 280 65% 50%;
+        --chart-5: 340 75% 50%;
     }
 }
 
@@ -51,6 +63,85 @@
 
     .markdown-text ul {
         @apply pl-5 mt-2 list-disc;
+    }
+
+    /* Single-Fold Hero Architecture (Matching nextjs-project layout) */
+    .hero-one-fold {
+        height: 100vh;
+        height: 100dvh;
+        max-height: 100vh;
+        max-height: 100dvh;
+        position: relative;
+        overflow: visible;
+    }
+
+    .left-cards-wrapper {
+        width: 26%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    .right-cards-wrapper {
+        width: 26%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    .spray-card-item {
+        position: absolute;
+        pointer-events: auto;
+        will-change: transform, opacity, filter;
+        transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    /* Outlined / Text Stroke Utility */
+    .text-stroke-dark,
+    .text-stroke-dark span {
+        -webkit-text-stroke: 1.2px #191715;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        transition: -webkit-text-fill-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .text-stroke-dark:hover,
+    .text-stroke-dark:hover span {
+        -webkit-text-fill-color: #191715;
+        color: #191715;
+    }
+
+    @media (min-width: 768px) {
+        .text-stroke-dark,
+        .text-stroke-dark span {
+            -webkit-text-stroke: 1.8px #191715;
+        }
+    }
+
+    /* Hard-edge Black & White Pop Shadow Typography (matching user reference: text-black drop-shadow-[1px_2px_0px_rgb(218_218_218/1)]) */
+    .hero-bw-word {
+        color: #000000;
+        -webkit-text-fill-color: #000000;
+        -webkit-text-stroke: 0;
+        filter: drop-shadow(1px 2px 0px rgb(218 218 218 / 1));
+    }
+
+    @media (min-width: 640px) {
+        .hero-bw-word {
+            filter: drop-shadow(2px 3px 0px rgb(218 218 218 / 1));
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .hero-bw-word {
+            filter: drop-shadow(2.5px 3.5px 0px rgb(218 218 218 / 1));
+        }
     }
 }
 
