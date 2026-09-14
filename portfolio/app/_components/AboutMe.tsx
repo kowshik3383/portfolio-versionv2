@@ -1,37 +1,15 @@
 'use client';
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import React, { useRef } from 'react';
+import Image from 'next/image';
 import SectionTitle from '@/components/SectionTitle';
-import { Code, Smartphone, Zap, CheckCircle2, MapPin, Sparkles } from 'lucide-react';
+import { DEFAULT_AUTHOR } from '@/lib/blogs';
+import EngineeringTerminal from './EngineeringTerminal';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const HIGHLIGHTS = [
-    {
-        icon: Smartphone,
-        title: 'Mobile & Web Convergence',
-        description: 'Building seamless cross-platform React Native apps and Next.js platforms with shared TypeScript logic and clean design systems.',
-    },
-    {
-        icon: Zap,
-        title: 'Performance & 60fps Interactions',
-        description: 'Obsessed with sub-second LCP, zero-CLS layout stability, and fluid native gesture-driven animations.',
-    },
-    {
-        icon: Code,
-        title: 'End-to-End Product Craft',
-        description: 'From UI/UX architecture to PostgreSQL schemas, NestJS/Node APIs, and reliable cloud deployments.',
-    },
-];
-
-const CORE_CAPABILITIES = [
-    'Full Stack Web (React 19 & Next.js 15 App Router)',
-    'Cross-Platform Mobile Apps (React Native & Expo)',
-    'Scalable APIs & Microservices (Node.js & NestJS)',
-    'Database Architecture (PostgreSQL, MySQL & Prisma)',
-];
 
 const AboutMe = () => {
     const container = useRef<HTMLDivElement>(null);
@@ -40,156 +18,95 @@ const AboutMe = () => {
         () => {
             gsap.fromTo(
                 '.about-fade',
-                { y: 40, opacity: 0 },
+                { y: 30, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
-                    stagger: 0.15,
-                    duration: 0.8,
+                    stagger: 0.1,
+                    duration: 0.7,
                     ease: 'power2.out',
                     scrollTrigger: {
                         trigger: container.current,
                         start: 'top 75%',
                         toggleActions: 'play none none reverse',
                     },
-                },
+                }
             );
         },
-        { scope: container },
+        { scope: container }
     );
 
     return (
-        <section className="relative py-24 sm:py-32 overflow-hidden border-t border-white/5" id="about-me">
-            {/* Ambient background glow */}
-            <div className="absolute top-1/2 -right-40 w-96 h-96 bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none -z-10" />
-
+        <section
+            className="relative pt-8 pb-28 sm:pt-12 sm:pb-36 overflow-hidden bg-[#FAF8F5]"
+            id="about-me"
+        >
             <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" ref={container}>
-                <div className="mb-16">
-                    <SectionTitle title="ABOUT ME" />
-                    <p className="font-mono text-sm tracking-wide text-neutral-400 -mt-6">
-                        Philosophy, engineering discipline &amp; craftsmanship
+                {/* Author Photo Convergence Focal Point (Clean, Minimal, No Clutter) */}
+                <div
+                    id="about-author-img-box"
+                    className="about-author-img-box relative flex flex-col items-center text-center mb-10 sm:mb-12 py-1"
+                >
+                    {/* Concentric Precision Hairline Rings around Author Avatar */}
+                    <div className="relative size-32 sm:size-40 mb-4 sm:mb-5">
+                        {/* Outer rotating dashed precision ring */}
+                        <div className="absolute -inset-3 sm:-inset-5 rounded-full border border-dashed border-[#0E7490]/35 animate-[spin_25s_linear_infinite] pointer-events-none" />
+                        {/* Middle rotating hairline ring */}
+                        <div className="absolute -inset-6 sm:-inset-8 rounded-full border border-[#E8E3DA] animate-[spin_35s_linear_infinite_reverse] pointer-events-none" />
+                        {/* Subtle glow backdrop */}
+                        <div className="absolute -inset-2 rounded-full bg-[#0E7490]/10 blur-xl pointer-events-none" />
+
+                        {/* Author Photo from DEFAULT_AUTHOR */}
+                        <div className="relative size-full rounded-full overflow-hidden border-4 border-white shadow-2xl shadow-neutral-900/10 bg-white">
+                            <Image
+                                src={DEFAULT_AUTHOR.avatar}
+                                alt={DEFAULT_AUTHOR.name}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 128px, 160px"
+                                priority
+                            />
+                        </div>
+                    </div>
+
+                    {/* Clean Architectural Statement (Matching hero display typography & drop-shadow) */}
+                    <div className="max-w-4xl mx-auto space-y-2.5 px-4 mt-3 sm:mt-4 text-center">
+                        <h2 className="font-anton text-2xl sm:text-4xl md:text-5xl lg:text-[3.2rem] tracking-tight text-black leading-[1.05] uppercase mx-auto text-center">
+                            <span className="block">
+                                <span className="inline-block hero-bw-word">Governed</span>{' '}
+                                <span className="inline-block hero-bw-word">by</span>{' '}
+                                <span className="inline-block hero-bw-word">Verifiable</span>{' '}
+                                <span className="inline-block hero-bw-word">Latency,</span>
+                            </span>
+                            <span className="block mt-1 sm:mt-1.5">
+                                <span className="inline-block hero-bw-word">Frame</span>{' '}
+                                <span className="inline-block hero-bw-word">Budgets,</span>{' '}
+                                <span className="inline-block hero-bw-word">&amp;</span>{' '}
+                                <span className="inline-block hero-bw-word">Deterministic</span>{' '}
+                                <span className="inline-block hero-bw-word">State</span>{' '}
+                                <span className="inline-block hero-bw-word">Invariants.</span>
+                            </span>
+                        </h2>
+                        <p className="text-xs sm:text-sm text-[#68645E] font-light max-w-xl mx-auto leading-relaxed text-center">
+                            Every metric, framework, and conversion funnel flows from first-principles systems engineering.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Section Header */}
+                <div id="engineering-benchmarks" className="mb-6 sm:mb-8 flex flex-col items-center justify-center text-center scroll-mt-24">
+                    <SectionTitle
+                        title="ENGINEERING BENCHMARKS &amp; PRINCIPLES"
+                        className="justify-center mb-3"
+                    />
+                    <p className="font-mono text-xs uppercase tracking-widest text-[#68645E]">
+                        Scientific rationale, architecture invariants &amp; empirical benchmarks
                     </p>
                 </div>
 
-                {/* Hero Statement */}
-                <div className="about-fade mb-16 sm:mb-20 max-w-4xl">
-                    <h2 className="text-3xl sm:text-5xl md:text-6xl font-anton tracking-tight text-white leading-[1.05]">
-                        I design and build with users at the center — every engineering decision driven by{' '}
-                        <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
-                            real usability &amp; speed
-                        </span>
-                        , not assumptions.
-                    </h2>
-                </div>
-
-                {/* 2-Column Content Grid - Equal Height and Balanced Weight */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-                    {/* Left Column: Rich Engineering Identity & Metrics Bento Card */}
-                    <div className="lg:col-span-5 flex flex-col">
-                        <div className="about-fade h-full flex flex-col justify-between p-7 sm:p-9 rounded-2xl bg-white/[0.02] hover:bg-white/[0.035] border border-white/10 hover:border-cyan-400/30 transition-all duration-300 relative overflow-hidden backdrop-blur-md">
-                            <div className="absolute top-0 right-0 w-48 h-48 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" />
-
-                            {/* Top Bio Header */}
-                            <div className="space-y-4">
-                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-xs font-mono text-cyan-400 font-medium">
-                                    <Sparkles size={13} />
-                                    <span>Full Stack &amp; Mobile Engineer</span>
-                                </div>
-
-                                <h3 className="text-3xl sm:text-4xl font-anton text-white tracking-tight">
-                                    Kowshik Valipireddy
-                                </h3>
-
-                                <p className="text-sm text-neutral-300 font-light leading-relaxed">
-                                    Bridging the gap between design fidelity and robust systems architecture across web and mobile platforms.
-                                </p>
-                            </div>
-
-                            {/* Middle 4-Stat Metric Matrix */}
-                            <div className="my-6 pt-6 border-t border-white/10 grid grid-cols-2 gap-4 sm:gap-5">
-                                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                                    <div className="text-2xl sm:text-3xl font-anton text-white">2+</div>
-                                    <p className="text-xs text-neutral-400 font-mono mt-0.5">Years Experience</p>
-                                </div>
-                                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                                    <div className="text-2xl sm:text-3xl font-anton text-cyan-400">30+</div>
-                                    <p className="text-xs text-neutral-400 font-mono mt-0.5">Completed Projects</p>
-                                </div>
-                                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                                    <div className="text-2xl sm:text-3xl font-anton text-emerald-400">100%</div>
-                                    <p className="text-xs text-neutral-400 font-mono mt-0.5">Code Reliability</p>
-                                </div>
-                                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                                    <div className="text-2xl sm:text-3xl font-anton text-teal-300">Web &amp; App</div>
-                                    <p className="text-xs text-neutral-400 font-mono mt-0.5">Dual Expertise</p>
-                                </div>
-                            </div>
-
-                            {/* Core Capabilities Checklist */}
-                            <div className="space-y-2.5 pb-6 border-b border-white/10">
-                                <p className="text-xs font-mono uppercase tracking-widest text-neutral-400">
-                                    Core Focus Areas
-                                </p>
-                                <div className="space-y-2">
-                                    {CORE_CAPABILITIES.map((cap) => (
-                                        <div key={cap} className="flex items-start gap-2 text-xs text-neutral-300">
-                                            <CheckCircle2 size={14} className="text-cyan-400 shrink-0 mt-0.5" />
-                                            <span>{cap}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Bottom Availability Status */}
-                            <div className="pt-4 flex items-center justify-between text-xs font-mono text-neutral-400">
-                                <div className="flex items-center gap-2">
-                                    <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-                                    <span>Available for Hire</span>
-                                </div>
-                                <div className="flex items-center gap-1 text-neutral-400">
-                                    <MapPin size={12} className="text-cyan-400" />
-                                    <span>India (Remote)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right Column: Bio Narrative & Pillars */}
-                    <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
-                        <div className="about-fade p-7 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md space-y-4">
-                            <h4 className="text-xl font-anton text-white tracking-wide uppercase">
-                                Engineering Craft &amp; Execution
-                            </h4>
-                            <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
-                                I specialize in crafting complete digital solutions from whiteboard ideation to production deployment. I don&apos;t just write syntax — I convert complex product requirements into <strong className="text-white font-medium">fast, accessible, and resilient</strong> web platforms and cross-platform mobile apps.
-                            </p>
-                            <p className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed">
-                                Whether building interactive web applications with <span className="text-white font-normal">Next.js 15 &amp; React 19</span>, fluid mobile gesture workflows with <span className="text-white font-normal">React Native &amp; Expo</span>, or scalable APIs with <span className="text-white font-normal">Node.js, PostgreSQL &amp; Prisma</span>, I prioritize performance, clean code architecture, and intuitive user experiences.
-                            </p>
-                        </div>
-
-                        {/* Craft Pillars Bento */}
-                        <div className="space-y-3.5">
-                            {HIGHLIGHTS.map((h) => (
-                                <div
-                                    key={h.title}
-                                    className="about-fade p-5 sm:p-6 rounded-xl bg-white/[0.015] hover:bg-white/[0.04] border border-white/5 hover:border-white/15 transition-all duration-300 flex items-start gap-4 sm:gap-5"
-                                >
-                                    <div className="p-3 rounded-lg bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 shrink-0">
-                                        <h.icon size={20} />
-                                    </div>
-                                    <div className="space-y-1">
-                                        <h5 className="text-base font-anton tracking-wide text-white">
-                                            {h.title}
-                                        </h5>
-                                        <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-                                            {h.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                {/* Master Unified Brainless-Style Terminal UI: All Profile, Benchmarks & Invariants in One Console */}
+                <div className="about-fade max-w-5xl mx-auto">
+                    <EngineeringTerminal />
                 </div>
             </div>
         </section>
