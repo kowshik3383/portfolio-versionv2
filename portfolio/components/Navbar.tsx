@@ -54,23 +54,23 @@ const Navbar = () => {
                     className={cn(
                         'max-w-5xl mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 pointer-events-auto border',
                         scrolled
-                            ? 'bg-neutral-950/80 backdrop-blur-xl border-white/10 shadow-2xl shadow-black/60'
-                            : 'bg-neutral-900/40 backdrop-blur-md border-white/5',
+                            ? 'bg-[#FAF8F5]/90 backdrop-blur-xl border-[#E8E3DA] shadow-md shadow-neutral-900/5'
+                            : 'bg-white/80 backdrop-blur-md border-[#E8E3DA] shadow-2xs',
                     )}
                 >
                     {/* Brand / Logo */}
                     <Link
                         href="/"
-                        className="group flex items-center gap-2.5 text-white font-anton tracking-wider text-base sm:text-lg focus:outline-none"
+                        className="group flex items-center gap-2.5 text-[#191715] font-anton tracking-wider text-base sm:text-lg focus:outline-none"
                     >
-                        <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="group-hover:text-primary transition-colors">
-                            KOWSHIK<span className="text-primary">.</span>DEV
+                        <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="group-hover:text-[#0E7490] transition-colors">
+                            KOWSHIK<span className="text-[#0E7490]">.</span>DEV
                         </span>
                     </Link>
 
                     {/* Desktop Navigation Links */}
-                    <div className="hidden md:flex items-center gap-1 sm:gap-1.5 px-3 py-1 rounded-full bg-white/[0.03] border border-white/5">
+                    <div className="hidden md:flex items-center gap-1 sm:gap-1.5 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E8E3DA]">
                         {NAV_LINKS.map((link) => {
                             const isCurrentBlog = link.url === '/blog' && pathname?.startsWith('/blog');
                             return (
@@ -78,10 +78,10 @@ const Navbar = () => {
                                     key={link.name}
                                     href={link.url}
                                     className={cn(
-                                        'px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200',
+                                        'px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-200',
                                         isCurrentBlog
-                                            ? 'text-white bg-white/10 shadow-sm'
-                                            : 'text-neutral-300 hover:text-white hover:bg-white/5',
+                                            ? 'text-[#191715] bg-white shadow-2xs font-semibold'
+                                            : 'text-[#68645E] hover:text-[#191715] hover:bg-white',
                                     )}
                                 >
                                     {link.name}
@@ -94,7 +94,7 @@ const Navbar = () => {
                     <div className="flex items-center gap-2 sm:gap-3">
                         <button
                             onClick={handleEmailClick}
-                            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white text-xs font-medium transition-all group"
+                            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#0E7490] hover:bg-[#0c627a] text-white text-xs font-mono font-medium transition-all shadow-sm group"
                         >
                             <span>Hire Me</span>
                             <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -102,7 +102,7 @@ const Navbar = () => {
 
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="md:hidden p-2 rounded-full bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white border border-white/10 transition-colors"
+                            className="md:hidden p-2 rounded-full bg-[#FAF8F5] hover:bg-white text-[#191715] border border-[#E8E3DA] transition-colors"
                             aria-label="Toggle mobile menu"
                         >
                             {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
@@ -114,7 +114,7 @@ const Navbar = () => {
             {/* Mobile Drawer Overlay */}
             <div
                 className={cn(
-                    'fixed inset-0 z-40 bg-black/80 backdrop-blur-md transition-opacity duration-300 md:hidden',
+                    'fixed inset-0 z-40 bg-neutral-900/30 backdrop-blur-xs transition-opacity duration-300 md:hidden',
                     isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none',
                 )}
                 onClick={() => setIsMenuOpen(false)}
@@ -123,47 +123,47 @@ const Navbar = () => {
             {/* Mobile Drawer Content */}
             <div
                 className={cn(
-                    'fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-neutral-950/95 border-l border-white/10 z-50 p-6 flex flex-col justify-between transition-transform duration-300 ease-out md:hidden backdrop-blur-2xl shadow-2xl',
+                    'fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-[#FAF8F5]/95 border-l border-[#E8E3DA] z-50 p-6 flex flex-col justify-between transition-transform duration-300 ease-out md:hidden backdrop-blur-2xl shadow-2xl',
                     isMenuOpen ? 'translate-x-0' : 'translate-x-full',
                 )}
             >
                 <div className="space-y-6 pt-16">
-                    <p className="text-[11px] font-mono uppercase tracking-widest text-neutral-500">Navigation</p>
+                    <p className="text-[11px] font-mono uppercase tracking-widest text-neutral-400">Navigation</p>
                     <nav className="flex flex-col space-y-3">
                         {NAV_LINKS.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.url}
                                 onClick={() => setIsMenuOpen(false)}
-                                className="text-lg font-anton tracking-wide text-neutral-200 hover:text-primary transition-colors py-1 flex items-center justify-between"
+                                className="text-lg font-anton tracking-wide text-neutral-800 hover:text-primary transition-colors py-1 flex items-center justify-between"
                             >
                                 <span>{link.name}</span>
-                                <ArrowUpRight size={14} className="text-neutral-500" />
+                                <ArrowUpRight size={14} className="text-neutral-400" />
                             </Link>
                         ))}
                     </nav>
                 </div>
 
-                <div className="space-y-6 pt-6 border-t border-white/10">
+                <div className="space-y-6 pt-6 border-t border-neutral-200">
                     <button
                         onClick={() => {
                             setIsMenuOpen(false);
                             handleEmailClick();
                         }}
-                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-black font-semibold text-xs tracking-wider uppercase transition-transform active:scale-95"
+                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-xs tracking-wider uppercase transition-transform active:scale-95 shadow-md"
                     >
                         <Mail size={15} />
                         <span>Start Conversation</span>
                     </button>
 
-                    <div className="flex items-center justify-center gap-4 text-xs text-neutral-400">
+                    <div className="flex items-center justify-center gap-4 text-xs text-neutral-500">
                         {SOCIAL_LINKS.map((social) => (
                             <a
                                 key={social.name}
                                 href={social.url}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="capitalize hover:text-white transition-colors"
+                                className="capitalize hover:text-neutral-900 transition-colors"
                             >
                                 {social.name}
                             </a>

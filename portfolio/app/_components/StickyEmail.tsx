@@ -25,15 +25,8 @@ const StickyEmail = () => {
         <div className="max-xl:hidden fixed bottom-32 left-0 block print:hidden">
             <div
                 onClick={handleEmailClick}
-                className="px-3 text-muted-foreground tracking-[1px] transition-all !bg-bottom hover:text-foreground hover:!bg-center"
+                className="px-3 text-neutral-500 font-mono text-xs tracking-[1.5px] cursor-pointer transition-colors hover:text-neutral-900"
                 style={{
-                    // background:
-                    //     'linear-gradient(to bottom, hsl(var(--muted-foreground)) 0% 33.33%, hsl(var(--primary)) 33.33% 66.66%, hsl(var(--muted-foreground)) 66.66% 100%)',
-                    // backgroundSize: '100% 300%',
-
-                    // backgroundClip: 'text',
-                    // color: 'transparent',
-
                     textOrientation: 'mixed',
                     writingMode: 'vertical-rl',
                 }}

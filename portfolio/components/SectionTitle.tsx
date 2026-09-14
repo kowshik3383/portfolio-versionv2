@@ -28,14 +28,14 @@ const SectionTitle = ({ icon, title, className, classNames }: Props) => {
                 <SectionFlower
                     width={25}
                     className={cn(
-                        'animate-spin duration-7000',
+                        'animate-spin duration-7000 invert',
                         classNames?.icon,
                     )}
                 />
             )}
             <h2
                 className={cn(
-                    'text-xl uppercase leading-none',
+                    'text-xl uppercase leading-none text-neutral-900',
                     classNames?.title,
                 )}
             >
