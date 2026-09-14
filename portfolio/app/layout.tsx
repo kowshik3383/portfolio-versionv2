@@ -9,6 +9,7 @@ import Preloader from '../components/Preloader';
 import ParticleBackground from '@/components/ParticleBackground';
 import ScrollProgressIndicator from '@/components/ScrollProgressIndicator';
 import StickyEmail from './_components/StickyEmail';
+import FloatingNavDock from '@/components/FloatingNavDock';
 
 const antonFont = Anton({
     weight: '400',
@@ -194,7 +195,7 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${antonFont.variable} ${robotoFlex.variable} antialiased`}
+                className={`${antonFont.variable} ${robotoFlex.variable} antialiased bg-[#FAF8F5] text-[#191715]`}
                 suppressHydrationWarning
             >
                 <ReactLenis
@@ -210,6 +211,7 @@ export default function RootLayout({
                     <ScrollProgressIndicator />
                     <ParticleBackground />
                     <StickyEmail />
+                    <FloatingNavDock />
                 </ReactLenis>
             </body>
         </html>
