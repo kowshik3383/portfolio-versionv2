@@ -1,0 +1,40 @@
+/* Hallmark Design System · Warm Alabaster (#FAF8F5) Design Tokens */
+:root {
+    /* Color Tokens */
+    --color-paper: #FAF8F5;
+    --color-card: #FFFFFF;
+    --color-border: #E8E3DA;
+    --color-border-subtle: #F0ECE4;
+    --color-ink: #191715;
+    --color-ink-muted: #68645E;
+    --color-ink-faint: #9E9A92;
+    --color-accent: #0E7490;
+    --color-accent-hover: #0C627A;
+    --color-accent-subtle: #ECFEFF;
+    --color-success: #15803D;
+
+    /* Space Tokens (4pt Scale) */
+    --space-2xs: 4px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+
+    /* Motion Tokens */
+    --dur-instant: 100ms;
+    --dur-short: 200ms;
+    --dur-medium: 350ms;
+    --dur-deliberate: 650ms;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+}
