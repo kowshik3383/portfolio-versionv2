@@ -1,5 +1,4 @@
 import { IProject, IExperience } from '@/types';
-
 export const GENERAL_INFO = {
     email: 'kowshikvalipireddy@gmail.com',
 
