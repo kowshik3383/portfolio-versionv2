@@ -134,8 +134,8 @@ export default function GuideBlob() {
                 { opacity: 0, y: 20, scale: 0.95 },
                 { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power2.out' }
             )
-            // Morph into friendly wink as text reveals
-            .call(() => setIntroAvatarState('wink'), [], '+=0.1')
+            // Morph into polite greeting as text reveals
+            .call(() => setIntroAvatarState('greeting'), [], '+=0.1')
             // Morph into joyful greeting eyes
             .call(() => setIntroAvatarState('waving'), [], '+=0.85')
             // Hold for reading

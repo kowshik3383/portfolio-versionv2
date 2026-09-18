@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 export type BloubState =
     | 'idle'
     | 'thinking'
-    | 'wink'
+    | 'greeting'
     | 'building'
     | 'walking'
     | 'spotlight'
@@ -27,7 +27,6 @@ interface EyeTransform {
     w: number;
     h: number;
     tilt: number;
-    isClosed?: boolean;
 }
 
 // Expressions modeled as capsule eye transforms projected on the spherical black circle
@@ -42,10 +41,10 @@ const EYE_CONFIGS: Record<BloubState, { left: EyeTransform; right: EyeTransform 
         left: { x: 36, y: 42, w: 6.5, h: 14, tilt: -7 },
         right: { x: 54, y: 43, w: 6.5, h: 14, tilt: -5 },
     },
-    // Wink / Friendly Hello: left eye wide, right eye winks
-    wink: {
-        left: { x: 40, y: 47, w: 7.5, h: 16, tilt: 0 },
-        right: { x: 60, y: 48, w: 8.5, h: 2.5, tilt: 0, isClosed: true },
+    // Greeting / Welcome: friendly, bright, open symmetrical eyes (attentive, polite)
+    greeting: {
+        left: { x: 39, y: 46, w: 7.5, h: 15.5, tilt: 2 },
+        right: { x: 61, y: 46, w: 7.5, h: 15.5, tilt: -2 },
     },
     // Building / Toolchain: alert, focused slightly downward
     building: {
@@ -213,37 +212,25 @@ export default function BloubAvatar({
                         />
 
                         {/* Right Cutout Capsule Eye */}
-                        {eyeCfg.right.isClosed && !isBlinking ? (
-                            <line
-                                x1={eyeCfg.right.x - eyeCfg.right.w / 2 + mouseOffset.x}
-                                y1={eyeCfg.right.y + mouseOffset.y}
-                                x2={eyeCfg.right.x + eyeCfg.right.w / 2 + mouseOffset.x}
-                                y2={eyeCfg.right.y + mouseOffset.y}
-                                stroke="#000000"
-                                strokeWidth="2.5"
-                                strokeLinecap="round"
-                            />
-                        ) : (
-                            <rect
-                                x={eyeCfg.right.x - eyeCfg.right.w / 2 + mouseOffset.x}
-                                y={
-                                    eyeCfg.right.y -
-                                    (isBlinking ? 1 : eyeCfg.right.h / 2) +
-                                    mouseOffset.y
-                                }
-                                width={eyeCfg.right.w}
-                                height={isBlinking ? 2 : eyeCfg.right.h}
-                                rx={eyeCfg.right.w / 2}
-                                ry={eyeCfg.right.w / 2}
-                                fill="#000000"
-                                transform={`rotate(${eyeCfg.right.tilt}, ${eyeCfg.right.x}, ${eyeCfg.right.y})`}
-                                style={{
-                                    transition: prefersReducedMotion
-                                        ? 'none'
-                                        : 'all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                                }}
-                            />
-                        )}
+                        <rect
+                            x={eyeCfg.right.x - eyeCfg.right.w / 2 + mouseOffset.x}
+                            y={
+                                eyeCfg.right.y -
+                                (isBlinking ? 1 : eyeCfg.right.h / 2) +
+                                mouseOffset.y
+                            }
+                            width={eyeCfg.right.w}
+                            height={isBlinking ? 2 : eyeCfg.right.h}
+                            rx={eyeCfg.right.w / 2}
+                            ry={eyeCfg.right.w / 2}
+                            fill="#000000"
+                            transform={`rotate(${eyeCfg.right.tilt}, ${eyeCfg.right.x}, ${eyeCfg.right.y})`}
+                            style={{
+                                transition: prefersReducedMotion
+                                    ? 'none'
+                                    : 'all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1)',
+                            }}
+                        />
                     </mask>
 
                     {/* Rich black gradient with subtle top specular sheen */}

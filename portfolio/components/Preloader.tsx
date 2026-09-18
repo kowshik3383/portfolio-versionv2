@@ -35,7 +35,7 @@ export default function Preloader() {
         if (!shouldRender) return;
 
         const timer1 = setTimeout(() => {
-            setAvatarState('wink');
+            setAvatarState('greeting');
         }, 900);
 
         const timer2 = setTimeout(() => {
