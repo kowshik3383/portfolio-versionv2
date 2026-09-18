@@ -17,7 +17,7 @@ import {
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 
 export default function FloatingNavDock() {
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const pathname = usePathname();
 
     const githubUrl =
@@ -40,7 +40,7 @@ export default function FloatingNavDock() {
         },
         {
             title: 'Kowshik CLI',
-            icon: <Terminal className="size-full text-[#0E7490] hover:text-black transition-colors" />,
+            icon: <Terminal className="size-full text-[#0064E0] hover:text-black transition-colors" />,
             href: '/#engineering-benchmarks',
         },
         {
@@ -65,7 +65,7 @@ export default function FloatingNavDock() {
         },
         {
             title: 'Contact',
-            icon: <Mail className="size-full text-[#0E7490] hover:text-black transition-colors" />,
+            icon: <Mail className="size-full text-[#0064E0] hover:text-black transition-colors" />,
             href: `mailto:${GENERAL_INFO.email}?subject=${encodeURIComponent(
                 GENERAL_INFO.emailSubject
             )}`,
@@ -118,7 +118,7 @@ export default function FloatingNavDock() {
                     >
                         <FloatingDock
                             items={navItems}
-                            desktopClassName="border-[#E8E3DA] bg-[#FAF8F5]/90 shadow-xl shadow-neutral-900/10"
+                            desktopClassName="rounded-full border-[#E8E3DA] bg-[#FAF8F5]/95 shadow-2xl shadow-neutral-900/10"
                             mobileClassName="translate-y-0"
                         />
                     </motion.aside>

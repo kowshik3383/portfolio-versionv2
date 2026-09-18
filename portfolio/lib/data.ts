@@ -194,8 +194,8 @@ export const PROJECTS: IProject[] = [
                 "Deterministic FSM & Sandboxing: Finite state machine preventing hallucinated interview states and measuring runtime, stderr, and memory safely.",
                 "Hiring Decision Scorecards: Interactive competency radar matrix, rubric audit logs, and PDF export."
             ],
-            challenges: "Achieving sub-second voice latency while simultaneously synchronizing continuous WebSocket editor deltas and orchestrating multi-model LLM failovers. Solved by implementing a deterministic finite state machine on the server, lightweight delta buffers, and client-side audio streaming.",
-            outcome: "Delivered a realistic, high-fidelity technical interview simulator across 9 programming ecosystems with zero rate-limit aborts and human-level conversational cadence."
+            challenges: "Achieving real-time conversational voice streaming while simultaneously synchronizing continuous WebSocket editor deltas and orchestrating multi-model LLM failovers. Solved by implementing a deterministic finite state machine on the server, lightweight delta buffers, and client-side audio streaming.",
+            outcome: "Delivered an authentic, high-fidelity technical interview simulator across multi-language sandboxes (Python, TypeScript, Go & more) with zero rate-limit aborts and natural conversational cadence."
         },
         link: 'https://ai-interviewer-ten-delta.vercel.app/'
     },
@@ -219,7 +219,7 @@ export const PROJECTS: IProject[] = [
                 "Interactive Data Visualizations: Dynamic charts illustrating caloric deficits, macro splits, and weekly exercise frequency."
             ],
             challenges: "Handling multi-step state synchronization during user onboarding while calculating dynamic caloric targets and ensuring instant optimistic UI updates across diverse health logging categories.",
-            outcome: "Delivered a high-performance wellness dashboard with sub-second API responses, seamless mobile-responsive workflows, and complete daily health progress visibility."
+            outcome: "Delivered a high-performance wellness dashboard with optimistic UI updates, cached timeseries queries, seamless mobile-responsive workflows, and complete daily health progress visibility."
         },
         link: 'https://tracker-mocha-ten.vercel.app/'
     },
@@ -258,7 +258,7 @@ export const MY_EXPERIENCE: IExperience[] = [
         highlights: [
             'Architected and shipped core patient health flows in **React, Next.js, and React Native** — including daily glucose tracking, meal logging, and multi-step onboarding.',
             'Identified and resolved critical application bottlenecks, navigation deadlocks, date/timezone issues, and state sync bugs, significantly improving reliability.',
-            'Designed and shipped **30+ high-performance landing pages** in Next.js 15, optimizing for sub-second LCP and higher user conversion.',
+            'Designed and shipped **30+ high-performance landing pages** in Next.js 15, optimizing for sub-750ms LCP and higher user conversion.',
             'Collaborated directly with clinicians, users, and product teams to translate real-world medical pain points into intuitive, accessible mobile & web experiences.',
             'Implemented end-to-end **analytics and event-tracking funnels**, providing complete visibility into patient drop-off and retention.',
         ],

@@ -4,9 +4,9 @@ import { Variant } from '@/types';
 import { cn } from '@/lib/utils';
 
 const Child = ({ icon }: any) => (
-    <span className="flex items-center justify-center gap-3">
+    <span className="flex items-center justify-center gap-2">
         <svg
-            className="animate-spin h-5 w-5 text-white"
+            className="animate-spin h-4 w-4 text-current"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -25,7 +25,7 @@ const Child = ({ icon }: any) => (
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
         </svg>
-        {!icon && 'Processing...'}
+        {!icon && 'Loading...'}
     </span>
 );
 
@@ -49,27 +49,28 @@ const Button = ({
     icon = false,
     ...rest
 }: Props) => {
+    // Astryx Button Variants
     const variantClasses = {
-        primary: `bg-primary text-primary-foreground  hover:bg-primary-hover`,
-        secondary: `bg-secondary text-secondary-foreground hover:bg-secondary-hover`,
-        outline: `bg-transparent text-foreground border border-neutral-300 hover:border-neutral-400 hover:bg-neutral-100`,
-        success: `bg-green-500 text-white hover:bg-green-600`,
-        warning: `bg-orange-500 text-white hover:bg-orange-600`,
-        danger: `bg-destructive text-destructive-foreground hover:bg-destructive/70`,
-        info: `bg-blue-500 text-white hover:bg-blue-600`,
-        light: `bg-background-active text-foreground hover:bg-background-active`,
-        dark: `bg-foreground text-background hover:bg-foreground/80`,
-        link: `text-foreground hover:text-primary`,
+        primary: `bg-[#0064E0] text-white hover:bg-[#0052B3] shadow-xs hover:shadow-md hover:shadow-blue-500/20 active:scale-[0.98] border border-transparent`,
+        secondary: `bg-[#0D8626] text-white hover:bg-[#0B7320] shadow-xs hover:shadow-md hover:shadow-emerald-500/20 active:scale-[0.98] border border-transparent`,
+        outline: `bg-white text-[#0A1317] border border-[#E8E3DA] hover:border-neutral-400 hover:bg-[#FAF8F5] active:scale-[0.98] shadow-2xs`,
+        success: `bg-[#0D8626] text-white hover:bg-[#0B7320] shadow-xs active:scale-[0.98] border border-transparent`,
+        warning: `bg-[#E2A400] text-[#0A1317] hover:bg-[#C58600] active:scale-[0.98] border border-transparent`,
+        danger: `bg-[#E3193B] text-white hover:bg-[#C4122F] active:scale-[0.98] border border-transparent`,
+        info: `bg-[#0064E0] text-white hover:bg-[#0052B3] active:scale-[0.98] border border-transparent`,
+        light: `bg-[#FAF8F5] text-[#0A1317] hover:bg-white border border-[#E8E3DA] active:scale-[0.98]`,
+        dark: `bg-[#0A1317] text-white hover:bg-[#1E293B] active:scale-[0.98] border border-transparent`,
+        link: `text-[#0064E0] hover:text-[#0052B3] underline-offset-4 hover:underline bg-transparent p-0 h-auto`,
         'no-color': '',
     }[variant || 'primary'];
 
     const iconClasses = cn(
-        'min-w-9 aspect-square text-xl p-0 inline-flex items-center justify-center rounded-md',
+        'size-9 p-0 inline-flex items-center justify-center rounded-full',
         variantClasses,
     );
 
     const buttonClasses = cn(
-        `group h-12 px-8 inline-flex justify-center items-center gap-2 text-lg uppercase font-anton tracking-widest outline-none transition-colors relative overflow-hidden`,
+        `group h-11 px-6 inline-flex justify-center items-center gap-2 text-sm font-outfit font-semibold tracking-tight rounded-full outline-none transition-all duration-200 relative select-none disabled:opacity-50 disabled:pointer-events-none`,
         variantClasses,
         { [iconClasses]: icon },
         className,
@@ -85,10 +86,7 @@ const Button = ({
                     {...props}
                     href={props.href ? props.href.toString() : '/'}
                 >
-                    {variant !== 'link' && variant !== 'outline' && (
-                        <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-[50%] group-hover:top-0 transition-all duration-500 scale-150"></span>
-                    )}
-                    <span className="z-[1] inline-flex items-center justify-center gap-2">
+                    <span className="inline-flex items-center justify-center gap-2">
                         {loading ? <Child icon={icon} /> : children}
                     </span>
                 </a>
@@ -97,23 +95,17 @@ const Button = ({
 
         return (
             <Link className={buttonClasses} {...props} href={props.href || '/'}>
-                {variant !== 'link' && variant !== 'outline' && (
-                    <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-[50%] group-hover:top-0 transition-all duration-500 scale-150"></span>
-                )}
-                <span className="z-[1] inline-flex items-center justify-center gap-2">
+                <span className="inline-flex items-center justify-center gap-2">
                     {loading ? <Child icon={icon} /> : children}
                 </span>
             </Link>
         );
-    } else if (as === 'button') {
+    } else {
         const props = rest as ButtonProps;
 
         return (
             <button className={buttonClasses} {...props}>
-                {variant !== 'link' && variant !== 'outline' && (
-                    <span className="absolute top-[200%] left-0 right-0 h-full bg-white rounded-[50%] group-hover:top-0 transition-all duration-500 scale-150"></span>
-                )}
-                <span className="z-[1] inline-flex items-center justify-center gap-2">
+                <span className="inline-flex items-center justify-center gap-2">
                     {loading ? <Child icon={icon} /> : children}
                 </span>
             </button>

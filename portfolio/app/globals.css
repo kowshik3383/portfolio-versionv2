@@ -1,48 +1,53 @@
-/* Hallmark · macrostructure: Workbench · tone: editorial-technical · anchor hue: 185 · paper: #FAF8F5 */
+/* Astryx Design System · Meta Astryx & Matcha Theme System */
+@import '../tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
     :root {
-        /* Hallmark Paper & Ink System (#FAF8F5 Alabaster) */
-        --background: 38 33% 97.1%; /* #FAF8F5 warm alabaster */
+        /* Astryx Color System */
+        --background: 38 33% 97.1%; /* #FAF8F5 warm alabaster canvas */
         --background-light: 38 22% 94%; /* #F4EFEA warm container */
-        --foreground: 30 10% 10%; /* #191715 carbon ink */
+        --foreground: 204 39% 7%; /* #0A1317 deep Astryx carbon */
 
         --card: 0 0% 100%;
-        --card-foreground: 30 10% 10%;
-        --popover: 38 33% 97.1%;
-        --popover-foreground: 30 10% 10%;
+        --card-foreground: 204 39% 7%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 204 39% 7%;
 
-        --primary: 185 80% 28%; /* #0E7490 architectural cyan-slate */
-        --primary-hover: 185 80% 22%;
-        --primary-foreground: 38 33% 98%;
-        --secondary: 195 50% 30%;
-        --secondary-hover: 195 50% 24%;
-        --secondary-foreground: 38 33% 98%;
-        --muted: 38 20% 92.5%;
-        --muted-foreground: 30 6% 42%; /* #68645E warm charcoal */
-        --accent: 38 22% 93%;
-        --accent-foreground: 30 10% 10%;
-        --destructive: 0 72% 51%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 38 18% 87%; /* #E8E3DA warm stone hairline */
+        --primary: 213 100% 44%; /* #0064E0 Meta Astryx Royal Blue */
+        --primary-hover: 213 100% 35%; /* #0052B3 */
+        --primary-foreground: 0 0% 100%;
+        
+        --secondary: 132 82% 29%; /* #0D8626 Matcha Theme Green */
+        --secondary-hover: 132 82% 24%;
+        --secondary-foreground: 0 0% 100%;
+
+        --muted: 210 20% 96%;
+        --muted-foreground: 206 17% 37%; /* #4E606F Astryx slate */
+        --accent: 213 100% 96%; /* #EBF4FF */
+        --accent-foreground: 213 100% 44%;
+        --destructive: 350 89% 50%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 38 18% 87%; /* #E8E3DA subtle hairline */
         --input: 38 18% 87%;
-        --ring: 185 80% 28%;
+        --ring: 213 100% 44%;
 
         --color-paper: #FAF8F5;
         --color-card: #FFFFFF;
         --color-border: #E8E3DA;
-        --color-ink: #191715;
-        --color-ink-muted: #68645E;
-        --color-accent: #0E7490;
+        --color-ink: #0A1317;
+        --color-ink-muted: #4E606F;
+        --color-accent: #0064E0;
+        --color-matcha: #0D8626;
 
-        --chart-1: 185 80% 28%;
-        --chart-2: 160 60% 35%;
-        --chart-3: 30 80% 45%;
-        --chart-4: 280 65% 50%;
-        --chart-5: 340 75% 50%;
+        --chart-1: 213 100% 44%;
+        --chart-2: 132 82% 29%;
+        --chart-3: 35 95% 45%;
+        --chart-4: 265 85% 58%;
+        --chart-5: 350 89% 50%;
     }
 }
 
@@ -52,7 +57,7 @@
     }
    
     body {
-        @apply bg-background text-foreground font-roboto-flex;
+        @apply bg-background text-foreground font-sans antialiased;
     }
 }
 
@@ -123,25 +128,42 @@
             -webkit-text-stroke: 1.8px #191715;
         }
     }
-
-    /* Hard-edge Black & White Pop Shadow Typography (matching user reference: text-black drop-shadow-[1px_2px_0px_rgb(218_218_218/1)]) */
+    /* Clean Astryx Display Typography (crisp ink, negative tracking, balanced leading) */
     .hero-bw-word {
-        color: #000000;
-        -webkit-text-fill-color: #000000;
+        color: #0A1317;
+        -webkit-text-fill-color: #0A1317;
         -webkit-text-stroke: 0;
-        filter: drop-shadow(1px 2px 0px rgb(218 218 218 / 1));
+        letter-spacing: -0.03em;
     }
 
-    @media (min-width: 640px) {
-        .hero-bw-word {
-            filter: drop-shadow(2px 3px 0px rgb(218 218 218 / 1));
-        }
+    /* Astryx Aurora Background Glow */
+    .astryx-aurora {
+        background-image: 
+            radial-gradient(at 15% 15%, rgba(0, 100, 224, 0.08) 0px, transparent 55%),
+            radial-gradient(at 85% 20%, rgba(13, 134, 38, 0.06) 0px, transparent 50%),
+            radial-gradient(at 50% 80%, rgba(226, 164, 0, 0.04) 0px, transparent 55%);
     }
 
-    @media (min-width: 1024px) {
-        .hero-bw-word {
-            filter: drop-shadow(2.5px 3.5px 0px rgb(218 218 218 / 1));
-        }
+    /* Astryx Glass Header & Surface */
+    .astryx-glass {
+        background-color: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(232, 227, 218, 0.85);
+    }
+
+    /* Astryx Card Base */
+    .astryx-card {
+        background-color: #FFFFFF;
+        border: 1px solid #E8E3DA;
+        border-radius: var(--radius-container, 16px);
+        box-shadow: 0 1px 2px rgba(10, 19, 23, 0.03), 0 4px 12px rgba(10, 19, 23, 0.02);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .astryx-card:hover {
+        border-color: rgba(0, 100, 224, 0.35);
+        box-shadow: 0 2px 8px rgba(10, 19, 23, 0.05), 0 12px 24px rgba(10, 19, 23, 0.04);
     }
 }
 

@@ -108,7 +108,7 @@ const ProjectList = () => {
         <section className="relative py-20 sm:py-28 overflow-hidden border-t border-[#E8E3DA] bg-[#FAF8F5]" id="selected-projects">
             <div className="container relative z-10">
                 <div className="mb-14">
-                    <SectionTitle title="SELECTED PRODUCTION SYSTEMS" />
+                    <SectionTitle badge="FEATURED WORK" title="SELECTED PRODUCTION SYSTEMS" />
                     <p className="font-mono text-xs uppercase tracking-widest text-[#68645E] -mt-5">
                         Shipped web platforms, cross-platform mobile apps &amp; developer tools
                     </p>

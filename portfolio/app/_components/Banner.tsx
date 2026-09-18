@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import { GENERAL_INFO } from '@/lib/data';
@@ -14,74 +14,48 @@ import {
     ShieldCheck,
     CheckCircle2,
     Cpu,
+    Sparkles,
+    Layers,
+    Code2,
+    ArrowRight,
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-interface SprayCardProps {
-    metric: string;
-    title: string;
-    sub: string;
-    tag: string;
-    iconSrc?: string;
-    LucideIcon?: React.ElementType;
+interface SprayTechIconProps {
+    name: string;
+    iconSrc: string;
     className?: string;
     style?: React.CSSProperties;
 }
 
-const SprayCard: React.FC<SprayCardProps> = ({
-    metric,
-    title,
-    sub,
-    tag,
+const SprayTechIcon: React.FC<SprayTechIconProps> = ({
+    name,
     iconSrc,
-    LucideIcon,
     className = '',
     style,
 }) => {
     return (
         <div
             style={style}
-            className={`spray-card-item p-2 xl:p-2.5 rounded-2xl bg-white border border-[#E8E3DA] shadow-md shadow-neutral-900/5 flex items-center gap-2.5 transition-shadow duration-300 hover:shadow-xl hover:border-[#0E7490]/40 group select-none ${className}`}
+            title={name}
+            aria-label={name}
+            className={`spray-card-item size-14 xl:size-16 rounded-2xl bg-white/95 backdrop-blur-md border border-[#E8E3DA] shadow-xs flex items-center justify-center transition-all duration-300 hover:scale-115 hover:shadow-lg hover:border-[#0064E0]/40 group select-none ${className}`}
         >
-            <div className="size-8 xl:size-9 rounded-xl bg-[#FAF8F5] border border-[#E8E3DA] p-1.5 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
-                {iconSrc ? (
-                    <Image
-                        src={iconSrc}
-                        alt={title}
-                        width={18}
-                        height={18}
-                        className="object-contain"
-                    />
-                ) : LucideIcon ? (
-                    <LucideIcon size={16} className="text-[#0E7490]" />
-                ) : null}
-            </div>
-            <div className="min-w-0 flex-1 text-left">
-                <div className="flex items-center gap-1.5">
-                    <span className="font-anton text-sm xl:text-base text-[#191715] leading-none tracking-tight">
-                        {metric}
-                    </span>
-                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                </div>
-                <p className="font-mono text-[10.5px] font-semibold text-[#0E7490] truncate mt-0.5">
-                    {title}
-                </p>
-                <div className="flex items-center justify-between gap-1 mt-0.5">
-                    <p className="text-[9.5px] text-[#68645E] truncate leading-tight font-light">
-                        {sub}
-                    </p>
-                    <span className="text-[8.5px] font-mono px-1 rounded bg-[#FAF8F5] border border-[#E8E3DA] text-neutral-600 shrink-0 hidden xl:inline-block">
-                        {tag}
-                    </span>
-                </div>
-            </div>
+            <Image
+                src={iconSrc}
+                alt={name}
+                width={32}
+                height={32}
+                className="object-contain max-h-8 max-w-8 group-hover:scale-110 transition-transform duration-200"
+            />
         </div>
     );
 };
 
 const Banner = () => {
     const bannerRef = useRef<HTMLDivElement>(null);
+    const [activeTheme, setActiveTheme] = useState<'matcha' | 'astryx' | 'slate'>('matcha');
 
     // Synchronize Lenis smooth scroll frames directly with GSAP ScrollTrigger
     useLenis(() => {
@@ -116,7 +90,7 @@ const Banner = () => {
             )
             .fromTo(
                 '.hero-headline-word',
-                { opacity: 0, y: 25, rotateX: 12 },
+                { opacity: 0, y: 25, rotateX: 10 },
                 { opacity: 1, y: 0, rotateX: 0, stagger: 0.035, duration: 0.65 },
                 '-=0.25'
             )
@@ -134,18 +108,18 @@ const Banner = () => {
             )
             .fromTo(
                 '.left-cards-wrapper .spray-card-item',
-                { opacity: 0, scale: 0.65, x: -40 },
+                { opacity: 0, scale: 0.7, x: -35 },
                 { opacity: 1, scale: 1, x: 0, stagger: 0.06, duration: 0.6 },
                 '-=0.45'
             )
             .fromTo(
                 '.right-cards-wrapper .spray-card-item',
-                { opacity: 0, scale: 0.65, x: 40 },
+                { opacity: 0, scale: 0.7, x: 35 },
                 { opacity: 1, scale: 1, x: 0, stagger: 0.06, duration: 0.6 },
                 '-=0.55'
             );
 
-        // 2. Scroll-Driven Convergence to Author Photo in AboutMe (matching nextjs-project script.js)
+        // 2. Scroll-Driven Convergence to Author Photo in AboutMe
         const mm = gsap.matchMedia();
 
         // Desktop Setup (min-width: 1024px)
@@ -159,12 +133,11 @@ const Banner = () => {
                 },
             });
 
-            // Target author photo in AboutMe scales down into sharp focus
             botAnimationTimeLine.fromTo(
                 '#about-author-img-box',
                 {
-                    scale: 1.8,
-                    y: 60,
+                    scale: 1.6,
+                    y: 50,
                     opacity: 0.6,
                     ease: 'power2.out',
                 },
@@ -177,7 +150,6 @@ const Banner = () => {
                 'landing-page-img-position-change'
             );
 
-            // Left and Right card wrappers blur slightly during convergence
             botAnimationTimeLine.to(
                 '.left-cards-wrapper',
                 {
@@ -194,7 +166,6 @@ const Banner = () => {
                 'landing-page-img-position-change'
             );
 
-            // Dynamic vector calculation: Every card travels precisely into the center of Kowshik's photo!
             botAnimationTimeLine.to(
                 '.left-cards-wrapper .spray-card-item',
                 {
@@ -265,7 +236,7 @@ const Banner = () => {
 
             mobileTimeline.fromTo(
                 '#about-author-img-box',
-                { scale: 1.4, y: 35, opacity: 0.6 },
+                { scale: 1.3, y: 30, opacity: 0.6 },
                 { scale: 1, y: 0, opacity: 1, ease: 'power2.out' },
                 'mobile-converge'
             );
@@ -276,155 +247,168 @@ const Banner = () => {
         <section
             ref={bannerRef}
             id="banner"
-            className="hero-one-fold w-full bg-[#FAF8F5] flex flex-col justify-between  pb-6 pt-2 sm:pb-8 relative"
+            className="hero-one-fold w-full bg-[#FAF8F5] astryx-aurora flex flex-col justify-between pb-8 pt-12 sm:pt-16 sm:pb-12 relative overflow-hidden"
         >
-         
-
-            {/* Sprayed Elements: Desktop Left Flank (4 Sleek Badges Sprayed on Perimeter) */}
+            {/* Sprayed Elements: Desktop Left Flank */}
             <div className="left-cards-wrapper hidden lg:block">
-                {/* Left Card 1: Figma Plugin Achievement (Top Outer Left) */}
-                <SprayCard
-                    metric="1.5k+ Installs"
-                    title="Figma to Code Plugin"
-                    sub="HTML · Tailwind · React Component Gen"
-                    tag="Community"
-                    iconSrc="/logo/figma.svg"
-                    className="w-[200px] xl:w-[225px] -rotate-3 hover:rotate-0 hover:scale-105"
-                    style={{ top: '12%', left: '3%' }}
-                />
-
-                {/* Left Card 2: React Native Worklets Tech (Upper Mid Inner Left) */}
-                <SprayCard
-                    metric="120 FPS Native"
-                    title="React Native (iOS &amp; Android)"
-                    sub="Bridgeless JSI TurboModules &amp; Worklets"
-                    tag="Mobile"
+                <SprayTechIcon
+                    name="React Native"
                     iconSrc="/logo/react-native.svg"
-                    className="w-[200px] xl:w-[225px] rotate-2 hover:rotate-0 hover:scale-105"
-                    style={{ top: '35%', left: '12%' }}
+                    className="-rotate-6 hover:rotate-0"
+                    style={{ top: '14%', left: '7%' }}
                 />
 
-                {/* Left Card 3: App Users Driven Achievement (Lower Mid Outer Left) */}
-                <SprayCard
-                    metric="20k+ App Users"
-                    title="Driven via 30+ Next.js LPs"
-                    sub="Sub-750ms LCP &amp; Edge RSC Streaming"
-                    tag="Growth"
-                    iconSrc="/logo/next.png"
-                    className="w-[200px] xl:w-[225px] -rotate-2 hover:rotate-0 hover:scale-105"
-                    style={{ top: '58%', left: '3%' }}
-                />
-
-                {/* Left Card 4: React 19 Frontend Tech (Bottom Inner Left) */}
-                <SprayCard
-                    metric="React 19 &amp; Next.js 15"
-                    title="Server Actions &amp; Optimistic UI"
-                    sub="Deterministic State Machines &amp; Zero-JS"
-                    tag="Frontend"
+                <SprayTechIcon
+                    name="React.js"
                     iconSrc="/logo/react.png"
-                    className="w-[200px] xl:w-[225px] rotate-3 hover:rotate-0 hover:scale-105"
-                    style={{ top: '80%', left: '13%' }}
+                    className="rotate-3 hover:rotate-0"
+                    style={{ top: '36%', left: '15%' }}
+                />
+
+                <SprayTechIcon
+                    name="Next.js"
+                    iconSrc="/logo/next.png"
+                    className="-rotate-3 hover:rotate-0"
+                    style={{ top: '58%', left: '7%' }}
+                />
+
+                <SprayTechIcon
+                    name="JavaScript"
+                    iconSrc="/logo/js.png"
+                    className="rotate-6 hover:rotate-0"
+                    style={{ top: '80%', left: '15%' }}
                 />
             </div>
 
-            {/* Sprayed Elements: Desktop Right Flank (4 Sleek Badges Sprayed on Perimeter) */}
+            {/* Sprayed Elements: Desktop Right Flank */}
             <div className="right-cards-wrapper hidden lg:block">
-                {/* Right Card 1: Paid Conversions Achievement (Top Outer Right) */}
-                <SprayCard
-                    metric="1,500+ Paid Users"
-                    title="Patient &amp; Member Funnels"
-                    sub="High-Fidelity Onboarding Conversion"
-                    tag="Conversions"
-                    LucideIcon={CheckCircle2}
-                    className="w-[200px] xl:w-[225px] rotate-3 hover:rotate-0 hover:scale-105"
-                    style={{ top: '12%', right: '3%' }}
-                />
-
-                {/* Right Card 2: PostgreSQL Latency & DB Tech (Upper Mid Inner Right) */}
-                <SprayCard
-                    metric="p95 Latency &lt; 25ms"
-                    title="PostgreSQL &amp; PgBouncer"
-                    sub="EXPLAIN Profiled Composite B-Trees"
-                    tag="Database"
-                    iconSrc="/logo/postgreSQL.png"
-                    className="w-[200px] xl:w-[225px] -rotate-2 hover:rotate-0 hover:scale-105"
-                    style={{ top: '35%', right: '12%' }}
-                />
-
-                {/* Right Card 3: Deterministic Systems & Core Web Vitals (Lower Mid Outer Right) */}
-                <SprayCard
-                    metric="100% Core Web Vitals"
-                    title="State &amp; Layout Invariants"
-                    sub="CLS 0.000 · INP &lt; 25ms · Optimistic UI"
-                    tag="Invariants"
-                    LucideIcon={ShieldCheck}
-                    className="w-[200px] xl:w-[225px] rotate-2 hover:rotate-0 hover:scale-105"
-                    style={{ top: '58%', right: '3%' }}
-                />
-
-                {/* Right Card 4: Backend Node.js & TypeScript Contracts (Bottom Inner Right) */}
-                <SprayCard
-                    metric="End-to-End Type Safety"
-                    title="Node.js &amp; TypeScript"
-                    sub="Strict Monorepo Zod Contracts"
-                    tag="Backend"
+                <SprayTechIcon
+                    name="TypeScript"
                     iconSrc="/logo/ts.png"
-                    className="w-[200px] xl:w-[225px] -rotate-3 hover:rotate-0 hover:scale-105"
-                    style={{ top: '80%', right: '13%' }}
+                    className="rotate-6 hover:rotate-0"
+                    style={{ top: '14%', right: '7%' }}
+                />
+
+                <SprayTechIcon
+                    name="Node.js"
+                    iconSrc="/logo/node.png"
+                    className="-rotate-3 hover:rotate-0"
+                    style={{ top: '36%', right: '15%' }}
+                />
+
+                <SprayTechIcon
+                    name="PostgreSQL"
+                    iconSrc="/logo/postgreSQL.png"
+                    className="rotate-3 hover:rotate-0"
+                    style={{ top: '58%', right: '7%' }}
+                />
+
+                <SprayTechIcon
+                    name="Figma"
+                    iconSrc="/logo/figma.svg"
+                    className="-rotate-6 hover:rotate-0"
+                    style={{ top: '80%', right: '15%' }}
                 />
             </div>
 
-            {/* Core Centered Selling Info: Balanced across 2 Clean Lines with Wide Breathing Space */}
-            <div className="container max-w-4xl xl:max-w-5xl mx-auto px-4 text-center my-auto relative z-20 py-2">
-                {/* Micro-Eyebrow */}
-                <div className="hero-center-badge inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#E8E3DA] text-xs font-mono text-[#0E7490] font-medium mb-4 shadow-xs">
-                    <Cpu size={13} />
-                    <span>Scientific Architecture &amp; Latency Invariants</span>
+            {/* Core Centered Hero Pitch */}
+            <div className="container max-w-4xl xl:max-w-5xl mx-auto px-4 text-center my-auto relative z-20 py-4">
+                {/* Identity Kicker Status Pill */}
+                <div className="hero-reveal-meta inline-flex flex-wrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-[#E8E3DA] text-xs font-mono text-[#0064E0] font-medium mb-5 shadow-2xs">
+                    <span className="inline-flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60 font-semibold text-[11px]">
+                        <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Full Stack &amp; Mobile Engineer</span>
+                    </span>
+                    <span className="text-[#4E606F]">Specializing in High-Reliability Systems</span>
                 </div>
 
-                {/* Master Display Headline: Full-Stack Engineer — Web & Mobile Specialist */}
-                <h1 className="font-anton text-3xl sm:text-5xl md:text-6xl lg:text-[4.1rem] xl:text-[4.6rem] tracking-tight leading-[1] text-black uppercase mx-auto">
+                {/* Master Display Headline */}
+                <h1 className="font-outfit text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.75rem] font-extrabold tracking-tight leading-[1.08] text-[#0A1317] mx-auto">
                     <span className="block">
-                        <span className="inline-block hero-headline-word hero-bw-word">Full-Stack</span>{' '}
-                        <span className="inline-block hero-headline-word hero-bw-word">Engineer</span>
+                        <span className="inline-block hero-headline-word hero-bw-word">Engineered for reliability.</span>
                     </span>
-                    <span className="block mt-1 sm:mt-2">
-                        <span className="inline-block hero-headline-word hero-bw-word">Web</span>{' '}
-                        <span className="inline-block hero-headline-word hero-bw-word">&amp;</span>{' '}
-                        <span className="inline-block hero-headline-word hero-bw-word">Mobile</span>{' '}
-                        <span className="inline-block hero-headline-word hero-bw-word">Specialist.</span>
+                    <span className="block mt-1 sm:mt-2 text-[#0064E0]">
+                        <span className="inline-block hero-headline-word">Measured in production.</span>
                     </span>
                 </h1>
 
-                {/* Technical Elevator Pitch: Broad, Balanced 2-Line Layout */}
-                <p className="hero-body-text text-sm sm:text-base md:text-[1.05rem] text-[#68645E] font-light leading-relaxed max-w-2xl xl:max-w-3xl mx-auto mt-4 sm:mt-5 text-balance">
-                    Hi, I&apos;m <span className="text-[#191715] font-semibold">Kowshik Valipireddy</span>. A full-stack engineer and React Native specialist building resilient, low-latency applications with <strong className="text-[#191715] font-medium">Next.js 15, React 19, React Native, Node.js, and PostgreSQL</strong>. Every architectural decision is measured against frame budgets and deterministic state invariants.
+                {/* Technical Elevator Pitch */}
+                <p className="hero-body-text text-sm sm:text-base md:text-lg text-[#4E606F] font-normal leading-relaxed max-w-2xl xl:max-w-3xl mx-auto mt-4 sm:mt-5 text-balance px-2 sm:px-0">
+                    Building high-reliability health systems, offline-first developer tooling, and high-conversion web apps. Sourced from first-principles engineering by <strong className="text-[#0A1317] font-semibold">Kowshik Valipireddy</strong> — specializing in cross-platform React Native, Next.js 15, and deterministic state architectures.
                 </p>
 
-                {/* Centered Action CTAs */}
-                <div className="hero-cta-group flex flex-wrap items-center justify-center gap-3.5 pt-6 sm:pt-7">
+                {/* Mobile-First Tech Icon Grid/Ribbon (Touch-optimized for viewports < 1024px) */}
+                <div className="lg:hidden mt-5 pt-1 flex items-center justify-center flex-wrap gap-2.5 sm:gap-3 max-w-xs sm:max-w-md mx-auto">
+                    {[
+                        { name: 'React Native', src: '/logo/react-native.svg' },
+                        { name: 'React.js', src: '/logo/react.png' },
+                        { name: 'Next.js', src: '/logo/next.png' },
+                        { name: 'TypeScript', src: '/logo/ts.png' },
+                        { name: 'Node.js', src: '/logo/node.png' },
+                        { name: 'PostgreSQL', src: '/logo/postgreSQL.png' },
+                        { name: 'Figma', src: '/logo/figma.svg' },
+                        { name: 'JavaScript', src: '/logo/js.png' },
+                    ].map((tech) => (
+                        <div
+                            key={tech.name}
+                            title={tech.name}
+                            aria-label={tech.name}
+                            className="size-11 sm:size-12 rounded-2xl bg-white/95 border border-[#E8E3DA] shadow-2xs flex items-center justify-center p-2 transition-transform active:scale-90"
+                        >
+                            <Image
+                                src={tech.src}
+                                alt={tech.name}
+                                width={26}
+                                height={26}
+                                className="object-contain max-h-6 max-w-6"
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {/* Responsive Action CTAs: Full-width stacked on mobile, row on tablet/desktop */}
+                <div className="hero-cta-group flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5 sm:gap-3 pt-5 sm:pt-7 max-w-xs sm:max-w-none mx-auto w-full">
                     <Button
                         as="link"
                         href="#selected-projects"
-                        onClick={() => trackEvent('Inspect Production Work Clicked', { section: 'Hero' })}
+                        onClick={() => trackEvent('View Projects Clicked', { section: 'Hero' })}
                         variant="primary"
-                        className="banner-button px-6 py-3 rounded-xl font-medium bg-[#0E7490] hover:bg-[#0c627a] text-white transition-all text-sm shadow-md"
+                        className="px-6 py-3.5 sm:py-3 rounded-full font-outfit font-semibold bg-[#0064E0] hover:bg-[#0052B3] text-white transition-all text-sm shadow-xs justify-center"
                     >
-                        <span>Inspect Production Work</span>
+                        <span>View selected projects</span>
+                        <ArrowUpRight size={15} />
                     </Button>
 
                     <Button
                         as="link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={GENERAL_INFO.upworkProfile}
-                        onClick={() => trackEvent('Schedule Consultation Clicked', { target: 'UpworkProfile', section: 'Hero' })}
+                        href="#about-me"
+                        onClick={() => trackEvent('Read Principles Clicked', { section: 'Hero' })}
                         variant="outline"
-                        className="banner-button px-6 py-3 rounded-xl font-medium border-[#E8E3DA] bg-white hover:bg-[#FAF8F5] text-[#191715] transition-colors text-sm inline-flex items-center gap-1.5 shadow-sm"
+                        className="px-6 py-3.5 sm:py-3 rounded-full font-outfit font-semibold border-[#E8E3DA] bg-white hover:bg-[#FAF8F5] text-[#0A1317] transition-all text-sm inline-flex items-center justify-center gap-1.5 shadow-2xs"
                     >
-                        <span>Schedule Consultation</span>
-                        <ArrowUpRight size={15} />
+                        <span>Read first-principles</span>
+                        <ArrowRight size={14} className="text-[#8A94A0]" />
                     </Button>
+                </div>
+
+                {/* Verified Production Telemetry Pill Bar */}
+                <div className="mt-6 sm:mt-8 pt-2 sm:pt-4 inline-flex flex-wrap items-center justify-center gap-2 max-w-xl mx-auto">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 border border-[#E8E3DA] text-[11px] font-mono text-[#4E606F] shadow-2xs">
+                        <span className="size-1.5 rounded-full bg-emerald-500" />
+                        <span>Sub-750ms LCP</span>
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 border border-[#E8E3DA] text-[11px] font-mono text-[#4E606F] shadow-2xs">
+                        <span className="size-1.5 rounded-full bg-blue-500" />
+                        <span>React Native JSI</span>
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 border border-[#E8E3DA] text-[11px] font-mono text-[#4E606F] shadow-2xs">
+                        <span className="size-1.5 rounded-full bg-purple-500" />
+                        <span>Zero-Telemetry Tooling</span>
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 border border-[#E8E3DA] text-[11px] font-mono text-[#4E606F] shadow-2xs">
+                        <span className="size-1.5 rounded-full bg-amber-500" />
+                        <span>Deterministic FSM</span>
+                    </div>
                 </div>
             </div>
 

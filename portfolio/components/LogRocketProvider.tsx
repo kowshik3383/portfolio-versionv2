@@ -30,7 +30,7 @@ export default function LogRocketProvider() {
                 });
 
                 // Set up React component click & performance tracking plugin
-                setupLogRocketReact(LogRocket);
+                (setupLogRocketReact as any)(LogRocket);
             } catch (err) {
                 console.warn('[LogRocket] Failed to initialize:', err);
             }

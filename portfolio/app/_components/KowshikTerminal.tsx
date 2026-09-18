@@ -160,7 +160,7 @@ export default function KowshikTerminal() {
                         <span className="size-2.5 rounded-full bg-[#27C93F] inline-block shadow-sm" />
                     </div>
                     <div className="flex items-center gap-2 text-xs text-[#8AADF4] font-medium">
-                        <TerminalIcon size={12} className="text-[#0E7490]" />
+                        <TerminalIcon size={12} className="text-[#0064E0]" />
                         <span>kowshik@portfolio: ~/engine (zsh)</span>
                         <span className="hidden sm:inline-block px-1.5 py-0.2 rounded bg-[#24273A] text-[10px] text-neutral-400">
                             v2.5.0
@@ -204,7 +204,7 @@ export default function KowshikTerminal() {
                         }}
                         className={`px-2 py-0.5 rounded-md text-[10.5px] font-mono transition-all shrink-0 border ${
                             cmd === 'sudo hire-me'
-                                ? 'bg-[#0E7490]/20 hover:bg-[#0E7490]/35 text-[#38BDF8] border-[#0E7490]/40 font-semibold'
+                                ? 'bg-[#0064E0]/20 hover:bg-[#0064E0]/35 text-[#38BDF8] border-[#0064E0]/40 font-semibold'
                                 : 'bg-[#202231] hover:bg-[#282b3d] text-neutral-300 hover:text-white border-[#2c3046]'
                         }`}
                     >
@@ -235,8 +235,8 @@ export default function KowshikTerminal() {
                         {/* Render command line if this was user input */}
                         {item.command && (
                             <div className="flex items-center gap-2 text-[#A6DA95] font-semibold">
-                                <span className="text-[#8AADF4] font-normal select-none">
-                                    kowshik@portfolio ~ %
+                                <span className="text-[#8AADF4] font-normal select-none shrink-0">
+                                    <span className="hidden sm:inline">kowshik@portfolio </span>~ %
                                 </span>
                                 <span className="text-white">{item.command}</span>
                             </div>
@@ -257,7 +257,7 @@ export default function KowshikTerminal() {
                     }}
                 >
                     <span className="text-[#8AADF4] text-xs font-semibold select-none shrink-0 leading-normal">
-                        kowshik@portfolio ~ %
+                        <span className="hidden sm:inline">kowshik@portfolio </span>~ %
                     </span>
                     <div className="relative flex-1 flex items-center min-w-0">
                         {/* Visual Typed Text + Blinking Block Cursor */}

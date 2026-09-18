@@ -75,14 +75,14 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
             <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header section */}
                 <div className="max-w-3xl mb-12">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs text-primary font-mono mb-4">
-                        <Sparkles size={13} className="text-primary" />
-                        <span>ARTICLES & INSIGHTS</span>
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-xs text-[#0064E0] font-mono mb-4">
+                        <Sparkles size={13} className="text-[#0064E0]" />
+                        <span>ARTICLES &amp; INSIGHTS</span>
                     </div>
-                    <h1 className="text-4xl sm:text-6xl font-anton tracking-tight text-neutral-900 uppercase mb-4">
-                        Engineering <span className="text-primary">Blog</span>
+                    <h1 className="text-4xl sm:text-6xl font-outfit font-extrabold tracking-tight text-[#0A1317] mb-4">
+                        Engineering <span className="text-[#0064E0]">Blog</span>
                     </h1>
-                    <p className="text-lg text-neutral-600 leading-relaxed">
+                    <p className="text-base sm:text-lg text-[#4E606F] leading-relaxed">
                         Deep dives into Full Stack Architecture, Next.js 15, AI Agent Engineering, Web Performance, and scalable system design.
                     </p>
                 </div>
@@ -90,31 +90,31 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                 {/* Featured Post Hero */}
                 {featuredPost && selectedCategory === 'All' && selectedTag === 'All' && !searchQuery && (
                     <div className="mb-16">
-                        <div className="text-xs uppercase font-mono tracking-wider text-neutral-500 mb-4 flex items-center gap-2">
-                            <BookOpen size={14} className="text-primary" />
+                        <div className="text-xs uppercase font-mono tracking-wider text-[#4E606F] mb-4 flex items-center gap-2">
+                            <BookOpen size={14} className="text-[#0064E0]" />
                             <span>FEATURED ARTICLE</span>
                         </div>
                         <TransitionLink
                             href={`/blog/${featuredPost.slug}`}
-                            className="group block relative rounded-2xl overflow-hidden border border-neutral-200 bg-white hover:bg-neutral-50/50 hover:border-primary/50 transition-all duration-500 shadow-md shadow-neutral-900/5"
+                            className="group block relative rounded-3xl overflow-hidden border border-[#E8E3DA] bg-white hover:bg-[#FAF8F5]/60 hover:border-[#0064E0]/40 transition-all duration-300 shadow-xs hover:shadow-md"
                         >
                             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-8 items-center">
                                 <div className="lg:col-span-7 space-y-4">
                                     <div className="flex flex-wrap items-center gap-3">
-                                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-[#0064E0] border border-blue-200">
                                             {featuredPost.category}
                                         </span>
-                                        <div className="flex items-center gap-1.5 text-xs text-neutral-500">
+                                        <div className="flex items-center gap-1.5 text-xs text-[#4E606F] font-mono">
                                             <Calendar size={13} />
                                             <span>{formatDate(featuredPost.publishedAt)}</span>
                                         </div>
-                                        <div className="flex items-center gap-1.5 text-xs text-neutral-500">
+                                        <div className="flex items-center gap-1.5 text-xs text-[#4E606F] font-mono">
                                             <Clock size={13} />
                                             <span>{featuredPost.readingTime}</span>
                                         </div>
                                     </div>
 
-                                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-anton tracking-tight text-neutral-900 group-hover:text-primary transition-colors duration-300">
+                                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-outfit font-bold tracking-tight text-[#0A1317] group-hover:text-[#0064E0] transition-colors duration-300 leading-tight">
                                         {featuredPost.title}
                                     </h2>
 
@@ -257,10 +257,10 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                             <TransitionLink
                                 key={post.slug}
                                 href={`/blog/${post.slug}`}
-                                className="fade-in-blog group flex flex-col rounded-2xl overflow-hidden border border-neutral-200 bg-white hover:bg-neutral-50/50 hover:border-primary/50 shadow-sm hover:shadow-md transition-all duration-300"
+                                className="fade-in-blog group flex flex-col rounded-3xl overflow-hidden border border-[#E8E3DA] bg-white hover:bg-[#FAF8F5]/60 hover:border-[#0064E0]/40 shadow-xs hover:shadow-md transition-all duration-300"
                             >
                                 {/* Thumbnail */}
-                                <div className="aspect-[16/10] relative overflow-hidden bg-neutral-100">
+                                <div className="aspect-[16/10] relative overflow-hidden bg-[#FAF8F5]">
                                     <Image
                                         src={post.coverImage}
                                         alt={post.title}
@@ -269,50 +269,50 @@ const BlogListClient = ({ posts, categories, tags }: Props) => {
                                         className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                                     />
                                     <div className="absolute top-3 left-3">
-                                        <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white/90 backdrop-blur-md text-neutral-800 border border-neutral-200/80 shadow-sm">
+                                        <span className="px-3 py-1 rounded-full text-[11px] font-medium bg-white/95 backdrop-blur-md text-[#0A1317] border border-[#E8E3DA] shadow-2xs font-sans">
                                             {post.category}
                                         </span>
                                     </div>
                                 </div>
 
                                 {/* Content */}
-                                <div className="p-6 flex flex-col flex-grow justify-between space-y-4">
+                                <div className="p-6 sm:p-7 flex flex-col flex-grow justify-between space-y-4">
                                     <div className="space-y-3">
-                                        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                                        <div className="flex items-center gap-3 text-xs text-[#4E606F] font-mono">
                                             <div className="flex items-center gap-1">
-                                                <Calendar size={12} />
+                                                <Calendar size={12} className="text-[#0064E0]" />
                                                 <span>{formatDate(post.publishedAt)}</span>
                                             </div>
                                             <span>•</span>
                                             <div className="flex items-center gap-1">
-                                                <Clock size={12} />
+                                                <Clock size={12} className="text-[#0064E0]" />
                                                 <span>{post.readingTime}</span>
                                             </div>
                                         </div>
 
-                                        <h3 className="text-xl font-anton tracking-tight text-neutral-900 group-hover:text-primary transition-colors line-clamp-2">
+                                        <h3 className="text-xl font-outfit font-bold tracking-tight text-[#0A1317] group-hover:text-[#0064E0] transition-colors line-clamp-2 leading-snug">
                                             {post.title}
                                         </h3>
 
-                                        <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed line-clamp-3">
+                                        <p className="text-xs sm:text-sm text-[#4E606F] font-normal leading-relaxed line-clamp-3">
                                             {post.excerpt}
                                         </p>
                                     </div>
 
-                                    <div className="pt-2 border-t border-neutral-100 flex items-center justify-between">
+                                    <div className="pt-3 border-t border-[#F0ECE4] flex items-center justify-between">
                                         <div className="flex gap-1.5 overflow-hidden">
                                             {post.tags.slice(0, 2).map((t) => (
                                                 <span
                                                     key={t}
-                                                    className="text-[10px] font-mono text-neutral-600 bg-neutral-100 px-2 py-0.5 rounded border border-neutral-200"
+                                                    className="text-[10px] font-mono text-[#4E606F] bg-[#FAF8F5] px-2.5 py-0.5 rounded-full border border-[#E8E3DA]"
                                                 >
                                                     #{t}
                                                 </span>
                                             ))}
                                         </div>
 
-                                        <span className="text-xs font-semibold text-primary inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                            Read <ArrowRight size={13} />
+                                        <span className="text-xs font-semibold text-[#0064E0] inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform font-sans">
+                                            Read post <ArrowRight size={13} />
                                         </span>
                                     </div>
                                 </div>

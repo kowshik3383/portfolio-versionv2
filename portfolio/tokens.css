@@ -1,40 +1,81 @@
-/* Hallmark Design System · Warm Alabaster (#FAF8F5) Design Tokens */
+/* Astryx Design System · Tokens (Meta Astryx & Matcha Theme) */
 :root {
-    /* Color Tokens */
+    /* Brand & Accent Tokens */
+    --color-brand: #0064E0;
+    --color-brand-hover: #0052B3;
+    --color-brand-subtle: #EBF4FF;
+    
+    --color-matcha: #0D8626;
+    --color-matcha-hover: #0B7320;
+    --color-matcha-subtle: #EAF7EE;
+
+    --color-accent: #0064E0;
+    --color-accent-hover: #0052B3;
+    --color-accent-subtle: #EBF4FF;
+    --color-accent-muted: rgba(0, 100, 224, 0.12);
+
+    /* Paper & Surface System */
     --color-paper: #FAF8F5;
+    --color-paper-light: #F4EFEA;
     --color-card: #FFFFFF;
+    --color-card-subtle: #F8FAFC;
+    
+    /* Text / Ink Tokens */
+    --color-ink: #0A1317;
+    --color-ink-muted: #4E606F;
+    --color-ink-faint: #8A94A0;
+    --color-on-accent: #FFFFFF;
+
+    /* Hairline Border Tokens */
     --color-border: #E8E3DA;
     --color-border-subtle: #F0ECE4;
-    --color-ink: #191715;
-    --color-ink-muted: #68645E;
-    --color-ink-faint: #9E9A92;
-    --color-accent: #0E7490;
-    --color-accent-hover: #0C627A;
-    --color-accent-subtle: #ECFEFF;
-    --color-success: #15803D;
+    --color-border-emphasized: #CBD5E1;
+    --color-border-accent: rgba(0, 100, 224, 0.25);
 
-    /* Space Tokens (4pt Scale) */
-    --space-2xs: 4px;
-    --space-xs: 8px;
-    --space-sm: 12px;
-    --space-md: 16px;
-    --space-lg: 24px;
-    --space-xl: 32px;
-    --space-2xl: 48px;
-    --space-3xl: 64px;
+    /* State Tokens */
+    --color-success: #0D8626;
+    --color-success-subtle: #EAF7EE;
+    --color-warning: #E2A400;
+    --color-warning-subtle: #FEF7E0;
+    --color-error: #E3193B;
+    --color-error-subtle: #FDF2F4;
 
-    /* Motion Tokens */
-    --dur-instant: 100ms;
-    --dur-short: 200ms;
-    --dur-medium: 350ms;
-    --dur-deliberate: 650ms;
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    /* Astryx Aurora Background Tokens */
+    --x---aurora-left: rgba(0, 100, 224, 0.08);
+    --x---aurora-center: rgba(13, 134, 38, 0.05);
+    --x---aurora-right: rgba(226, 164, 0, 0.05);
 
-    /* Radii */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
+    /* Spacing Scale (4pt System) */
+    --spacing-0: 0px;
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-5: 20px;
+    --spacing-6: 24px;
+    --spacing-7: 28px;
+    --spacing-8: 32px;
+    --spacing-10: 40px;
+    --spacing-12: 48px;
+    --spacing-16: 64px;
+
+    /* Radii System */
+    --radius-inner: 4px;
+    --radius-element: 8px;
+    --radius-container: 16px;
+    --radius-page: 24px;
+    --radius-chat: 28px;
     --radius-full: 9999px;
+
+    /* Elevation / Shadows */
+    --shadow-low: 0px 1px 2px rgba(10, 19, 23, 0.04), 0px 2px 6px rgba(10, 19, 23, 0.02);
+    --shadow-med: 0px 2px 4px rgba(10, 19, 23, 0.05), 0px 8px 18px rgba(10, 19, 23, 0.04);
+    --shadow-high: 0px 4px 8px rgba(10, 19, 23, 0.06), 0px 16px 36px rgba(10, 19, 23, 0.08);
+
+    /* Transitions & Motion */
+    --duration-fast: 175ms;
+    --duration-medium: 350ms;
+    --duration-slow: 700ms;
+    --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }

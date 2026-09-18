@@ -56,6 +56,16 @@ export default {
                     '4': 'hsl(var(--chart-4))',
                     '5': 'hsl(var(--chart-5))',
                 },
+                brand: {
+                    DEFAULT: '#0064E0',
+                    hover: '#0052B3',
+                    subtle: '#EBF4FF',
+                },
+                matcha: {
+                    DEFAULT: '#0D8626',
+                    hover: '#0B7320',
+                    subtle: '#EAF7EE',
+                },
             },
             borderRadius: {
                 lg: 'var(--radius)',
@@ -63,8 +73,18 @@ export default {
                 sm: 'calc(var(--radius) - 4px)',
             },
             fontFamily: {
-                anton: ['var(--font-anton)'],
-                'roboto-flex': ['var(--font-roboto-flex)'],
+                outfit: ['var(--font-outfit)', 'sans-serif'],
+                sans: [
+                    'var(--font-dm-sans)',
+                    '-apple-system',
+                    'BlinkMacSystemFont',
+                    'Segoe UI',
+                    'Roboto',
+                    'sans-serif',
+                ],
+                mono: ['var(--font-jetbrains-mono)', 'monospace'],
+                anton: ['var(--font-outfit)', 'sans-serif'],
+                'roboto-flex': ['var(--font-dm-sans)', 'sans-serif'],
             },
             padding: {
                 section: '250px',

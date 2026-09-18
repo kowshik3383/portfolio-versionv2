@@ -1,33 +1,39 @@
 import type { Metadata } from 'next';
-import { Anton, Roboto } from 'next/font/google';
+import { Outfit, DM_Sans, JetBrains_Mono } from 'next/font/google';
 import { ReactLenis } from 'lenis/react';
 
 import 'lenis/dist/lenis.css';
 import './globals.css';
 import Footer from '@/components/Footer';
-import Preloader from '../components/Preloader';
 import ParticleBackground from '@/components/ParticleBackground';
 import ScrollProgressIndicator from '@/components/ScrollProgressIndicator';
 import StickyEmail from './_components/StickyEmail';
 import FloatingNavDock from '@/components/FloatingNavDock';
+import GuideBlob from '@/components/GuideBlob';
 import LogRocketProvider from '@/components/LogRocketProvider';
 
-const antonFont = Anton({
-    weight: '400',
+const outfit = Outfit({
+    weight: ['400', '500', '600', '700', '800'],
     style: 'normal',
     subsets: ['latin'],
-    variable: '--font-anton',
+    variable: '--font-outfit',
     display: 'swap',
-    preload: true,
 });
 
-const robotoFlex = Roboto({
-    weight: ['400', '500', '700'],
+const dmSans = DM_Sans({
+    weight: ['400', '500', '600', '700'],
     style: 'normal',
     subsets: ['latin'],
-    variable: '--font-roboto-flex',
+    variable: '--font-dm-sans',
     display: 'swap',
-    preload: true,
+});
+
+const jetbrainsMono = JetBrains_Mono({
+    weight: ['400', '500', '600', '700'],
+    style: 'normal',
+    subsets: ['latin'],
+    variable: '--font-jetbrains-mono',
+    display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -196,7 +202,7 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${antonFont.variable} ${robotoFlex.variable} antialiased bg-[#FAF8F5] text-[#191715]`}
+                className={`${outfit.variable} ${dmSans.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#FAF8F5] text-[#0A1317] selection:bg-[#0064E0] selection:text-white`}
                 suppressHydrationWarning
             >
                 <ReactLenis
@@ -208,11 +214,11 @@ export default function RootLayout({
                 >
                     <main>{children}</main>
                     <Footer />
-                    <Preloader />
                     <ScrollProgressIndicator />
                     <ParticleBackground />
                     <StickyEmail />
                     <FloatingNavDock />
+                    <GuideBlob />
                     <LogRocketProvider />
                 </ReactLenis>
             </body>

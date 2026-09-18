@@ -38,14 +38,14 @@ The homepage is composed of 10 modular sections engineered for speed, clarity, a
 
 ### Section Breakdown & Content Blueprint
 
-#### 01. Astryx Top Navigation (`components/Navbar.tsx`)
+#### 01. Astryx Top Navigation (`portfolio/components/Navbar.tsx`)
 * **Brand Monogram**: Astryx geometric SVG mark + `KOWSHIK.` wordmark + `Systems Engineer` role label.
 * **Navigation Links**: Pill-shaped center cluster: `About`, `Pillars`, `Stack`, `Experience`, `Projects`, `Terminal`, `Blog`.
 * **Theme Status**: Live `Matcha theme` pill badge with an emerald pulse dot.
 * **Actions**: One-click GitHub link and primary `Get started` pill button with smooth hover translation.
 * **Mobile Drawer**: Responsive backdrop blur drawer with categorical site map links.
 
-#### 02. Hero Banner (`app/_components/Banner.tsx`)
+#### 02. Hero Banner (`portfolio/app/_components/Banner.tsx`)
 * **Status Kicker**: `"Matcha theme · Currently in Beta · Built on React 19+ and Next.js 15"` with pulse indicator.
 * **Master Headline**:
   * Line 1: `Start anywhere. Change anything.`
@@ -60,43 +60,43 @@ The homepage is composed of 10 modular sections engineered for speed, clarity, a
   * Right: 1,500+ Paid Users Onboarded, PostgreSQL p95 Latency < 25ms, 100% Core Web Vitals, End-to-End Type Safety.
 * **GSAP Convergence Animation**: On scroll, perimeter cards calculate real-time vector coordinates and converge directly into Kowshik's photo in the About section.
 
-#### 03. Astryx 4-Card Bento Features (`app/_components/AstryxBentoFeatures.tsx`)
+#### 03. Astryx 4-Card Bento Features (`portfolio/app/_components/AstryxBentoFeatures.tsx`)
 Directly implements the Astryx system templates:
 1. **Themes that fit your brand (Span 7)**: Live interactive theme switcher enabling real-time preview of `Matcha` (`#0D8626`), `Astryx Blue` (`#0064E0`), `Cyan Slate` (`#089DD0`), and `Warm Coral` (`#EB6E00`) with dynamic token chip feedback.
 2. **Aa · Over 170 components (Span 5)**: Interactive micro-component preview containing an operational toggle switch, click-to-scrub progress bar (`85%`), and status chips.
 3. **A design system that your agent can use (Span 5)**: Embedded terminal container showcasing the Model Context Protocol (MCP) CLI toolchain with one-click command copying (`npx astryx-mcp scaffold --template=mobile-next`).
 4. **Ready to ship templates (Span 7)**: 3-column architectural blueprint cards: `01 · Mobile` (React Native / Expo), `02 · Full Stack` (Next.js 15 Platform), and `03 · AI Agent` (MCP Tool Pipeline).
 
-#### 04. Astryx Foundations (`app/_components/AstryxFoundations.tsx`)
+#### 04. Astryx Foundations (`portfolio/app/_components/AstryxFoundations.tsx`)
 * **Impact Metric**: *"Powers over 500,000+ users across web & mobile"*.
 * **Three Foundation Pillars**:
   1. **Design for speed**: Foundations you can trust, speed you can feel (Sub-second LCP, 120 FPS native gesture worklets).
   2. **Built by the people who use it**: Battle-tested production feedback loop and strict type invariants.
   3. **Ready for what's next**: Autonomous agent toolchains, MCP servers, and AI-augmented developer workflows.
 
-#### 05. About Me & First-Principles Statement (`app/_components/AboutMe.tsx`)
+#### 05. About Me & First-Principles Statement (`portfolio/app/_components/AboutMe.tsx`)
 * **Author Photo Convergence Target**: Concentric precision hairline rings (`border-[#0064E0]/35` and `border-[#E8E3DA]`) with continuous counter-rotation.
 * **Architectural Statement**: *"Governed by verifiable latency, frame budgets, & deterministic state invariants."*
 
-#### 06. Personal CLI Terminal Bot (`app/_components/KowshikTerminal.tsx`)
+#### 06. Personal CLI Terminal Bot (`portfolio/app/_components/KowshikTerminal.tsx`)
 * Real-time interactive zsh-style terminal loaded with profile data, project metrics, resume downloads, and interactive commands (`apps`, `experience`, `skills`, `notice`, `sudo hire-me`).
 
-#### 07. Technical Toolchain (`app/_components/Skills.tsx`)
+#### 07. Technical Toolchain (`portfolio/app/_components/Skills.tsx`)
 * 6 rounded-3xl cards categorized into Mobile, Frontend, Backend, Database, Cloud/Deployment, and DevOps. Each technology features an SVG logo and interactive hover feedback.
 
-#### 08. Engineering Track Record (`app/_components/Experiences.tsx`)
+#### 08. Engineering Track Record (`portfolio/app/_components/Experiences.tsx`)
 * Chronological timeline featuring company roles, duration badges, and bold highlight bullet points formatted with markdown parsing.
 
-#### 09. Selected Production Work (`app/_components/ProjectList.tsx` & `Project.tsx`)
+#### 09. Selected Production Work (`portfolio/app/_components/ProjectList.tsx` & `Project.tsx`)
 * High-impact project list with mobile/web badges, technology tags, live product links, and case study routes.
 
-#### 10. Stay in the Know (`app/_components/LatestBlogs.tsx` & `app/blog`)
+#### 10. Stay in the Know (`portfolio/app/_components/LatestBlogs.tsx` & `portfolio/app/blog`)
 * Technical research articles matching Astryx's article rhythm: category badge, author name, publication date, reading time (`6 min read`), and read arrow link.
 
-#### 11. Astryx Discovery CTA Banner (`app/_components/AstryxDiscoveryBanner.tsx`)
+#### 11. Astryx Discovery CTA Banner (`portfolio/app/_components/AstryxDiscoveryBanner.tsx`)
 * Large rounded-3xl container with radial aurora glows: *"Discover the full engineering system — Browse 170+ components, explore production-ready templates, and tune themes to match your brand."*
 
-#### 12. Astryx Multi-Column Footer (`components/Footer.tsx`)
+#### 12. Astryx Multi-Column Footer (`portfolio/components/Footer.tsx`)
 * 4-column structured sitemap (`Architecture`, `Production`, `Connect`), live IST clock (`Asia/Kolkata`), one-click email copy button with feedback toast, and legal copyright notices.
 
 ---
@@ -254,9 +254,9 @@ portfolio/
 * **Do not run `pnpm build`** unless explicitly requested by the project owner.
 * For local development, run:
   ```bash
-  pnpm dev
+  cd portfolio && pnpm dev
   ```
 * To check TypeScript types in-memory without emitting build artifacts:
   ```bash
-  pnpm exec tsc --noEmit
+  cd portfolio && pnpm exec tsc --noEmit
   ```
