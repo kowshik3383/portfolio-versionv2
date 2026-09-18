@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ArrowUpRight, Github, Mail, Menu, X, Sparkles, Terminal } from 'lucide-react';
+import { ArrowUpRight, Github, Mail, Menu, X } from 'lucide-react';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 
 const NAV_LINKS = [

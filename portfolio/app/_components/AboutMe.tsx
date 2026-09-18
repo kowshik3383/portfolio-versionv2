@@ -83,7 +83,7 @@ const AboutMe = () => {
                                 <span className="text-[11px] font-mono text-[#4E606F]">Production Healthcare</span>
                             </div>
                             <p className="text-sm sm:text-base text-[#0A1317] font-medium leading-relaxed">
-                                In patient health apps, intermittent connectivity and timezone shifts aren't edge cases — they are daily realities.
+                                In patient health apps, intermittent connectivity and timezone shifts aren&apos;t edge cases — they are daily realities.
                             </p>
                             <p className="text-xs sm:text-sm text-[#4E606F] font-normal leading-relaxed">
                                 At Tap Health, I eliminated state-synchronization deadlocks and UTC drift across continuous glucose tracking and daily meal logs by replacing fragile optimistic side-effects with an offline-first deterministic state machine and robust delta reconciliation.

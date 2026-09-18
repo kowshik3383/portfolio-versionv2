@@ -1,24 +1,14 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
-import { GENERAL_INFO } from '@/lib/data';
 import { trackEvent } from '@/lib/logrocket';
 import { useLenis } from 'lenis/react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import {
-    ArrowUpRight,
-    ShieldCheck,
-    CheckCircle2,
-    Cpu,
-    Sparkles,
-    Layers,
-    Code2,
-    ArrowRight,
-} from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -55,7 +45,6 @@ const SprayTechIcon: React.FC<SprayTechIconProps> = ({
 
 const Banner = () => {
     const bannerRef = useRef<HTMLDivElement>(null);
-    const [activeTheme, setActiveTheme] = useState<'matcha' | 'astryx' | 'slate'>('matcha');
 
     // Synchronize Lenis smooth scroll frames directly with GSAP ScrollTrigger
     useLenis(() => {

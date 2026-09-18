@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "pdf": "node scripts/generate-pdf.js",
-    "build": "node scripts/generate-pdf.js && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "wrangler pages deploy out --project-name=kowshik-valipireddy --branch=main --commit-dirty=true",

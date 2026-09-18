@@ -123,7 +123,7 @@ export default function Preloader() {
                     </div>
 
                     <p className="preloader-text font-outfit text-xl sm:text-2xl font-bold text-[#0A1317] tracking-tight leading-snug">
-                        Hey, I'm <span className="text-[#0064E0]">Blob</span>.
+                        Hey, I&apos;m <span className="text-[#0064E0]">Blob</span>.
                     </p>
 
                     <p className="preloader-text font-sans text-sm sm:text-base text-[#4E606F] font-normal leading-relaxed">

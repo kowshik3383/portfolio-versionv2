@@ -1,7 +1,7 @@
 'use client';
 
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
-import { ArrowUpRight, Copy, Check, Mail, Clock } from 'lucide-react';
+import { ArrowUpRight, Copy, Check, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 

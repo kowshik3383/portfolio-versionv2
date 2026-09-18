@@ -2,8 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, ArrowRight, Sparkles } from 'lucide-react';
-import Button from '@/components/Button';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { GENERAL_INFO } from '@/lib/data';
 
 export default function AstryxDiscoveryBanner() {
@@ -42,7 +41,7 @@ export default function AstryxDiscoveryBanner() {
                         </div>
 
                         <h2 className="font-outfit text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0A1317] leading-[1.08]">
-                            Let's build reliable <span className="text-[#0064E0]">software together</span>
+                            Let&apos;s build reliable <span className="text-[#0064E0]">software together</span>
                         </h2>
 
                         <p className="text-base sm:text-lg text-[#4E606F] font-normal leading-relaxed max-w-2xl">

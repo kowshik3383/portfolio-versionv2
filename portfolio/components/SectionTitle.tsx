@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { Sparkles } from 'lucide-react';
 
 interface Props {
     icon?: ReactNode;

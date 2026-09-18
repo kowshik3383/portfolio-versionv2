@@ -5,16 +5,6 @@ import { cn } from '@/lib/utils';
 import BloubAvatar, { BloubState } from './BloubAvatar';
 import gsap from 'gsap';
 
-type SectionKey =
-    | 'banner'
-    | 'about-me'
-    | 'first-principles'
-    | 'my-stack'
-    | 'my-experience'
-    | 'selected-projects'
-    | 'latest-blogs'
-    | 'contact';
-
 interface SectionBlobConfig {
     state: BloubState;
     caption: string;
@@ -293,7 +283,7 @@ export default function GuideBlob() {
                         </div>
 
                         <p className="font-outfit text-xl sm:text-3xl font-bold text-[#0A1317] tracking-tight leading-snug">
-                            Hey, I'm <span className="text-[#0064E0]">[Blob]</span>.
+                            Hey, I&apos;m <span className="text-[#0064E0]">[Blob]</span>.
                         </p>
 
                         <p className="font-sans text-xs sm:text-base text-[#4E606F] font-normal leading-relaxed">

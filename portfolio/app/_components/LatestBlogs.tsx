@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import TransitionLink from '@/components/TransitionLink';
 import { BLOG_POSTS } from '@/lib/blogs';
-import { ArrowRight, ArrowUpRight, Clock, Calendar, BookOpen } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';

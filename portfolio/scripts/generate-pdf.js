@@ -10,14 +10,19 @@ const candidates = [
 
 const browser = candidates.find(c => fs.existsSync(c));
 
+const outputPdf = path.resolve(__dirname, '../public/Kowshik-Valipireddy-Resume.pdf');
+const rootPdf = path.resolve(__dirname, '../../Kowshik-Valipireddy-Resume.pdf');
+
 if (!browser) {
+    if (process.env.CI || process.env.VERCEL || fs.existsSync(outputPdf)) {
+        console.warn('No local Chrome or Edge browser found. Using existing pre-generated resume PDF.');
+        process.exit(0);
+    }
     console.error('No Chrome or Edge browser found on system.');
     process.exit(1);
 }
 
 const inputHtml = path.resolve(__dirname, '../public/resume-print.html');
-const outputPdf = path.resolve(__dirname, '../public/Kowshik-Valipireddy-Resume.pdf');
-const rootPdf = path.resolve(__dirname, '../../Kowshik-Valipireddy-Resume.pdf');
 
 const inputUri = 'file:///' + inputHtml.replace(/\\/g, '/');
 
