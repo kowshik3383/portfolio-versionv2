@@ -39,7 +39,7 @@ export default function FloatingNavDock() {
             href: '/#about-me',
         },
         {
-            title: 'Engineering CLI',
+            title: 'Kowshik CLI',
             icon: <Terminal className="size-full text-[#0E7490] hover:text-black transition-colors" />,
             href: '/#engineering-benchmarks',
         },

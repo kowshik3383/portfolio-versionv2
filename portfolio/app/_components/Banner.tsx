@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button';
 import { GENERAL_INFO } from '@/lib/data';
+import { trackEvent } from '@/lib/logrocket';
 import { useLenis } from 'lenis/react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -11,7 +12,6 @@ import { ScrollTrigger } from 'gsap/all';
 import {
     ArrowUpRight,
     ShieldCheck,
-    Activity,
     CheckCircle2,
     Cpu,
 } from 'lucide-react';
@@ -406,6 +406,7 @@ const Banner = () => {
                     <Button
                         as="link"
                         href="#selected-projects"
+                        onClick={() => trackEvent('Inspect Production Work Clicked', { section: 'Hero' })}
                         variant="primary"
                         className="banner-button px-6 py-3 rounded-xl font-medium bg-[#0E7490] hover:bg-[#0c627a] text-white transition-all text-sm shadow-md"
                     >
@@ -417,6 +418,7 @@ const Banner = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         href={GENERAL_INFO.upworkProfile}
+                        onClick={() => trackEvent('Schedule Consultation Clicked', { target: 'UpworkProfile', section: 'Hero' })}
                         variant="outline"
                         className="banner-button px-6 py-3 rounded-xl font-medium border-[#E8E3DA] bg-white hover:bg-[#FAF8F5] text-[#191715] transition-colors text-sm inline-flex items-center gap-1.5 shadow-sm"
                     >

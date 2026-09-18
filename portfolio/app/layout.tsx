@@ -10,6 +10,7 @@ import ParticleBackground from '@/components/ParticleBackground';
 import ScrollProgressIndicator from '@/components/ScrollProgressIndicator';
 import StickyEmail from './_components/StickyEmail';
 import FloatingNavDock from '@/components/FloatingNavDock';
+import LogRocketProvider from '@/components/LogRocketProvider';
 
 const antonFont = Anton({
     weight: '400',
@@ -212,6 +213,7 @@ export default function RootLayout({
                     <ParticleBackground />
                     <StickyEmail />
                     <FloatingNavDock />
+                    <LogRocketProvider />
                 </ReactLenis>
             </body>
         </html>

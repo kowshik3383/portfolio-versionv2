@@ -7,7 +7,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import SectionTitle from '@/components/SectionTitle';
 import { DEFAULT_AUTHOR } from '@/lib/blogs';
-import EngineeringTerminal from './EngineeringTerminal';
+import KowshikTerminal from './KowshikTerminal';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -96,17 +96,17 @@ const AboutMe = () => {
                 {/* Section Header */}
                 <div id="engineering-benchmarks" className="mb-6 sm:mb-8 flex flex-col items-center justify-center text-center scroll-mt-24">
                     <SectionTitle
-                        title="ENGINEERING BENCHMARKS &amp; PRINCIPLES"
+                        title="KOWSHIK VALIPIREDDY CLI"
                         className="justify-center mb-3"
                     />
                     <p className="font-mono text-xs uppercase tracking-widest text-[#68645E]">
-                        Scientific rationale, architecture invariants &amp; empirical benchmarks
+                        Interactive personal terminal bot · Sourced from verified profile data
                     </p>
                 </div>
 
-                {/* Master Unified Brainless-Style Terminal UI: All Profile, Benchmarks & Invariants in One Console */}
+                {/* Interactive Personal Terminal CLI Bot: Real Data, Instant Responses & Actionable Easter Eggs */}
                 <div className="about-fade max-w-5xl mx-auto">
-                    <EngineeringTerminal />
+                    <KowshikTerminal />
                 </div>
             </div>
         </section>

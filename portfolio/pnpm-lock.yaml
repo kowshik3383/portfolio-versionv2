@@ -32,6 +32,12 @@ importers:
       lenis:
         specifier: ^1.1.16
         version: 1.1.16(react@19.0.0-rc-66855b96-20241106)
+      logrocket:
+        specifier: ^12.3.0
+        version: 12.3.0
+      logrocket-react:
+        specifier: ^7.0.1
+        version: 7.0.1(logrocket@12.3.0)(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
       lucide-react:
         specifier: ^0.460.0
         version: 0.460.0(react@19.0.0-rc-66855b96-20241106)
@@ -1882,6 +1888,16 @@ packages:
 
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+
+  logrocket-react@7.0.1:
+    resolution: {integrity: sha512-RQrE6lxWcOKJLu26rzSmcRINGYqhslaC5mNCg6q5e7IES9mQNyrHL1vrwPc2l+caqd5vJ66SaH4LCqLQT9Q9yQ==}
+    peerDependencies:
+      logrocket: '>=2.0'
+      react: ^17 || ^18 || ^19
+      react-dom: ^17 || ^18 || ^19
+
+  logrocket@12.3.0:
+    resolution: {integrity: sha512-qgzRu5nDxrVCXV4bnhgKUTUc0UmEKvx15jRE2hPqK4gxxius+2ePwxvq4/krxnBaLf2TWdtMwf+d6xE3Ya4I5A==}
 
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
@@ -4436,6 +4452,14 @@ snapshots:
       p-locate: 5.0.0
 
   lodash.merge@4.6.2: {}
+
+  logrocket-react@7.0.1(logrocket@12.3.0)(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106):
+    dependencies:
+      logrocket: 12.3.0
+      react: 19.0.0-rc-66855b96-20241106
+      react-dom: 19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106)
+
+  logrocket@12.3.0: {}
 
   loose-envify@1.4.0:
     dependencies:

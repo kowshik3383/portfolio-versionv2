@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { trackEvent } from '@/lib/logrocket';
 import {
     MapPin,
     Phone,
@@ -20,6 +21,7 @@ export default function ResumeClient() {
 
     const handlePrint = () => {
         setIsPrinting(true);
+        trackEvent('Resume Print Triggered');
         const iframe = document.createElement('iframe');
         iframe.style.position = 'fixed';
         iframe.style.right = '0';
@@ -74,6 +76,7 @@ export default function ResumeClient() {
                     <a
                         href="/resume.html"
                         download="Kowshik-Valipireddy-Resume.html"
+                        onClick={() => trackEvent('Resume Download HTML Clicked')}
                         className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-neutral-50 text-neutral-700 hover:text-neutral-900 border border-neutral-300 text-xs font-mono transition-colors shadow-sm"
                     >
                         <Download size={13} />
@@ -83,6 +86,7 @@ export default function ResumeClient() {
                     <a
                         href="/Kowshik-Valipireddy-Resume.pdf"
                         download="Kowshik-Valipireddy-Resume.pdf"
+                        onClick={() => trackEvent('Resume Download PDF Clicked')}
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-semibold text-xs tracking-wider uppercase transition-transform hover:scale-105 hover:bg-primary.hover shadow-md active:scale-95"
                     >
                         <Download size={15} />

@@ -1,0 +1,118 @@
+{
+  "name": "Kowshik Valipireddy",
+  "handle": "kowshik",
+  "role": "Senior Design Technologist & Full-Stack / Mobile Engineer",
+  "bio": "Bridging high-fidelity design with robust systems engineering across web and mobile. Passionate about 120 FPS gesture loops, sub-second LCP, and deterministic state architectures.",
+  "location": "Remote / Hybrid (India / Open to Global Teams)",
+  "experience": {
+    "total": "2+ years of production engineering experience",
+    "summary": "Proven track record shipping production web platforms, cross-platform mobile apps, developer tooling, and AI workflows.",
+    "roles": [
+      {
+        "company": "Tap Health",
+        "title": "Full Stack & Mobile Developer",
+        "period": "April 2025 – Present",
+        "highlights": [
+          "Architected and shipped core patient health flows in React, Next.js, and React Native (daily glucose tracking, meal logging, and multi-step onboarding).",
+          "Engineered 30+ high-performance landing pages in Next.js 15, optimized for sub-second LCP and high conversion.",
+          "Implemented comprehensive event-tracking and telemetry funnels to monitor patient engagement and retention."
+        ]
+      },
+      {
+        "company": "ZarvisGenix",
+        "title": "Full Stack & React Native Developer",
+        "period": "Sep 2024 – Apr 2025",
+        "highlights": [
+          "Built and deployed multiple production products from scratch across web and mobile using React, React Native, Node.js, and PostgreSQL.",
+          "Engineered scalable doctor portals, HR platforms, and administrative dashboards with role-based access control (RBAC).",
+          "Developed and integrated AI-powered speech-to-text pipelines for automated clinical transcription workflows."
+        ]
+      }
+    ]
+  },
+  "availability": {
+    "status": "Available for High-Impact Full-Time Roles & Contracts",
+    "noticePeriod": "Immediate / Negotiable",
+    "openTo": [
+      "Full-Time Engineering Roles",
+      "Contract / Consulting Projects",
+      "Mobile Architecture (React Native)",
+      "Web Systems & Design Systems (Next.js 15)"
+    ],
+    "workAuthorization": "Open to remote worldwide contracts and full-time relocation/sponsorship"
+  },
+  "apps": [
+    {
+      "name": "Figma to Code [HTML, Tailwind, React]",
+      "tag": "Official Figma Community Plugin",
+      "stack": "Figma Plugin API, TypeScript, Tailwind CSS (v3/v4), React JSX",
+      "link": "https://www.figma.com/community/plugin/1670837309887282952/figma-to-code-html-tailwind-react",
+      "oneLiner": "Converts Figma frames and Auto Layouts into clean, production-ready code 100% offline inside the Figma desktop client."
+    },
+    {
+      "name": "AI Technical Interviewer",
+      "tag": "Voice-First AI Platform",
+      "stack": "Next.js 15, React 19, WebSockets, Zero-TTS, Monaco Editor, OpenRouter",
+      "link": "https://ai-interviewer-ten-delta.vercel.app/",
+      "oneLiner": "Conversational voice AI technical interview simulator with real-time keystroke observability and multi-model failover."
+    },
+    {
+      "name": "HealthTrack Analytics Platform",
+      "tag": "Full-Stack Health Dashboard",
+      "stack": "Next.js 15, React 19, Tailwind CSS, Prisma ORM, PostgreSQL, Recharts",
+      "link": "https://tracker-mocha-ten.vercel.app/",
+      "oneLiner": "Health & fitness dashboard with 5-step onboarding, BMR/macro calculations, and timeseries health telemetry."
+    },
+    {
+      "name": "Antique Journal — AI Sanctuary",
+      "tag": "Tactile Editorial AI",
+      "stack": "Next.js 15, React 19, Semantic AI Search, Zero-Knowledge Encryption",
+      "link": "https://antique-journal2.vercel.app/",
+      "oneLiner": "Tactile digital journal with natural language semantic memory recall and zero-knowledge client encryption."
+    }
+  ],
+  "skills": {
+    "mobile": [
+      "React Native",
+      "Expo (EAS)",
+      "Reanimated 3",
+      "JSI TurboModules",
+      "iOS & Android",
+      "Zustand / Redux"
+    ],
+    "frontend": [
+      "Next.js 15 (App Router)",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "GSAP",
+      "Framer Motion"
+    ],
+    "backend": [
+      "Node.js",
+      "NestJS",
+      "Express.js",
+      "PostgreSQL",
+      "Prisma ORM",
+      "REST & WebSockets"
+    ],
+    "cloud_tools": [
+      "Docker",
+      "Vercel Edge",
+      "Git & GitHub",
+      "Figma Plugin API",
+      "AWS Basics"
+    ]
+  },
+  "contact": {
+    "email": "kowshikvalipireddy@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/kowshikvalipireddy",
+    "github": "https://github.com/kowshik3383",
+    "upwork": "https://www.linkedin.com/in/kowshikvalipireddy/"
+  },
+  "funFacts": [
+    "Obsessed with 120 FPS gesture physics and zero-layout-shift (CLS 0.000) web rendering.",
+    "Built an offline AST parser that runs entirely inside Figma's sandboxed client with zero external API calls.",
+    "Easter egg enthusiast: try 'matrix', 'clear', 'whoami', or 'sudo hire-me'!"
+  ]
+}
